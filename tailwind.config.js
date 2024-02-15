@@ -6,7 +6,10 @@ tailwind.config = {
 			md: "860px",
 			lg: "1024px",
 		},
-		colors: {
+		extend: {
+			fontFamily: {
+			},
+			colors: {
 				white: "#FFFFFF",
 				purple: "#3F3CBB",
 				midnight: "#121063",
@@ -15,7 +18,7 @@ tailwind.config = {
 				"cool-white": "#ECEBFF",
 				"bubble-gum": "#FF77E9",
 				"cooper-rust": "#78DCCA",
+			},
 		},
 	},
-}
-
+};
