@@ -1,3 +1,19 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+	theme: {
+		screens: {
+			tablet: "640px",
+			// => @media (min-width: 640px) { ... }
+
+			laptop: "1024px",
+			// => @media (min-width: 1024px) { ... }
+
+			desktop: "1280px",
+			// => @media (min-width: 1280px) { ... }
+		},
+	},
+};
+
 tailwind.config = {
 	darkMode: "class",
 	theme: {
@@ -7,8 +23,7 @@ tailwind.config = {
 			lg: "1024px",
 		},
 		extend: {
-			fontFamily: {
-			},
+			fontFamily: {},
 			colors: {
 				white: "#FFFFFF",
 				purple: "#3F3CBB",
