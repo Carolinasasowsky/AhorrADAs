@@ -55,14 +55,16 @@
 		</nav>
 	</header>
 <!--Fin del Header. Comienzo del Main-->
-<main id="main" class="flex justify mt-9 gap-14">
-  <div class="container-main flex flex-col gap-10">
+<main id="main" class="mt-10 px-10 gap-5">
+
+  <div class="flex gap-[30px] w-full justify-center">
+    
 	<!-- seccion principal --  BALANCE -- seccion principal -->
 	
-    <section id="principal" class="section m-10">
-      <!--<div class="grid grid-cols-2 gap-4"></div>-->
-        <div id="balance" class="column col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1"></div>
-        <article class="box p-5 m-8 bg-indigo-300 w-80 h-80 m-4 p-5 rounded-lg shadow-2xl">
+    <section id="principal" class="section">
+      
+        <div id="balance" class="column mb-30 col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1"></div>
+        <article class="box mb-[30px] p-5 bg-indigo-300 w-80 h-80 p-5 rounded-lg shadow-2xl">
         <h2 class="text-4xl m-6 font-bold text-left">Balance</h2>
                 
           <!-- Ganancias -->
@@ -96,7 +98,7 @@
           </div>
         </article>
   <!--  ======================== FILTROS ========================  -->
-        <form class="box p-5 m-8 bg-indigo-300 w-80 h-100 m-4 p-5 rounded-lg shadow-2xl">
+        <form class="box p-5 bg-indigo-300 w-80 h-100 p-5 rounded-lg shadow-2xl">
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-40">
                 <h3 class="text-4xl m-6 font-bold text-left">
                   Filtros
@@ -119,7 +121,7 @@
                       </select>
                     </div>
                   </div>
-                </div>
+              </div>
 
                 <div class="field m-4">
                   <label for="select-categoria" class="label">Categoría</label>
@@ -137,7 +139,7 @@
                   <div class="control">
                     <div class="date w-full">
                       <!--Select de Fecha-->
-                      <input type="date" class=" box-border h-0 w-64 p-4 border-4" class="input" id="input-fecha" />
+                       <input type="date" class=" box-border h-0 w-64 p-4 border-4" class="input" id="input-fecha" />
                     </div>
                   </div>
                 </div>
@@ -159,8 +161,7 @@
                 </div>
               </div>
         </form>
-      </div>
-    </div>
+      
     </section>
 
   
@@ -168,10 +169,10 @@
   <!-- ================== Seccion OPERACIONES ================== -->
 
   <!--<div id="contenedor-secciones" class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 m-10">-->
-      <div id="operaciones" class="grid grid-cols-1 sm:grid-cols-1 bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent w-3/6 px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 m-8"> 
+      <div id="operaciones" class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[700px] max-h-[700px] h-full"> 
       <!--<div id="operaciones" class="column bg-white w-4/6 px-7 rounded-xl mb-24 shadow-xl h-full">-->
     
-            <article class="box min-h-80">
+            <article class="box">
               <div class="columns grid-cols-2 flex justify-items justify-between"> <!-- esto es para que el boton de nueva operacion quede alineado a la palabra operaciones-->
                 <div class="col-span-1">
                   <h3 class="title text-2xl font-semibold py-4">
@@ -184,6 +185,7 @@
                   <button id="boton-nueva-operacion" class="button bg-indigo-300 text-black px-4 py-2 rounded"> + Nueva operación</button>
                 </div>
               </div>
+            </article>
 
       <!-- Contenedor de Sección SIN Operaciones -->
       <div id="contenedor-sin-operaciones" class="hidden mt-6">
@@ -231,8 +233,7 @@
           <!-- Contenido del listado de nuevas operaciones aquí -->
         </div>
       </div>
-    </div>
-  </section>
+      </div>    
 
 
 
