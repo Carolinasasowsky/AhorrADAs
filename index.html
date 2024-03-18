@@ -61,7 +61,7 @@
     
 	<!-- seccion principal --  BALANCE -- seccion principal -->
 	
-    <section id="principal" class="section">
+    <section id="principal" class="section hidden"> <!--RECORDAR BORRAR EL hidden-->
       
         <div id="balance" class="column mb-30 col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1"></div>
         <article class="box mb-[30px] p-5 bg-indigo-300 w-80 h-80 p-5 rounded-lg shadow-2xl">
@@ -72,7 +72,7 @@
             <div class="text-lg m-4">
               <p>Ganancias</p>
             </div>
-            <div class="text-sm text-success">
+            <div class="text-xl font-bold text-success text-green-700">
               <p class="mb-2">+$0</p>
             </div>
           </div>
@@ -82,7 +82,7 @@
             <div class="text-lg m-4">
               <p>Gastos</p>
             </div>
-            <div class="text-sm text-danger">
+            <div class="text-xl font-bold text-dange text-red-700">
               <p class="mb-2">-$0</p>
             </div>
           </div>
@@ -92,7 +92,7 @@
             <div class="text-xl m-4">
               <p>Total</p>
             </div>
-            <div class="text-lg font-bold">
+            <div class="text-xl font-bold">
               <p class="mb-2">+$0</p>
             </div>
           </div>
@@ -169,36 +169,41 @@
   <!-- ================== Seccion OPERACIONES ================== -->
 
   <!--<div id="contenedor-secciones" class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 m-10">-->
-      <div id="operaciones" class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[700px] max-h-[700px] h-full"> 
+      <div id="operaciones " class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[620px] max-h-[620px] h-full"> 
       <!--<div id="operaciones" class="column bg-white w-4/6 px-7 rounded-xl mb-24 shadow-xl h-full">-->
-    
+        <div class="hidden"><!-- RECORDAR SACAR ESTA ETIQUETA: hidden SOLO LA CREEE PARA ARREGLAR LA SECCION "NUEVAS OPERACIONES"-->
             <article class="box">
               <div class="columns grid-cols-2 flex justify-items justify-between"> <!-- esto es para que el boton de nueva operacion quede alineado a la palabra operaciones-->
                 <div class="col-span-1">
-                  <h3 class="title text-2xl font-semibold py-4">
+                  <h3 class="title text-4xl font-bold py-4">
                     Operaciones
                   </h3>
                 </div>
 
                 <div class="column col-span-1 flex justify-end items-center">
                   
-                  <button id="boton-nueva-operacion" class="button bg-indigo-300 text-black px-4 py-2 rounded"> + Nueva operación</button>
+                  <button id="boton-nueva-operacion" class="button bg-indigo-300 text-black font-semibold px-4 py-2 rounded"> + Nueva operación</button>
                 </div>
               </div>
             </article>
+        
 
       <!-- Contenedor de Sección SIN Operaciones -->
-      <div id="contenedor-sin-operaciones" class="hidden mt-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4">
+      <div id="contenedor-sin-operaciones" class="hidden mt-[-90px]">
+        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
           <div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
             <div class="card-image">
               <figure id="imagen-seccion-principal" class="image">
-                <img src="img/gastos.svg" alt="Mujer con dinero en la mano" />
+                <div class="flex justify-center items-start">
+                  <div class="mt-[-0px]"">
+                    <img src="img/gastos.svg" alt="Mujer con dinero en la mano" />
+                  </div>
+                </div>
               </figure>
             </div>
           </div>
           <div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-            <h4 class="text-3xl font-bold text-center mt-6">
+            <h4 class="text-2xl font-bold text-center mt-[-40px]">
               Sin resultados
             </h4>
             <p class="text-center mb-6">
@@ -211,11 +216,11 @@
       <!-- Contenedor de Sección CON Operaciones -->
       <div id="contenedor-titulos-nuevas-operaciones">
         <!-- Titulos de las operaciones-->
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4"> 
           <div class="col-span-3 md:col-span-1">
             <p class="font-semibold">Descripción</p>
           </div>
-          <div class="col-span-2 md:col-span-1">
+          <div class="col-span-2 md:col-span-1 text-center">
             <p class="font-semibold">Categoría</p>
           </div>
           <div class="col-span-2 md:col-span-1 text-right">
@@ -227,7 +232,8 @@
           <div class="col-span-2 md:col-span-1 text-right">
             <p class="font-semibold">Acciones</p>
           </div>
-        </div>
+        </div> <!-- RECORDAR SACAR ESTE DIV QUE PERTENECE A LA ETIQUETA DE LA CLASS: hidden-->
+      </div>
         <!-- Items nuevas operaciones-->
         <div id="contenedor-listado-nuevas-operaciones">
           <!-- Contenido del listado de nuevas operaciones aquí -->
@@ -235,23 +241,62 @@
       </div>
       </div>    
 
+   <!--Sección Nueva Operación-->
+<form id="formulario-nueva-operacion" class="section "><!--RECORDAR AGREGARLE hidden-->
+  <div class="flex justify-center items-center h-screen">
+    <div class="container mt-[-0px]">
+      <div class="box gap-3 flex flex-col w-full">
+        <h2 class="text-2xl font-bold mb-4">Nueva operación</h2>
+        <!-- Input descripción -->
+        <div class="field">
+          <label for="descripción-nueva-operacion" class="label">Descripción</label>
+          <div class="control">
+            <input type="text" id="descripción-nueva-operacion" class="input">
+          </div>
+        </div>
+        <!-- Input monto -->
+        <div class="field">
+          <label for="monto-nueva-operacion" class="label">Monto</label>
+          <div class="control">
+            <input type="number" id="monto-nueva-operacion" class="input" value="0">
+          </div>
+        </div>
+        <!-- Input tipo -->
+        <div class="field">
+          <label for="tipo-nueva-operacion" class="label">Tipo</label>
+          <div class="control">
+            <div class="select w-full">
+              <select id="tipo-nueva-operacion">
+                <option value="gasto">Gasto</option>
+                <option value="ganancia">Ganancia</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- Input categoria -->
+        <div class="field">
+          <label for="categoria-nueva-operacion" class="label">Categoría</label>
+          <div class="control">
+            <div class="select w-full">
+              <select id="categoria-nueva-operacion">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- Input fecha -->
+        <div class="field">
+          <label for="fecha-nueva-operacion" class="label">Fecha</label>
+          <div class="control">
+            <input type="date" id="fecha-nueva-operacion" class="input">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 
-
-    <!-- Seccion SIN operaciones-->
-
-    <!-- Seccion CON operaciones-->
-
-      <!-- Titulos de las operaciones-->
-
-      <!-- Items nuevas operaciones-->
-
-    <!--Sección Nueva Operación-->
-
-      <!--Input descripción-->
-      <!--Input monto-->
-      <!--Input tipo-->
-      <!--Input categoria-->
-      <!--Input fecha-->
+          <!--Botones agregar o cancelar nuesvas operaciones-->
     
       <!--Botones agregar o cancelar nuesvas operaciones-->
       <!--Formulario Oculto editar operaciones-->
