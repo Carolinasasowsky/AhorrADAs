@@ -1,349 +1,743 @@
 <!DOCTYPE html>
 <html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AhorrADAs</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+			integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="icon" type="image/ico" href="FAVICON.ico" />
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>AhorrADAs</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="icon" type="image/ico" href="FAVICON.ico">
+		<!-- TailWind CSS  -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="tailwind.config.js"></script>
+		<link rel="stylesheet" href="style.css" />
+	</head>
 
-	<!-- TailWind CSS  -->
-	<script src="https://cdn.tailwindcss.com"></script>
-	<script src="tailwind.config.js"></script>
-	<link rel="stylesheet" href="style.css" />
-</head>
+	<body
+		class="min-h-screen relative absolute inset-0 -z-10 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] my-0"
+	>
+		<header>
+			<nav
+				class="navbar bg-gradient-to-r from-teal-500 via-fuchsia-500 to-violet-500 dark:bg-gray-500 w-full h-[auto] md:h-[100px] flex flex-col md:flex-row shadow-md shadow-gray-400 w-32 h-32"
+			>
+				<div class="navbar-brand flex flex-row items-center w-full">
+					<div class="w-[80%] min-w-[50px] pl-2.5">
+						<a href="#principal" class="navbar-item">
+							<h1
+								class="GoogleFonts.poppins lg:text-5xl flex flex-row items-center"
+							>
+								<i class="fa-solid fa-wallet fa-sm"></i>
+								<p class="pl-3">
+									Ah<img
+										src="img/ahorro.gif"
+										alt="Ahorro GIF"
+										class="w-12 h-12 inline-block"
+									/>rrADAs
+								</p>
+							</h1>
+						</a>
+						<button
+							id="boton-hamburguesa"
+							role="button"
+							class="navbar-burger mt-2 lg:hidden"
+							aria-label="menu"
+							aria-expanded="false"
+							data-target="navbarBasicExample"
+						>
+							<span
+								aria-hidden="true"
+								class="block bg-white h-1 w-6 mb-1"
+							></span>
+							<span
+								aria-hidden="true"
+								class="block bg-white h-1 w-6 mb-1"
+							></span>
+							<span aria-hidden="true" class="block bg-white h-1 w-6"></span>
+						</button>
+					</div>
+				</div>
+				<!--Links de la barra de navegación-->
+				<!-- Se muestra en mobile -->
+				<div
+					id="menu-desplegable-mobile"
+					class="navbar-menu p-5 w-1/2 flex justify-end items-center"
+				>
+					<div class="navbar-end">
+						<a class="link-balance navbar-item mr-2 p-3" href="">
+							<i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i
+							><span class="text-lg">Balance</span>
+						</a>
+						<a class="link-categorias navbar-item mr-2 p-3" href="">
+							<i class="fas fa-tag fa-lg mr-2" aria-hidden="true"></i
+							><span class="text-lg">Categorías</span>
+						</a>
+						<a class="link-reportes navbar-item mr-2 p-3" href="">
+							<i class="fas fa-chart-pie fa-lg mr-2" aria-hidden="true"></i
+							><span class="text-lg"> Reportes</span>
+						</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<!--Fin del Header. Comienzo del Main-->
 
-<body class="relative min-h-screen absolute inset-0 -z-10 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)]">
-	<header>
-		<nav
-			class="navbar bg-gradient-to-r from-teal-500  via-fuchsia-500 to-violet-500 dark:bg-gray-500 w-full h-[auto] md:h-[100px] flex flex-col md:flex-row shadow-md shadow-gray-400 w-32 h-32">
-			<div class="navbar-brand flex flex-row items-center w-full">
-				<div class="w-[80%] min-w-[50px] pl-2.5">
-					<a href="#principal" class="navbar-item">
-						<h1 class="GoogleFonts.poppins lg:text-5xl flex flex-row items-center">
-							<i class="fa-solid fa-wallet fa-sm"></i>
-							<p class="pl-3">Ah<img src="img/ahorro.gif" alt="Ahorro GIF" class="w-12 h-12 inline-block">rrADAs</p>
-						</h1>
-					</a>
-					<button id="boton-hamburguesa" role="button" class="navbar-burger mt-2 lg:hidden" aria-label="menu"
-						aria-expanded="false" data-target="navbarBasicExample">
-						<span aria-hidden="true" class="block bg-white h-1 w-6 mb-1"></span>
-						<span aria-hidden="true" class="block bg-white h-1 w-6 mb-1"></span>
-						<span aria-hidden="true" class="block bg-white h-1 w-6"></span>
-          </button>
+		<main id="main" class="mt-10 px-10 gap-5 min-h-screen">
+			<div class="flex gap-[30px] w-full justify-center">
+				
+				<!-- seccion principal --  BALANCE -- seccion principal -->
+
+				<section id="principal" class="section">
+					
+
+					<div
+						id="balance"
+						class="column mb-30 col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1"
+					></div>
+					<article
+						class="box mb-[30px] p-5 bg-indigo-300 w-80 h-80 p-5 rounded-lg shadow-2xl"
+					>
+						<h2 class="text-4xl m-6 font-bold text-left">Balance</h2>
+
+						<!-- Ganancias -->
+						<div class="grid grid-cols-2 gap-40 items-center">
+							<div class="text-lg m-4">
+								<p>Ganancias</p>
+							</div>
+							<div class="text-xl font-bold text-success text-green-700">
+								<p class="mb-2">+$0</p>
+							</div>
+						</div>
+
+						<!-- Gastos -->
+						<div class="grid grid-cols-2 gap-40 items-center">
+							<div class="text-lg m-4">
+								<p>Gastos</p>
+							</div>
+							<div class="text-xl font-bold text-dange text-red-700">
+								<p class="mb-2">-$0</p>
+							</div>
+						</div>
+
+						<!-- Total -->
+						<div class="grid grid-cols-2 gap-40 items-center">
+							<div class="text-xl m-4">
+								<p>Total</p>
+							</div>
+							<div class="text-xl font-bold">
+								<p class="mb-2">+$0</p>
+							</div>
+						</div>
+					</article>
+					<!--  ======================== FILTROS ========================  -->
+					<form
+						class="box p-5 bg-indigo-300 w-80 h-100 p-5 rounded-lg shadow-2xl"
+					>
+						<div class="grid grid-cols-1 sm:grid-cols-3 gap-40">
+							<h3 class="text-4xl m-6 font-bold text-left">Filtros</h3>
+							<button
+								id="boton-filtros"
+								class="column button col-span-1 lg:col-span-2 pr-6"
+							>
+								Ocultar filtros
+							</button>
+						</div>
+
+						<div id="contenedor-filtros with:100%">
+							<div class="field m-4">
+								<label for="select-tipo" class="label">Tipo</label>
+								<div class="control">
+									<div class="select w-full">
+										<!--Select de Tipo-->
+										<select
+											id="select-tipo"
+											class="box-border p-4 h-px w-64 border-4"
+										>
+											<option value="Todos" selected>Todos</option>
+											<option value="gasto">Gasto</option>
+											<option value="ganancia">Ganancia</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="field m-4">
+								<label for="select-categoria" class="label">Categoría</label>
+								<div class="control">
+									<div class="select w-full">
+										<!--Select de Categorias-->
+										<select
+											id="select-categoria"
+											class="box-border h-0 w-64 p-4 border-4"
+										></select>
+									</div>
+								</div>
+							</div>
+
+							<div class="field m-4">
+								<label for="input-fecha" class="label">Desde</label>
+								<div class="control">
+									<div class="date w-full">
+										<!--Select de Fecha-->
+										<input
+											type="date"
+											class="input box-border h-0 w-64 p-4 border-4"
+											id="input-fecha"
+										/>
+									</div>
+								</div>
+							</div>
+							<div class="field m-4">
+								<label for="select-orden" class="label">Ordenar por</label>
+								<div class="control">
+									<div class="select w-full">
+										<!--Select de Orden-->
+										<select
+											id="select-orden"
+											class="box-border h-0 w-64 p-4 border-4"
+										>
+											<option value="Mas reciente">Más reciente</option>
+											<option value="Menos reciente">Menos reciente</option>
+											<option value="Mayor monto">Mayor monto</option>
+											<option value="Menor monto">Menor monto</option>
+											<option class="a/z">A/Z</option>
+											<option class="z/a">Z/A</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</section>
+			</div>
+
+			<!-- ================== Seccion OPERACIONES ================== -->
+
+			<div
+				id="operaciones"
+				class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[620px] max-h-[620px] h-full"
+			>
+				
+
+				<article class="box">
+					<div class="columns grid-cols-2 flex justify-items justify-between">
+						<!-- esto es para que el boton de nueva operacion quede alineado a la palabra operaciones-->
+						<div class="col-span-1">
+							<h3 class="title text-4xl font-bold py-4">Operaciones</h3>
+						</div>
+
+						<div class="column col-span-1 flex justify-end items-center">
+							<button
+								id="boton-nueva-operacion"
+								class="button bg-indigo-300 text-black font-semibold px-4 py-2 rounded"
+							>
+								+ Nueva operación
+							</button>
+						</div>
+					</div>
+				</article>
+
+				<!-- Contenedor de Sección SIN Operaciones -->
+				<div id="contenedor-sin-operaciones" class="hidden mt-[-90px]">
+					<div
+						class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1"
+					>
+						<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+							<div class="card-image">
+								<figure id="imagen-seccion-principal" class="image">
+									<div class="flex justify-center items-start">
+										<div class="mt-[-0px]">
+											<img
+												src="img/gastos.svg"
+												alt="Mujer con dinero en la mano"
+											/>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+						<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+							<h4 class="text-2xl font-bold text-center mt-[-40px]">
+								Sin resultados
+							</h4>
+							<p class="text-center mb-6">
+								Cambia los filtros o agrega operaciones
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Contenedor de Sección CON Operaciones -->
+				<div id="contenedor-titulos-nuevas-operaciones">
+					<!-- Titulos de las operaciones-->
+					<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+						<div class="col-span-3 md:col-span-1">
+							<p class="font-semibold">Descripción</p>
+						</div>
+						<div class="col-span-2 md:col-span-1 text-center">
+							<p class="font-semibold">Categoría</p>
+						</div>
+						<div class="col-span-2 md:col-span-1 text-right">
+							<p class="font-semibold">Fecha</p>
+						</div>
+						<div class="col-span-2 md:col-span-1 text-right">
+							<p class="font-semibold">Monto</p>
+						</div>
+						<div class="col-span-2 md:col-span-1 text-right">
+							<p class="font-semibold">Acciones</p>
+						</div>
+					</div>
+					<!-- Items nuevas operaciones-->
+					<div id="contenedor-listado-nuevas-operaciones">
+						<!-- Contenido del listado de nuevas operaciones aquí -->
+					</div>
 				</div>
 			</div>
-			<!--Links de la barra de navegación-->
-       <!-- Se muestra en mobile -->
-      <div id="menu-desplegable-mobile" class="navbar-menu p-5 w-1/2 flex justify-end items-center">
-        <div class="navbar-end">
-          <a class="link-balance navbar-item mr-2 p-3" href="">
-           
-					 <i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i><span class="text-lg">Balance</span>				 
-					</a>
-          <a class="link-categorias navbar-item mr-2 p-3" href="">
-            <i class="fas fa-tag fa-lg mr-2" aria-hidden="true"></i><span class="text-lg">Categorías</span>
-          </a>
-          <a class="link-reportes navbar-item mr-2 p-3" href="">
-            <i class="fas fa-chart-pie fa-lg mr-2" aria-hidden="true"></i><span class="text-lg"> Reportes</span>
-          </a>
-        </div>
-      </div>
-		</nav>
-	</header>
-<!--Fin del Header. Comienzo del Main-->
-<main id="main" class="mt-10 px-10 gap-5">
 
-  <div class="flex gap-[30px] w-full justify-center">
-    
-	<!-- seccion principal --  BALANCE -- seccion principal -->
-	
-    <section id="principal" class="section hidden"> <!--RECORDAR BORRAR EL hidden-->
-      
-        <div id="balance" class="column mb-30 col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1"></div>
-        <article class="box mb-[30px] p-5 bg-indigo-300 w-80 h-80 p-5 rounded-lg shadow-2xl">
-        <h2 class="text-4xl m-6 font-bold text-left">Balance</h2>
-                
-          <!-- Ganancias -->
-        <div class="grid grid-cols-2 gap-40 items-center">
-            <div class="text-lg m-4">
-              <p>Ganancias</p>
-            </div>
-            <div class="text-xl font-bold text-success text-green-700">
-              <p class="mb-2">+$0</p>
-            </div>
-          </div>
-          
-          <!-- Gastos -->
-          <div class="grid grid-cols-2 gap-40 items-center">
-            <div class="text-lg m-4">
-              <p>Gastos</p>
-            </div>
-            <div class="text-xl font-bold text-dange text-red-700">
-              <p class="mb-2">-$0</p>
-            </div>
-          </div>
-          
-          <!-- Total -->
-          <div class="grid grid-cols-2 gap-40 items-center">
-            <div class="text-xl m-4">
-              <p>Total</p>
-            </div>
-            <div class="text-xl font-bold">
-              <p class="mb-2">+$0</p>
-            </div>
-          </div>
-        </article>
-  <!--  ======================== FILTROS ========================  -->
-        <form class="box p-5 bg-indigo-300 w-80 h-100 p-5 rounded-lg shadow-2xl">
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-40">
-                <h3 class="text-4xl m-6 font-bold text-left">
-                  Filtros
-                </h3>
-                <button id="boton-filtros" class="column button col-span-1 lg:col-span-2 pr-6">Ocultar filtros</button>
-              </div>
+			<!--Sección Nueva Operación-->
+			<form
+				id="formulario-nueva-operacion"
+				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px]"
+			>
+				<div class="flex justify-center items-center h-screen">
+					<div class="container mt-[-150px] p-6">
+						<div class="box gap-3 flex flex-col">
+							<h2 class="text-4xl font-bold mb-2">Nueva operación</h2>
+							<!-- Input descripción -->
+							<div class="field">
+								<label
+									for="descripción-nueva-operacion"
+									class="label font-semibold"
+									>Descripción</label
+								>
+								<div class="control">
+									<input
+										type="text"
+										id="descripción-nueva-operacion"
+										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+									/>
+								</div>
+							</div>
+							<!-- Input monto -->
+							<div class="field">
+								<label for="monto-nueva-operacion" class="label font-semibold"
+									>Monto</label
+								>
+								<div class="control">
+									<input
+										type="number"
+										id="monto-nueva-operacion"
+										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+										value="0"
+									/>
+								</div>
+							</div>
+							<!-- Input tipo -->
+							<div class="field">
+								<label for="tipo-nueva-operacion" class="label font-semibold"
+									>Tipo</label
+								>
+								<div class="control">
+									<div class="select">
+										<select
+											id="tipo-nueva-operacion"
+											class="bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+										>
+											<option value="gasto">Gasto</option>
+											<option value="ganancia">Ganancia</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<!-- Input categoria -->
+							<div class="field">
+								<label
+									for="categoria-nueva-operacion"
+									class="label font-semibold"
+									>Categoría</label
+								>
+								<div class="control">
+									<div class="select">
+										<select
+											id="categoria-nueva-operacion"
+											class="bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+										>
+											<option value=""></option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<!-- Input fecha -->
+							<div class="field">
+								<label for="fecha-nueva-operacion" class="label font-semibold"
+									>Fecha</label
+								>
+								<div class="control">
+									<input
+										type="date"
+										id="fecha-nueva-operacion"
+										class="input bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-8"
+									/>
+								</div>
+							</div>
+						</div>
+						<!-- ================== Botones agregar o cancelar nuesvas operaciones ================== -->
+						<div class="buttons flex justify-end">
+							<button
+								id="boton-cancelar-nuevas-operaciones"
+								class="bg-gray-300 shadow-md text-gray-800 font-semibold py-2 px-4 rounded-md mr-2"
+							>
+								Cancelar
+							</button>
+							<button
+								id="boton-agregar-nuevas-operaciones"
+								class="bg-teal-600 shadow-md text-white font-semibold py-2 px-4 rounded-md"
+							>
+								Agregar
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
 
-              <div id="contenedor-filtros with:100%">
-              <div class="field m-4">
-                  <label for="select-tipo" class="label">Tipo </label>
-                  <div class="control">
-                    <div class="select w-full">
-                      <!--Select de Tipo-->
-                      <select id="select-tipo" class="box-border p-4 h-px w-64 border-4">
-                      
-                        <option value="Todos" selected>Todos</option>
-                        <option value="gasto">Gasto</option>
-                        <option value="ganancia">Ganancia</option>
-                        
-                      </select>
-                    </div>
-                  </div>
-              </div>
+			<!--FORMULARIO OCULTO EDITAR OPERACIONES-->
+			<form
+				id="formulario-editar-operacion"
+				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px]"
+			>
+				<div class="flex justify-center items-center h-screen">
+					<div class="box container mt-[-200px] p-6">
+						<h2 class="text-4xl font-bold mb-2">Editar operación</h2>
+						<!--Input descripción-->
+						<div class="field mt-10">
+							<label
+								for="descripcion-editar-operacion"
+								class="label font-semibold"
+								>Descripción</label
+							>
+							<div class="control">
+								<input
+									type="text"
+									id="descripcion-editar-operacion"
+									class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+								/>
+							</div>
+						</div>
+						<!--Input monto-->
+						<div class="field">
+							<label for="monto-editar-operacion" class="label font-semibold"
+								>Monto</label
+							>
+							<div class="control">
+								<!-- Otra tilde :D -->
+								<input
+									type="number"
+									id="monto-editar-operación"
+									class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+									value="0"
+								/>
+							</div>
+						</div>
+						<!--Input tipo-->
+						<div class="field">
+							<label for="tipo-editar-operacion" class="label font-semibold"
+								>Tipo</label
+							>
+							<div class="control">
+								<div class="select is-fullwidth">
+									<select
+										id="tipo-editar-operacion"
+										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+									>
+										<option value="gasto">Gasto</option>
+										<option value="ganancia">Ganancia</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<!--Input categoria-->
+						<div class="field">
+							<label
+								for="categoria-editar-operacion"
+								class="label font-semibold"
+								>Categoría</label
+							>
+							<div class="control">
+								<div class="select is-fullwidth">
+									<select
+										id="categoria-editar-operacion"
+										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+									></select>
+								</div>
+							</div>
+						</div>
+						<!--Input fecha-->
+						<div class="field">
+							<label for="fecha-editar-operacion" class="label font-semibold"
+								>Fecha</label
+							>
+							<div class="control">
+								<!-- Otra tilde :D -->
+								<input
+									type="date"
+									id="fecha-editar-operación"
+									class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+								/>
+							</div>
+						</div>
 
-                <div class="field m-4">
-                  <label for="select-categoria" class="label">Categoría</label>
-                  <div class="control">
-                    <div class="select w-full">
-                      <!--Select de Categorias-->
-                      <select id="select-categoria" class=" box-border h-0 w-64 p-4 border-4"> 
-                      </select>
-                    </div>
-                  </div>
-                </div>
+						<!--Botones  o editar nuevas operaciones-->
+						<div class="buttons flex justify-end mt-8">
+							<button
+								id="boton-cancelar-editar-operaciones"
+								class="button bg-gray-300 shadow-md text-gray-800 font-semibold py-2 px-4 rounded-md mr-2"
+							>
+								Cancelar
+							</button>
+							<button
+								id="boton-formulario-editar-operaciones"
+								class="button bg-teal-600 shadow-md text-white font-semibold py-2 px-4 rounded-md"
+							>
+								Editar
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
 
-                <div class="field m-4">
-                  <label for="input-fecha" class="label">Desde</label>
-                  <div class="control">
-                    <div class="date w-full">
-                      <!--Select de Fecha-->
-                       <input type="date" class=" box-border h-0 w-64 p-4 border-4" class="input" id="input-fecha" />
-                    </div>
-                  </div>
-                </div>
-                <div class="field m-4">
-                  <label for="select-orden" class="label">Ordenar por</label>
-                  <div class="control">
-                    <div class="select w-full">
-                      <!--Select de Orden-->
-                      <select id="select-orden" class=" box-border h-0 w-64 p-4 border-4">
-                        <option value="Mas reciente">Más reciente</option>
-                        <option value="Menos reciente">Menos reciente</option>
-                        <option value="Mayor monto">Mayor monto</option>
-                        <option value="Menor monto">Menor monto</option>
-                        <option class="a/z">A/Z</option>
-                        <option class="z/a">Z/A</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </form>
-      
-    </section>
+			<!--Sección categorías-->
+			<section
+				id="seccion-categorias"
+				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px]"
+			>
+				<div class="container">
+					<form
+						class="box container mt-[-20px] p-6"
+						id="form-agregar-categoria"
+					>
+						<h2 class="title text-4xl font-bold mb-2">Categorías</h2>
+						<!--Input agregar categorias-->
+						<div class="field mt-6">
+							<label for="input-agregar-categoria" class="label font-semibold"
+								>Nombre</label
+							>
+							<div
+								class="control mt-4 grid-cols-2 flex justify-items justify-between"
+							>
+								<input
+									id="input-agregar-categoria"
+									type="text"
+									class="column input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+								/>
+								<button
+									id="boton-agregar-categoria"
+									class="button bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-bold py-2 px-2 rounded mb-2 ml-3"
+								>
+									<!--CHEQUEAR EL IS-NARROW no existe en tailwind se cambio por px-2 que reduce el relleno de forma horizontal del boton-->
+									Agregar
+								</button>
+							</div>
+						</div>
+						<!--Categorias agregadas-->
+						<div class="mt-5 mx-4" id="contenedor-categorias-agregadas"></div>
+					</form>
+				</div>
+			</section>
 
-  
+			<!--Sección editar categorias-->
+			<section
+				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px]"
+				id="seccion-editar-categorias"
+			>
+				<div class="container">
+					<form class="box container mt-[-20px] p-6" id="form-editar-categoria">
+						<h2 class="title title text-4xl font-bold mb-2">
+							Editar categoría
+						</h2>
+						<div class="field mt-6">
+							<label
+								class="label font-semibold"
+								for="input-editar-nombre-categoria"
+								>Nombre</label
+							>
+							<div
+								class="control mt-4 grid-cols-2 flex justify-items justify-between"
+							>
+								<input
+									type="text"
+									id="input-editar-nombre-categoria"
+									class="column input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+								/>
+							</div>
+						</div>
+						<div class="flex justify-end space-x-4">
+							<button
+								id="boton-cancelar-editar-categoria"
+								class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
+							>
+								Cancelar
+							</button>
+							<button
+								id="boton-editar-categoria-formulario"
+								class="bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-semibold py-2 px-4 rounded inline-flex items-center"
+							>
+								Editar
+							</button>
+						</div>
+					</form>
+				</div>
+			</section>
 
-  <!-- ================== Seccion OPERACIONES ================== -->
+			<!--Sección reportes-->
+			<section
+				class="reportes section-desktop md-block hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px] mx-auto"
+			>
+				
+				<div class="container">
+					<div
+						class="box column px-4 md:col-span-8 md:col-start-3 md:col-end-11 md:my-4"
+					>
+						<h2 class="title text-4xl font-bold">Reportes</h2>
 
-  <!--<div id="contenedor-secciones" class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 m-10">-->
-      <div id="operaciones " class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[620px] max-h-[620px] h-full"> 
-      <!--<div id="operaciones" class="column bg-white w-4/6 px-7 rounded-xl mb-24 shadow-xl h-full">-->
-        <div class="hidden"><!-- RECORDAR SACAR ESTA ETIQUETA: hidden SOLO LA CREEE PARA ARREGLAR LA SECCION "NUEVAS OPERACIONES"-->
-            <article class="box">
-              <div class="columns grid-cols-2 flex justify-items justify-between"> <!-- esto es para que el boton de nueva operacion quede alineado a la palabra operaciones-->
-                <div class="col-span-1">
-                  <h3 class="title text-4xl font-bold py-4">
-                    Operaciones
-                  </h3>
-                </div>
+						<!--Reportes sin datos-->
+						<div id="reportes-sin-datos" class="hidden">
+							<figure
+								class="image columnmx-auto lg:col-span-6 lg:col-start-4 md:col-span-7 md:col-start-3 sm:col-span-7 sm:col-start-3"
+							>
+								<img
+									src="img/.svg"
+									alt="Imagen de mujer mirando estadísticas"
+								/>
+							</figure>
+							<!-- Recuerden siempre agregar un alt a las imágenes para que el lector las describa -->
+							<h4 class="title text-lg mt-6 text-center font-bold">
+								Operaciones insuficientes
+							</h4>
+							<p class="mt-4 mb-6 text-center tex-sm">
+								Prueba agregando más operaciones
+							</p>
+						</div>
 
-                <div class="column col-span-1 flex justify-end items-center">
-                  
-                  <button id="boton-nueva-operacion" class="button bg-indigo-300 text-black font-semibold px-4 py-2 rounded"> + Nueva operación</button>
-                </div>
-              </div>
-            </article>
-        
+						<!--Reportes con datos-->
+						<div id="reportes-con-datos" class="">
+							<div id="contenedor-resumen-" class="my-6">
+								<h4 class="title text-lg font-bold">Resumen</h4>
+								<!--Categoría mayor ganancia-->
+								<div class="columns grid grid-cols-2 gap-4">
+									<p class="column text-base font-medium my-4">
+										Categoría con mayor ganancia
+									</p>
+									<div class="column flex justify-end">
+										<p
+											class="tag py-1px-2 text-sm font-semibold text-white bg-primary-light"
+											id="tag-categoria-mayor-ganancia"
+										></p>
+									</div>
+									<p
+										class="column text-base font-bold text-green-600 text-right"
+										id="monto-mayor-ganancia"
+									></p>
+								</div>
+								<!--Categoría mayor gasto-->
+								<div class="columns grid grid-cols-2 gap-4">
+									<p class="column text-base font-medium">
+										Categoría con mayor gasto
+									</p>
+									<div class="column flex justify-end">
+										<p
+											class="tag py-1px-2 text-sm font-semibold text-white bg-primary-light"
+											id="tag-categoria-mayor-gasto"
+										></p>
+									</div>
+									<p
+										class="column text-base font-bold text-green-600 text-right"
+										id="monto-mayor-gasto"
+									></p>
+								</div>
 
-      <!-- Contenedor de Sección SIN Operaciones -->
-      <div id="contenedor-sin-operaciones" class="hidden mt-[-90px]">
-        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
-          <div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-            <div class="card-image">
-              <figure id="imagen-seccion-principal" class="image">
-                <div class="flex justify-center items-start">
-                  <div class="mt-[-0px]"">
-                    <img src="img/gastos.svg" alt="Mujer con dinero en la mano" />
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-          <div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-            <h4 class="text-2xl font-bold text-center mt-[-40px]">
-              Sin resultados
-            </h4>
-            <p class="text-center mb-6">
-              Cambia los filtros o agrega operaciones
-            </p>
-          </div>
-        </div>
-      </div>
+								<!--Categoría mayor balance-->
+								<div class="columns grid grid-cols-2 gap-3">
+									<p class="column text-base font-medium my-4">
+										Categoría con mayor balance
+									</p>
+									<div class="column flex justify-end">
+										<p
+											class="tag py-1px-2 text-sm font-semibold text-white bg-primary-light"
+											id="tag-categoria-mayor-balance"
+										></p>
+									</div>
+									<p
+										class="column text-base font-bold text-green-600 text-right"
+										id="monto-mayor-balance"
+									></p>
+								</div>
 
-      <!-- Contenedor de Sección CON Operaciones -->
-      <div id="contenedor-titulos-nuevas-operaciones">
-        <!-- Titulos de las operaciones-->
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-4"> 
-          <div class="col-span-3 md:col-span-1">
-            <p class="font-semibold">Descripción</p>
-          </div>
-          <div class="col-span-2 md:col-span-1 text-center">
-            <p class="font-semibold">Categoría</p>
-          </div>
-          <div class="col-span-2 md:col-span-1 text-right">
-            <p class="font-semibold">Fecha</p>
-          </div>
-          <div class="col-span-2 md:col-span-1 text-right">
-            <p class="font-semibold">Monto</p>
-          </div>
-          <div class="col-span-2 md:col-span-1 text-right">
-            <p class="font-semibold">Acciones</p>
-          </div>
-        </div> <!-- RECORDAR SACAR ESTE DIV QUE PERTENECE A LA ETIQUETA DE LA CLASS: hidden-->
-      </div>
-        <!-- Items nuevas operaciones-->
-        <div id="contenedor-listado-nuevas-operaciones">
-          <!-- Contenido del listado de nuevas operaciones aquí -->
-        </div>
-      </div>
-      </div>    
+								<!--Mes con mayor ganancia-->
+								<div class="columns grid grid-cols-2 gap-3">
+									<p class="column text-base font-medium">
+										Mes con mayor ganancia
+									</p>
+									<div class="column flex justify-end">
+										<p
+											class="tag py-1px-2 text-sm font-semibold text-white bg-primary-light"
+											id="fecha-mayor-ganancia"
+										></p>
+									</div>
+									<p
+										class="column text-base font-bold text-green-600 text-right"
+										id="monto-mes-mayor-ganancia"
+									></p>
+								</div>
 
-   <!--Sección Nueva Operación-->
-<form id="formulario-nueva-operacion" class="section "><!--RECORDAR AGREGARLE hidden-->
-  <div class="flex justify-center items-center h-screen">
-    <div class="container mt-[-0px]">
-      <div class="box gap-3 flex flex-col w-full">
-        <h2 class="text-2xl font-bold mb-4">Nueva operación</h2>
-        <!-- Input descripción -->
-        <div class="field">
-          <label for="descripción-nueva-operacion" class="label">Descripción</label>
-          <div class="control">
-            <input type="text" id="descripción-nueva-operacion" class="input">
-          </div>
-        </div>
-        <!-- Input monto -->
-        <div class="field">
-          <label for="monto-nueva-operacion" class="label">Monto</label>
-          <div class="control">
-            <input type="number" id="monto-nueva-operacion" class="input" value="0">
-          </div>
-        </div>
-        <!-- Input tipo -->
-        <div class="field">
-          <label for="tipo-nueva-operacion" class="label">Tipo</label>
-          <div class="control">
-            <div class="select w-full">
-              <select id="tipo-nueva-operacion">
-                <option value="gasto">Gasto</option>
-                <option value="ganancia">Ganancia</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <!-- Input categoria -->
-        <div class="field">
-          <label for="categoria-nueva-operacion" class="label">Categoría</label>
-          <div class="control">
-            <div class="select w-full">
-              <select id="categoria-nueva-operacion">
-                <option value=""></option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <!-- Input fecha -->
-        <div class="field">
-          <label for="fecha-nueva-operacion" class="label">Fecha</label>
-          <div class="control">
-            <input type="date" id="fecha-nueva-operacion" class="input">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
+								<!--Mes con mayor gasto-->
+								<div class="columns grid grid-cols-2 gap-4">
+									<p class="column text-base font-medium my-2">
+										Mes con mayor gasto
+									</p>
+									<div
+										class="tag py-1px-2 text-sm font-semibold text-white bg-primary-light"
+									>
+										<p id="fecha-mayor-gasto"></p>
+									</div>
+									<p
+										class="column text-base font-bold text-green-600 text-right"
+										id="monto-mes-mayor-gasto"
+									></p>
+								</div>
+							</div>
 
-          <!--Botones agregar o cancelar nuesvas operaciones-->
-    
-      <!--Botones agregar o cancelar nuesvas operaciones-->
-      <!--Formulario Oculto editar operaciones-->
-        <!--Input descripción-->
-        <!--Input monto-->
-        <!-- Otra tilde :D -->
-        <!--Input tipo-->
-        <!--Input categoria-->
-        <!--Input fecha-->
-        <!--Botones agregar o editar nuevas operaciones-->
+							<!--Totales por categoría-->
+							<div id="contenedor-totales-categoria" class="my-4">
+								<h4 class="title text-lg font-bold">Totales por categoría</h4>
+								<div class="grid grid-cols-4 gap-4">
+									<p class="text-base font-medium">Categoría</p>
+									<p class="text-base font-medium text-right">Ganancias</p>
+									<p class="text-base font-medium text-right">Gastos</p>
+									<p class="text-base font-medium text-right">Balance</p>
+								</div>
+								<div id="contenedor-item-totales-categoria"></div>
+							</div>
 
-        <!--Sección categorías-->
-    
-            <!--Input agregar categorias-->
-          
-                  <!--CHEQUEAR EL IS-NARROW-->
-          
-            <!--Categorias agregadas-->
-        
-      <!--Sección editar categorias-->
-    
-
-      <!--Sección reportes-->
-    
-            <!--Reportes sin datos-->
-            
-                <!-- Recuerden siempre agregar un alt a las imágenes para que el lector las describa -->
-              
-            <!--Reportes con datos-->
-            
-                <!--Categoría mayor ganancia-->
-              
-                <!--Categoría mayor gasto-->
-                
-                <!--Categoría mayor balance-->
-              
-                <!--Mes con mayor ganancia-->
-                
-                <!--Mes con mayor gasto-->
-              
-              <!--Totales por categoría-->
-              
-              <!--Totales por mes-->    
-          
-
-  </div>
-</main>
-</body>
-
+							<!--Totales por mes-->
+							<div id="contenedor-totales-mes" class="my-6">
+								<h4 class="title text-lg font-bold mb-2">Totales por mes</h4>
+								<div class="grid grid-cols-4 gap-4">
+									<p class="text-base font-medium">Mes</p>
+									<p class="text-base font-medium text-right">Ganancias</p>
+									<p class="text-base font-medium text-right">Gastos</p>
+									<p class="text-base font-medium text-right">Balance</p>
+								</div>
+								<div id="contenedor-totales-mensuales"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
 </html>
