@@ -13,52 +13,75 @@
 		/>
 		<link rel="icon" type="image/ico" href="FAVICON.ico" />
 
-		<!-- TailWind CSS  -->
+		<!-- Tailwind CSS -->
 		<script src="https://cdn.tailwindcss.com"></script>
-		<script src="tailwind.config.js"></script>
+		<script>
+			tailwind.config = {
+				darkMode: "class", // Modo oscuro basado en clases
+				theme: {
+					extend: {
+						screens: {
+							sm: "600px",
+							md: "860px",
+							lg: "1024px",
+							tablet: "640px",
+							laptop: "1024px",
+							desktop: "1280px",
+							"max-675": { max: "675px" },
+							"max-980": { max: "980px" },
+						},
+					},
+				},
+			};
+		</script>
+
 		<link rel="stylesheet" href="style.css" />
 	</head>
 
 	<body
-		class="min-h-screen relative absolute inset-0 -z-10 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] my-0"
+		class="min-h-screen relative inset-0 -z-10 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] my-0"
 	>
 		<header>
 			<nav
-				class="navbar bg-gradient-to-r from-teal-500 via-fuchsia-500 to-violet-500 dark:bg-gray-500 w-full h-[auto] md:h-[100px] flex flex-col md:flex-row shadow-md shadow-gray-400 w-32 h-32"
+				class="navbar bg-gradient-to-r from-teal-500 via-fuchsia-500 to-violet-500 dark:bg-gray-500 w-full h-[auto] md:h-[100px] flex flex-col md:flex-row shadow-md shadow-gray-400"
 			>
-				<div class="navbar-brand flex flex-row items-center w-full">
-					<div class="w-[80%] min-w-[50px] pl-2.5">
-						<a href="#principal" class="navbar-item">
+				<div class="navbar-brand flex items-center w-full relative">					
+					<div class="w-[80%] min-w-[50px] pl-2.5 flex items-center mt-4 sm:mt-0">						
+						<a href="#principal" class="navbar-item pt-2 lg:ml-4 sm:ml-0">
 							<h1
-								class="GoogleFonts.poppins lg:text-5xl flex flex-row items-center"
-							>
-								<i class="fa-solid fa-wallet fa-sm"></i>
+								class="GoogleFonts.poppins flex items-center text-4xl sm:text-5xl">								
+								<i class="fa-solid fa-wallet fa-sm text-4xl sm:text-5xl ml-4 sm:ml-0"></i>						
+								
 								<p class="pl-3">
 									Ah<img
 										src="img/ahorro.gif"
 										alt="Ahorro GIF"
-										class="w-12 h-12 inline-block"
+										class="w-14 h-14 sm:w-12 sm:h-12 lg:w-16 lg:h-16 inline-block" 
 									/>rrADAs
+									
 								</p>
 							</h1>
 						</a>
 						<button
 							id="boton-hamburguesa"
 							role="button"
-							class="navbar-burger mt-2 lg:hidden"
+							class="navbar-burger mt-1 lg:hidden flex flex-col items-center justify-center absolute right-6 pl-2"
 							aria-label="menu"
 							aria-expanded="false"
 							data-target="navbarBasicExample"
 						>
+						
+					
 							<span
 								aria-hidden="true"
-								class="block bg-white h-1 w-6 mb-1"
+								class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"
 							></span>
+							
 							<span
 								aria-hidden="true"
-								class="block bg-white h-1 w-6 mb-1"
+								class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"
 							></span>
-							<span aria-hidden="true" class="block bg-white h-1 w-6"></span>
+							<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1"></span>
 						</button>
 					</div>
 				</div>
@@ -68,7 +91,7 @@
 					id="menu-desplegable-mobile"
 					class="navbar-menu p-5 w-1/2 flex justify-end items-center"
 				>
-					<div class="navbar-end">
+					<div class="navbar-end hidden sm:flex">
 						<a class="link-balance navbar-item mr-2 p-3" href="">
 							<i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i
 							><span class="text-lg">Balance</span>
@@ -87,21 +110,21 @@
 		</header>
 		<!--Fin del Header. Comienzo del Main-->
 
-		<main id="main" class="mt-10 px-10 gap-5 min-h-screen">
-			<div class="flex gap-[30px] w-full justify-center">
-			
-				
-			<!-- seccion principal --  BALANCE -- seccion principal -->
-			
-				<section id="principal" class="section ">
-					
+		<main
+			id="main"
+			class="mt-10 px-10 gap-5 min-h-screen flex flex-col md:flex-row"
+		>		
+			<div class="flex gap-[30px] w-full justify-center flex flex-wrap md:flex">				
 
+				<!-- seccion principal --  BALANCE -- seccion principal -->
+
+				<section id="principal" class="section md:flex-row">
 					<div
 						id="balance"
 						class="column mb-30 col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1"
 					></div>
 					<article
-						class="box mb-[30px] p-5 bg-indigo-300 w-80 h-80 p-5 rounded-lg shadow-2xl"
+						class="box mb-[30px] p-5 bg-indigo-300 w-80 h-80 rounded-lg shadow-2xl"
 					>
 						<h2 class="text-4xl m-6 font-bold text-left">Balance</h2>
 
@@ -136,14 +159,12 @@
 						</div>
 					</article>
 					<!--  ======================== FILTROS ========================  -->
-					<form
-						class="box p-5 bg-indigo-300 w-80 h-100 p-5 rounded-lg shadow-2xl"
-					>
-						<div class="grid grid-cols-1 sm:grid-cols-3 gap-40">
+					<form class="box p-5 bg-indigo-300 w-80 h-100 rounded-lg shadow-2xl">						
+						<div class="sm:grid sm:grid-cols-3 sm:gap-40 flex items-center justify-between">
 							<h3 class="text-4xl m-6 font-bold text-left">Filtros</h3>
 							<button
 								id="boton-filtros"
-								class="column button col-span-1 lg:col-span-2 pr-6"
+								class="column button col-span-1 lg:col-span-2 pr-5 mt-3"
 							>
 								Ocultar filtros
 							</button>
@@ -215,94 +236,98 @@
 						</div>
 					</form>
 				</section>
-			
 
-			<!-- ================== Seccion OPERACIONES ================== -->
+				<!-- ================== Seccion OPERACIONES ================== -->
 
-			<div
-				id="operaciones"
-				class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[620px] max-h-[620px] h-full"
-			>
-				
+				<div
+					id="operaciones"
+					class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px]"
+				>					
+					<article class="box w-full">
+						<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-8">
+							<!--<div class="columns grid-cols-2 flex justify-items justify-between">-->
+							<!-- esto es para que el boton de nueva operacion quede alineado a la palabra operaciones-->
+							<!--TITULO DE OPERACIONES-->
+							<div class="col-span-1 text-center sm:text-center">
+								<h3 class="title text-4xl font-bold py-4 sm:text-6xl">
+									Operaciones
+								</h3>
+								<!--title text-4xl font-bold py-4-->
+							</div>
 
-				<article class="box">
-					<div class="columns grid-cols-2 flex justify-items justify-between">
-						<!-- esto es para que el boton de nueva operacion quede alineado a la palabra operaciones-->
-						<div class="col-span-1">
-							<h3 class="title text-4xl font-bold py-4">Operaciones</h3>
-						</div>
-
-						<div class="column col-span-1 flex justify-end items-center">
-							<button
-								id="boton-nueva-operacion"
-								class="button bg-indigo-300 text-black font-semibold px-4 py-2 rounded"
+							<!-- BOTÓN DE NUEVA OPERACIÓN -->
+							<div
+								class="col-span-1 flex justify-center sm:justify-end items-center"
 							>
-								+ Nueva operación
-							</button>
-						</div>
-					</div>
-				</article>
-		
-
-				<!-- Contenedor de Sección SIN Operaciones -->
-				<div id="contenedor-sin-operaciones" class="hidden mt-[-90px]">
-					<div
-						class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1"
-					>
-						<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-							<div class="card-image">
-								<figure id="imagen-seccion-principal" class="image">
-									<div class="flex justify-center items-start">
-										<div class="mt-[-0px]">
-											<img
-												src="img/gastos.svg"
-												alt="Mujer con dinero en la mano"
-											/>
-										</div>
-									</div>
-								</figure>
+								<!--<div class="column col-span-1 flex justify-end items-center">-->
+								<button
+									id="boton-nueva-operacion"
+									class="button bg-indigo-300 text-black font-semibold px-4 py-2 rounded sm:w-auto text-center"
+								>
+									+ Nueva operación
+								</button>
 							</div>
 						</div>
-						<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-							<h4 class="text-2xl font-bold text-center mt-[-40px]">
-								Sin resultados
-							</h4>
-							<p class="text-center mb-6">
-								Cambia los filtros o agrega operaciones
-							</p>
-						</div>
-					</div>
-				</div>
+					</article>
 
-				<!-- Contenedor de Sección CON Operaciones -->
-				<div id="contenedor-titulos-nuevas-operaciones">
-					<!-- Titulos de las operaciones-->
-					<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-						<div class="col-span-3 md:col-span-1">
-							<p class="font-semibold">Descripción</p>
-						</div>
-						<div class="col-span-2 md:col-span-1 text-center">
-							<p class="font-semibold">Categoría</p>
-						</div>
-						<div class="col-span-2 md:col-span-1 text-right">
-							<p class="font-semibold">Fecha</p>
-						</div>
-						<div class="col-span-2 md:col-span-1 text-right">
-							<p class="font-semibold">Monto</p>
-						</div>
-						<div class="col-span-2 md:col-span-1 text-right">
-							<p class="font-semibold">Acciones</p>
+					<!-- Contenedor de Sección SIN Operaciones -->
+					<div id="contenedor-sin-operaciones" class="hidden mt-[-90px]">
+						<!--la propiedad   hidden    oculta el contenido de la seccion-->
+						<div
+							class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1"
+						>
+							<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+								<div class="card-image">
+									<figure id="imagen-seccion-principal" class="image">
+										<div class="flex justify-center items-start">
+											<div class="mt-[-0px]">
+												<img
+													src="img/gastos.svg"
+													alt="Mujer con dinero en la mano"
+												/>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+							<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+								<h4 class="text-2xl font-bold text-center mt-[-40px]">
+									Sin resultados
+								</h4>
+								<p class="text-center mb-6">
+									Cambia los filtros o agrega operaciones
+								</p>
+							</div>
 						</div>
 					</div>
-					<!-- Items nuevas operaciones-->
-					<div id="contenedor-listado-nuevas-operaciones">
-						<!-- Contenido del listado de nuevas operaciones aquí -->
+
+					<!-- Contenedor de Sección CON Operaciones -->
+					<div id="contenedor-titulos-nuevas-operaciones">
+						<!-- Titulos de las operaciones-->
+						<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+							<div class="col-span-3 md:col-span-1 text-left pt-4 md:pt-0">
+								<p class="font-semibold">Descripción</p>
+							</div>
+							<div class="col-span-2 md:col-span-1 text-left md:text-center">
+								<p class="font-semibold">Categoría</p>
+							</div>
+							<div class="col-span-2 md:col-span-1 text-left md:text-right">
+								<p class="font-semibold">Fecha</p>
+							</div>
+							<div class="col-span-2 md:col-span-1 text-left md:text-right">
+								<p class="font-semibold">Monto</p>
+							</div>
+							<div class="col-span-2 md:col-span-1 text-left md:text-right">
+								<p class="font-semibold">Acciones</p>
+							</div>
+						</div>
+						<!-- Items nuevas operaciones-->
+						<div id="contenedor-listado-nuevas-operaciones">
+							<!-- Contenido del listado de nuevas operaciones aquí -->
+						</div>
 					</div>
 				</div>
 			</div>
-			</div>
-			
-				
 
 			<!--Sección Nueva Operación-->
 			<form
@@ -409,7 +434,6 @@
 					</div>
 				</div>
 			</form>
-			
 
 			<!--FORMULARIO OCULTO EDITAR OPERACIONES-->
 			<form
@@ -603,7 +627,6 @@
 			<section
 				class="reportes section-desktop md-block hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px] mx-auto"
 			>
-				
 				<div class="container">
 					<div
 						class="box column px-4 md:col-span-8 md:col-start-3 md:col-end-11 md:my-4"
