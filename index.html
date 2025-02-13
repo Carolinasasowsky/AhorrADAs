@@ -12,6 +12,7 @@
 			referrerpolicy="no-referrer"
 		/>
 		<link rel="icon" type="image/ico" href="FAVICON.ico" />
+		
 
 		<!-- Tailwind CSS -->
 		<script src="https://cdn.tailwindcss.com"></script>
@@ -28,18 +29,32 @@
 							laptop: "1024px",
 							desktop: "1280px",
 							"max-675": { max: "675px" },
+							"max-1145": { max: "1145px" }, 
 							"max-980": { max: "980px" },
+							"max-1024": { max: "1024px" },
 						},
 					},
 				},
+				plugins: [
+					function({ addUtilities }) {
+						addUtilities({
+							".fa-sun-o:before": {
+								content: '"\\f185"',
+							},
+							".fa-moon-o:before": {
+								content: '"\\f186"',
+							},
+						});
+					},
+				],
 			};
 		</script>
-
-		<link rel="stylesheet" href="style.css" />
+		
 	</head>
 
 	<body
-		class="min-h-screen relative inset-0 -z-10 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] my-0"
+		class="min-h-screen relative inset-0 -z-10 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] my-0 dark:bg-gray-900 dark:text-white dark:[background:radial-gradient(125%_125%_at_50%_10%,#1a202c_40%,#2d3748_100%)]"
+		
 	>
 		<header>
 			<nav
@@ -49,7 +64,7 @@
 					<div class="w-[80%] min-w-[50px] pl-2.5 flex items-center mt-4 sm:mt-0">						
 						<a href="#principal" class="navbar-item pt-2 lg:ml-4 sm:ml-0">
 							<h1
-								class="GoogleFonts.poppins flex items-center text-4xl sm:text-5xl">								
+								class="GoogleFonts.poppins flex items-center text-4xl sm:text-3xl md:text-5xl lg:text-5xl whitespace-nowrap sm:mb-0 mb-2">								
 								<i class="fa-solid fa-wallet fa-sm text-4xl sm:text-5xl ml-4 sm:ml-0"></i>						
 								
 								<p class="pl-3">
@@ -62,36 +77,52 @@
 								</p>
 							</h1>
 						</a>
-						<button
-							id="boton-hamburguesa"
-							role="button"
-							class="navbar-burger mt-1 lg:hidden flex flex-col items-center justify-center absolute right-6 pl-2"
-							aria-label="menu"
-							aria-expanded="false"
-							data-target="navbarBasicExample"
-						>
-						
 					
-							<span
-								aria-hidden="true"
-								class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"
-							></span>
-							
-							<span
-								aria-hidden="true"
-								class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"
-							></span>
-							<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1"></span>
-						</button>
-					</div>
-				</div>
-				<!--Links de la barra de navegación-->
-				<!-- Se muestra en mobile -->
-				<div
-					id="menu-desplegable-mobile"
-					class="navbar-menu p-5 w-1/2 flex justify-end items-center"
-				>
-					<div class="navbar-end hidden sm:flex">
+				<!-- ======================== LINKS DE LA BARRA DE NAVEGACIÓN ======================== -->					
+						<!-- Se muestra en mobile -->
+						 <!-- Contenedor de Menú Hamburguesa y Dark Mode -->
+						<div class="flex items-center gap-4 sm:mb-0 mb-2">
+						<div
+							id="menu-desplegable-mobile"
+							class="navbar-menu p-5 w-1/2 flex items-center justify-between gap-4"
+						>
+
+								<button
+										id="boton-hamburguesa"
+										role="button"
+										class="navbar-burger mt-1 lg:hidden flex flex-col items-center justify-center absolute right-6 pl-2"
+										aria-label="menu"
+										aria-expanded="false"
+										data-target="navbarBasicExample"
+									>
+									
+								
+										<span
+											aria-hidden="true"
+											class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"
+										></span>
+										
+										<span
+											aria-hidden="true"
+											class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"
+										></span>
+										<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1"></span>
+									</button>
+								</div>
+							</div>
+					<!-- DARK MODE -->
+						<div>
+							<button
+								class="px-8 py-2 sm:flex dark:text-white sm:mb-0 mb-2"
+								onclick="toggleDarkMode()">
+								<!-- Ícono de sol para el modo claro -->
+								<i class="fa fa-sun fa-lg hidden dark:inline"></i>  
+								<!-- Ícono de luna para el modo oscuro -->
+								<i class="fa fa-moon fa-lg dark:hidden"></i>
+							</button>
+						</div>										
+						</div>
+					<div class="navbar-end hidden sm:flex gap-4">
 						<a class="link-balance navbar-item mr-2 p-3" href="">
 							<i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i
 							><span class="text-lg">Balance</span>
@@ -112,13 +143,13 @@
 
 		<main
 			id="main"
-			class="mt-10 px-10 gap-5 min-h-screen flex flex-col md:flex-row"
-		>		
+			class="mt-10 px-10 gap-5 min-h-screen flex-wrap md:flex-nowrap items-start"		
+		>			
 			<div class="flex gap-[30px] w-full justify-center flex flex-wrap md:flex">				
 
 				<!-- seccion principal --  BALANCE -- seccion principal -->
 
-				<section id="principal" class="section md:flex-row">
+				<section id="principal" class="section md:flex-row"> <!--RECORDAR ELIMINAR HIDDEN-->
 					<div
 						id="balance"
 						class="column mb-30 col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1"
@@ -159,7 +190,7 @@
 						</div>
 					</article>
 					<!--  ======================== FILTROS ========================  -->
-					<form class="box p-5 bg-indigo-300 w-80 h-100 rounded-lg shadow-2xl">						
+					<form class="box p-5 bg-indigo-300 w-80 h-100 rounded-lg shadow-2xl"> <!-- RECORDAR ELIMINAR HIDDEN-->						
 						<div class="sm:grid sm:grid-cols-3 sm:gap-40 flex items-center justify-between">
 							<h3 class="text-4xl m-6 font-bold text-left">Filtros</h3>
 							<button
@@ -237,74 +268,65 @@
 					</form>
 				</section>
 
-				<!-- ================== Seccion OPERACIONES ================== -->
-
-				<div
-					id="operaciones"
-					class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px]"
-				>					
-					<article class="box w-full">
-						<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-8">
-							<!--<div class="columns grid-cols-2 flex justify-items justify-between">-->
-							<!-- esto es para que el boton de nueva operacion quede alineado a la palabra operaciones-->
-							<!--TITULO DE OPERACIONES-->
-							<div class="col-span-1 text-center sm:text-center">
-								<h3 class="title text-4xl font-bold py-4 sm:text-6xl">
+				
+					
+					<!-- ================== Sección OPERACIONES ================== -->
+					<div
+						id="operaciones"
+						class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px]"
+					>	 <!-- seccion oculta tmbien despues del div iria hidden-->		
+						<article class="box w-full">
+							<div class="flex justify-between items-center">
+								<!-- Título de Operaciones -->
+								<h3 class="title text-2xl font-bold py-4 sm:text-4xl">
 									Operaciones
 								</h3>
-								<!--title text-4xl font-bold py-4-->
-							</div>
 
-							<!-- BOTÓN DE NUEVA OPERACIÓN -->
-							<div
-								class="col-span-1 flex justify-center sm:justify-end items-center"
-							>
-								<!--<div class="column col-span-1 flex justify-end items-center">-->
+								<!-- Botón de Nueva Operación -->
 								<button
 									id="boton-nueva-operacion"
-									class="button bg-indigo-300 text-black font-semibold px-4 py-2 rounded sm:w-auto text-center"
+									class="button bg-indigo-300 text-black font-semibold px-2 py-1 text-sm sm:px-4 sm:py-2 sm:text-base rounded sm:w-auto text-center"
 								>
 									+ Nueva operación
 								</button>
 							</div>
-						</div>
-					</article>
+						</article>
 
-					<!-- Contenedor de Sección SIN Operaciones -->
-					<div id="contenedor-sin-operaciones" class="hidden mt-[-90px]">
-						<!--la propiedad   hidden    oculta el contenido de la seccion-->
-						<div
-							class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1"
-						>
-							<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-								<div class="card-image">
-									<figure id="imagen-seccion-principal" class="image">
-										<div class="flex justify-center items-start">
-											<div class="mt-[-0px]">
-												<img
-													src="img/gastos.svg"
-													alt="Mujer con dinero en la mano"
-												/>
+						<!-- Contenedor de Sección SIN Operaciones -->
+						<div id="contenedor-sin-operaciones" class=" mt-[-90px]">
+							<!-- la propiedad hidden oculta el contenido de la sección -->
+							<div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
+								<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+									<div class="card-image">
+										<figure id="imagen-seccion-principal" class="image">
+											<div class="flex justify-center items-start">
+												<div class="mt-[40px] sm:mt-[10px]">
+													<img
+														src="img/gastos.svg"
+														alt="Mujer con dinero en la mano"
+													/>
+												</div>
 											</div>
-										</div>
-									</figure>
+										</figure>
+									</div>
 								</div>
-							</div>
-							<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-								<h4 class="text-2xl font-bold text-center mt-[-40px]">
-									Sin resultados
-								</h4>
-								<p class="text-center mb-6">
-									Cambia los filtros o agrega operaciones
-								</p>
+								<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+									<h4 class="text-2xl font-bold text-center mt-[-40px]">
+										Sin resultados
+									</h4>
+									<p class="text-center mb-6">
+										Cambia los filtros o agrega operaciones
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
 
+
 					<!-- Contenedor de Sección CON Operaciones -->
 					<div id="contenedor-titulos-nuevas-operaciones">
 						<!-- Titulos de las operaciones-->
-						<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+						<div class="grid hidden grid-cols-1 md:grid-cols-5 gap-4"> <!-- Recordar quitar el hidden -->
 							<div class="col-span-3 md:col-span-1 text-left pt-4 md:pt-0">
 								<p class="font-semibold">Descripción</p>
 							</div>
@@ -329,17 +351,17 @@
 				</div>
 			</div>
 
-			<!--Sección Nueva Operación-->
+			<!-- ================== Sección NUEVA OPERACIÓN ================== -->
 			<form
 				id="formulario-nueva-operacion"
-				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px]"
-			>
-				<div class="flex justify-center items-center h-screen">
-					<div class="container mt-[-150px] p-6">
-						<div class="box gap-3 flex flex-col">
-							<h2 class="text-4xl font-bold mb-2">Nueva operación</h2>
+				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl items-center mx-auto gap-8 p-6 min-h-[600px] max-h-[600px]"
+			> <!-- hidden va despues de class="section hidden"-->
+				<div class="flex justify-center items-center min-h-screen sm:h-screen mx-[-20px] sm:mx-0">
+					<div class="container p-6">
+						<div class="box gap-2 flex flex-col mt-[-300px] sm:mt-0">
+							<h2 class="text-xl sm:text-4xl font-bold mb-2 mt-30 sm:mt-[-380px] md:mt-[-380px">Nueva operación</h2>
 							<!-- Input descripción -->
-							<div class="field">
+							<div class="mb-2">
 								<label
 									for="descripción-nueva-operacion"
 									class="label font-semibold"
@@ -354,7 +376,7 @@
 								</div>
 							</div>
 							<!-- Input monto -->
-							<div class="field">
+							<div class="mb-2">
 								<label for="monto-nueva-operacion" class="label font-semibold"
 									>Monto</label
 								>
@@ -368,7 +390,7 @@
 								</div>
 							</div>
 							<!-- Input tipo -->
-							<div class="field">
+							<div class="mb-2">
 								<label for="tipo-nueva-operacion" class="label font-semibold"
 									>Tipo</label
 								>
@@ -385,7 +407,7 @@
 								</div>
 							</div>
 							<!-- Input categoria -->
-							<div class="field">
+							<div class="mb-2">
 								<label
 									for="categoria-nueva-operacion"
 									class="label font-semibold"
@@ -403,7 +425,7 @@
 								</div>
 							</div>
 							<!-- Input fecha -->
-							<div class="field">
+							<div class="mb-2">
 								<label for="fecha-nueva-operacion" class="label font-semibold"
 									>Fecha</label
 								>
@@ -416,17 +438,17 @@
 								</div>
 							</div>
 						</div>
-						<!-- ================== Botones agregar o cancelar nuesvas operaciones ================== -->
-						<div class="buttons flex justify-end">
+						<!-- ================== Botones AGREGAR o CANCELAR NUEVAS OPERACIONES ================== -->
+						<div class="buttons flex justify-end mt-[-20px] mb-5">
 							<button
 								id="boton-cancelar-nuevas-operaciones"
-								class="bg-gray-300 shadow-md text-gray-800 font-semibold py-2 px-4 rounded-md mr-2"
+								class="bg-gray-300 shadow-md text-gray-800 font-semibold py-2 px-4 rounded-md mr-2 max-675:py-1 max-675:px-2 max-675:text-sm"
 							>
 								Cancelar
 							</button>
 							<button
 								id="boton-agregar-nuevas-operaciones"
-								class="bg-teal-600 shadow-md text-white font-semibold py-2 px-4 rounded-md"
+								class="bg-teal-600 shadow-md text-white font-semibold py-2 px-4 rounded-md max-675:py-1 max-675:px-2 max-675:text-sm"
 							>
 								Agregar
 							</button>
@@ -435,338 +457,332 @@
 				</div>
 			</form>
 
-			<!--FORMULARIO OCULTO EDITAR OPERACIONES-->
+			<!--FORMULARIO OCULTO EDITAR OPERACIONES se oculta con HIDDEN-->
 			<form
 				id="formulario-editar-operacion"
-				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px]"
-			>
-				<div class="flex justify-center items-center h-screen">
-					<div class="box container mt-[-200px] p-6">
-						<h2 class="text-4xl font-bold mb-2">Editar operación</h2>
-						<!--Input descripción-->
-						<div class="field mt-10">
-							<label
-								for="descripcion-editar-operacion"
-								class="label font-semibold"
-								>Descripción</label
-							>
-							<div class="control">
-								<input
-									type="text"
-									id="descripcion-editar-operacion"
-									class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-								/>
-							</div>
-						</div>
-						<!--Input monto-->
-						<div class="field">
-							<label for="monto-editar-operacion" class="label font-semibold"
-								>Monto</label
-							>
-							<div class="control">
-								<!-- Otra tilde :D -->
-								<input
-									type="number"
-									id="monto-editar-operación"
-									class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-									value="0"
-								/>
-							</div>
-						</div>
-						<!--Input tipo-->
-						<div class="field">
-							<label for="tipo-editar-operacion" class="label font-semibold"
-								>Tipo</label
-							>
-							<div class="control">
-								<div class="select is-fullwidth">
-									<select
-										id="tipo-editar-operacion"
+				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl items-center mx-auto gap-8 p-6 min-h-[600px] max-h-[600px]"
+			> <!-- hidden va despues de class="section hidden"-->
+				<div class="flex justify-center items-center min-h-screen sm:h-screen mx-[-20px] sm:mx-0">
+					<div class="container p-6">
+						<div class="box gap-2 flex flex-col mt-[-300px] sm:mt-0">
+							<h2 class="text-xl sm:text-4xl font-bold mb-2 mt-30 sm:mt-[-380px] md:mt-[-380px]">Editar operación</h2>
+							<!-- Input descripción -->
+							<div class="mb-2">
+								<label
+									for="descripción-editar-operacion"
+									class="label font-semibold"
+									>Descripción</label
+								>
+								<div class="control">
+									<input
+										type="text"
+										id="descripción-editar-operacion"
 										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-									>
-										<option value="gasto">Gasto</option>
-										<option value="ganancia">Ganancia</option>
-									</select>
+									/>
+								</div>
+							</div>
+							<!-- Input monto -->
+							<div class="mb-2">
+								<label for="monto-editar-operacion" class="label font-semibold"
+									>Monto</label
+								>
+								<div class="control">
+									<input
+										type="number"
+										id="monto-editar-operacion"
+										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+										value="0"
+									/>
+								</div>
+							</div>
+							<!-- Input tipo -->
+							<div class="mb-2">
+								<label for="tipo-editar-operacion" class="label font-semibold"
+									>Tipo</label
+								>
+								<div class="control">
+									<div class="select">
+										<select
+											id="tipo-editar-operacion"
+											class="bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+										>
+											<option value="gasto">Gasto</option>
+											<option value="ganancia">Ganancia</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<!-- Input categoria -->
+							<div class="mb-2">
+								<label
+									for="categoria-editar-operacion"
+									class="label font-semibold"
+									>Categoría</label
+								>
+								<div class="control">
+									<div class="select">
+										<select
+											id="categoria-editar-operacion"
+											class="bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+										>
+											<option value=""></option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<!-- Input fecha -->
+							<div class="mb-2">
+								<label for="fecha-editar-operacion" class="label font-semibold"
+									>Fecha</label
+								>
+								<div class="control">
+									<input
+										type="date"
+										id="fecha-editar-operacion"
+										class="input bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-8"
+									/>
 								</div>
 							</div>
 						</div>
-						<!--Input categoria-->
-						<div class="field">
-							<label
-								for="categoria-editar-operacion"
-								class="label font-semibold"
-								>Categoría</label
-							>
-							<div class="control">
-								<div class="select is-fullwidth">
-									<select
-										id="categoria-editar-operacion"
-										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-									></select>
-								</div>
-							</div>
-						</div>
-						<!--Input fecha-->
-						<div class="field">
-							<label for="fecha-editar-operacion" class="label font-semibold"
-								>Fecha</label
-							>
-							<div class="control">
-								<!-- Otra tilde :D -->
-								<input
-									type="date"
-									id="fecha-editar-operación"
-									class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-								/>
-							</div>
-						</div>
-
-						<!--Botones  o editar nuevas operaciones-->
-						<div class="buttons flex justify-end mt-8">
+						<!-- ================== Botones AGREGAR o CANCELAR NUEVAS OPERACIONES ================== -->
+						<div class="buttons flex justify-end mt-[-20px] mb-5">
 							<button
 								id="boton-cancelar-editar-operaciones"
-								class="button bg-gray-300 shadow-md text-gray-800 font-semibold py-2 px-4 rounded-md mr-2"
+								class="bg-gray-300 shadow-md text-gray-800 font-semibold py-2 px-4 rounded-md mr-2 max-675:py-1 max-675:px-2 max-675:text-sm"
 							>
 								Cancelar
 							</button>
 							<button
 								id="boton-formulario-editar-operaciones"
-								class="button bg-teal-600 shadow-md text-white font-semibold py-2 px-4 rounded-md"
+								class="bg-teal-600 shadow-md text-white font-semibold py-2 px-4 rounded-md max-675:py-1 max-675:px-2 max-675:text-sm"
 							>
-								Editar
+								Agregar
 							</button>
 						</div>
 					</div>
 				</div>
 			</form>
 
-			<!--Sección categorías-->
-			<section
-				id="seccion-categorias"
-				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px]"
-			>
-				<div class="container">
-					<form
-						class="box container mt-[-20px] p-6"
-						id="form-agregar-categoria"
-					>
-						<h2 class="title text-4xl font-bold mb-2">Categorías</h2>
-						<!--Input agregar categorias-->
-						<div class="field mt-6">
-							<label for="input-agregar-categoria" class="label font-semibold"
-								>Nombre</label
-							>
-							<div
-								class="control mt-4 grid-cols-2 flex justify-items justify-between"
-							>
-								<input
-									id="input-agregar-categoria"
-									type="text"
-									class="column input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-								/>
-								<button
-									id="boton-agregar-categoria"
-									class="button bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-bold py-2 px-2 rounded mb-2 ml-3"
+			<!-- ================== SECCION CATEGORÍAS ================== -->
+			<div class="flex justify-center">
+				<section
+					id="seccion-categorias"
+					class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 lg:max-w-[1200px] shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px]"
+				> <!-- RECORDAR poner hidden luego de section: class="section hidden -->
+					<div class="container">
+						<form
+							class="box container mt-[10px] p-2"
+							id="form-agregar-categoria"
+						>
+							<h2 class="title text-4xl font-bold mb-2">Categorías</h2>
+							<!--Input agregar categorias-->
+							<div class="mt-4">
+								<label for="input-agregar-categoria" class="label font-semibold text-gray-700"
+									>Nombre</label
 								>
-									<!--CHEQUEAR EL IS-NARROW no existe en tailwind se cambio por px-2 que reduce el relleno de forma horizontal del boton-->
-									Agregar
+								<div
+									class="control mt-4 grid-cols-2 flex justify-items justify-between"
+								>
+									<input
+										id="input-agregar-categoria"
+										type="text"
+										class="column input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+									/>
+									<button
+										id="boton-agregar-categoria"
+										class="button bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-bold text-sm sm:text-sm py-1 px-2 sm:py-2 sm:px-3 rounded mb-2 ml-2 w-auto sm:w-fit"
+									>
+										Agregar
+									</button>
+								</div>
+							</div>
+							<!--Categorias agregadas-->
+							<div class="mt-5 mx-4" id="contenedor-categorias-agregadas"></div>
+						</form>
+					</div>
+				</section>
+			</div>
+			<!-- ================== Sección EDITAR CATEGORIAS ================== -->
+			<div class="flex justify-center">
+				<section
+					id="seccion-editar-categorias"
+					class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 lg:max-w-[1200px] shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px]"> <!-- class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px]" -->
+					
+					<!--recordar colora de nuevo el hidden a  class="section hidden  ==> esta era la etiqueta anterior <div class="control mt-4 w-full">-->
+						
+						<form class="box w-full container mt-[-20px] p-6" id="form-editar-categoria">
+							<h2 class="title font-bold text-3xl sm:text-6xl py-2 whitespace-nowrap text-center sm:text-left">
+								Editar categoría
+							</h2>
+							<div class="mt-6">
+								<label
+									class="label font-semibold"
+									for="input-editar-nombre-categoria"
+									>Nombre</label>
+								<div
+									class="control mt-4 flex w-full"
+								>
+									<input
+										type="text"
+										id="input-editar-nombre-categoria"
+										class="column input border border-indigo shadow-md py-1 px-2 rounded w-[100%] mb-3"
+									/>
+								</div>
+							</div>
+							<div class="flex justify-end space-x-2">
+								<button
+									id="boton-cancelar-editar-categoria"
+									class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-1 px-2 sm:py-2 sm:px-4 text-sm sm:text-base rounded inline-flex items-center"
+								>
+									Cancelar
+								</button>
+								<button
+									id="boton-editar-categoria-formulario"
+									class="bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-semibold py-1 px-2 sm:py-2 sm:px-4 text-sm sm:text-base rounded inline-flex items-center"
+								>
+									Editar
 								</button>
 							</div>
-						</div>
-						<!--Categorias agregadas-->
-						<div class="mt-5 mx-4" id="contenedor-categorias-agregadas"></div>
-					</form>
-				</div>
-			</section>
+						</form>
+					<!--</div>-->
+				</section>
+			</div>
 
-			<!--Sección editar categorias-->
-			<section
-				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px]"
-				id="seccion-editar-categorias"
-			>
-				<div class="container">
-					<form class="box container mt-[-20px] p-6" id="form-editar-categoria">
-						<h2 class="title title text-4xl font-bold mb-2">
-							Editar categoría
-						</h2>
-						<div class="field mt-6">
-							<label
-								class="label font-semibold"
-								for="input-editar-nombre-categoria"
-								>Nombre</label
-							>
-							<div
-								class="control mt-4 grid-cols-2 flex justify-items justify-between"
-							>
-								<input
-									type="text"
-									id="input-editar-nombre-categoria"
-									class="column input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-								/>
-							</div>
-						</div>
-						<div class="flex justify-end space-x-4">
-							<button
-								id="boton-cancelar-editar-categoria"
-								class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
-							>
-								Cancelar
-							</button>
-							<button
-								id="boton-editar-categoria-formulario"
-								class="bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-semibold py-2 px-4 rounded inline-flex items-center"
-							>
-								Editar
-							</button>
-						</div>
-					</form>
-				</div>
-			</section>
-
-			<!--Sección reportes-->
-			<section
-				class="reportes section-desktop md-block hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px] mx-auto"
-			>
+			<!-- ================== Sección REPORTES ================== -->
+			<section 
+				class="reportes hidden section-desktop md:hidden md:block bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent 
+				px-4 rounded-lg w-full sm:w-5/6 md:w-4/6 lg:w-3/6 
+				shadow-xl gap-8 p-6 pb-2 sm:pb-6 md:pb-8 max-h-auto mx-auto"
+				> <!-- Recordar eliminar HIDDEN-->
+			<!-- RECORDAR AGREGAR hidden en class ==>class despues de md-block="reportes section-desktop md:hidden md-block hidden  -->
 				<div class="container">
 					<div
-						class="box column px-4 md:col-span-8 md:col-start-3 md:col-end-11 md:my-4"
+						class="box column px-4 md:col-span-8 md:col-start-3 md:col-end-11 md:my-2"
 					>
-						<h2 class="title text-4xl font-bold">Reportes</h2>
+						<h2 class="title text-2xl sm:text-4xl font-bold">Reportes</h2>
 
 						<!--Reportes sin datos-->
 						<div id="reportes-sin-datos" class="hidden">
+							<!-- RECORDAR AGREGAR hidden en class ==> class="hidden"  -->
 							<figure
-								class="image columnmx-auto lg:col-span-6 lg:col-start-4 md:col-span-7 md:col-start-3 sm:col-span-7 sm:col-start-3"
+								class="image column w-4/5 sm:w-full md:w-4/5 lg:w-3/5 mx-auto mt-6 sm:mt-4"
 							>
 								<img
-									src="img/.svg"
+									src="/img/reportes.svg"
 									alt="Imagen de mujer mirando estadísticas"
 								/>
 							</figure>
-							<!-- Recuerden siempre agregar un alt a las imágenes para que el lector las describa -->
-							<h4 class="title text-lg mt-6 text-center font-bold">
+							<!-- RecORDAR siempre agregar un alt a las imágenes para que el lector las describa -->
+							<h4 class="title text-base sm:text-lg lg:text-3xl mt-6 sm:mt-8 text-center font-bold">
 								Operaciones insuficientes
 							</h4>
-							<p class="mt-4 mb-6 text-center tex-sm">
+							<p class="mt-1 sm:mt-2 mb-4 sm:mb-6 text-center text-sm sm:text-base lg:text-lg">
 								Prueba agregando más operaciones
 							</p>
 						</div>
 
-						<!--Reportes con datos-->
-						<div id="reportes-con-datos" class="">
+						<!-- ================== REPORTES CON DATOS ==================-->
+						<div id="reportes-con-datos" class="hidden">
+							<!-- RECORDAR AGREGAR hidden en class ==> class="hidden"  -->
 							<div id="contenedor-resumen-" class="my-6">
-								<h4 class="title text-lg font-bold">Resumen</h4>
+								<h4 class="title text-base sm:text-lg font-bold">Resumen</h4>
 								<!--Categoría mayor ganancia-->
 								<div class="columns grid grid-cols-2 gap-4">
-									<p class="column text-base font-medium my-4">
+									<p class="column text-sm sm:text-base font-medium my-2 sm:my-4">
 										Categoría con mayor ganancia
 									</p>
 									<div class="column flex justify-end">
 										<p
-											class="tag py-1px-2 text-sm font-semibold text-white bg-primary-light"
+											class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
 											id="tag-categoria-mayor-ganancia"
 										></p>
 									</div>
 									<p
-										class="column text-base font-bold text-green-600 text-right"
+										class="column text-sm sm:text-base font-bold text-green-600 text-right"
 										id="monto-mayor-ganancia"
 									></p>
 								</div>
 								<!--Categoría mayor gasto-->
 								<div class="columns grid grid-cols-2 gap-4">
-									<p class="column text-base font-medium">
+									<p class="column text-sm sm:text-base font-medium">
 										Categoría con mayor gasto
 									</p>
 									<div class="column flex justify-end">
 										<p
-											class="tag py-1px-2 text-sm font-semibold text-white bg-primary-light"
+											class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
 											id="tag-categoria-mayor-gasto"
 										></p>
 									</div>
 									<p
-										class="column text-base font-bold text-green-600 text-right"
+										class="column text-sm sm:text-base font-bold text-green-600 text-right"
 										id="monto-mayor-gasto"
 									></p>
 								</div>
 
 								<!--Categoría mayor balance-->
 								<div class="columns grid grid-cols-2 gap-3">
-									<p class="column text-base font-medium my-4">
-										Categoría con mayor balance
-									</p>
-									<div class="column flex justify-end">
-										<p
-											class="tag py-1px-2 text-sm font-semibold text-white bg-primary-light"
-											id="tag-categoria-mayor-balance"
-										></p>
-									</div>
-									<p
-										class="column text-base font-bold text-green-600 text-right"
-										id="monto-mayor-balance"
-									></p>
+										<p class="column text-sm sm:text-base font-medium my-2 sm:my-4">
+												Categoría con mayor balance
+										</p>
+										<div class="column flex justify-end">
+												<p class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
+														id="tag-categoria-mayor-balance">
+												</p>
+										</div>
+										<p class="column text-sm sm:text-base font-bold text-green-600 text-right"
+												id="monto-mayor-balance">
+										</p>
 								</div>
 
 								<!--Mes con mayor ganancia-->
-								<div class="columns grid grid-cols-2 gap-3">
-									<p class="column text-base font-medium">
-										Mes con mayor ganancia
-									</p>
-									<div class="column flex justify-end">
-										<p
-											class="tag py-1px-2 text-sm font-semibold text-white bg-primary-light"
-											id="fecha-mayor-ganancia"
-										></p>
-									</div>
-									<p
-										class="column text-base font-bold text-green-600 text-right"
-										id="monto-mes-mayor-ganancia"
-									></p>
-								</div>
+								 <div class="columns grid grid-cols-2 gap-3">
+										<p class="column text-sm sm:text-base font-medium">Mes con mayor ganancia</p>
+										<div class="column flex justify-end">
+												<p class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light" id="fecha-mayor-ganancia"></p>
+										</div>
+										<p class="column text-sm sm:text-base font-bold text-green-600 text-right" id="monto-mes-mayor-ganancia"></p>
+								 </div>
 
 								<!--Mes con mayor gasto-->
-								<div class="columns grid grid-cols-2 gap-4">
-									<p class="column text-base font-medium my-2">
-										Mes con mayor gasto
-									</p>
-									<div
-										class="tag py-1px-2 text-sm font-semibold text-white bg-primary-light"
-									>
-										<p id="fecha-mayor-gasto"></p>
-									</div>
-									<p
-										class="column text-base font-bold text-green-600 text-right"
-										id="monto-mes-mayor-gasto"
-									></p>
+								<div class="columns grid grid-cols-2 gap-3">
+										<p class="column text-sm sm:text-base font-medium my-2 sm:my-4">
+												Mes con mayor gasto
+										</p>
+										<div class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light">
+												<p id="fecha-mayor-gasto"></p>
+										</div>
+										<p class="column text-sm sm:text-base font-bold text-green-600 text-right"
+												id="monto-mes-mayor-gasto">
+										</p>
 								</div>
-							</div>
 
 							<!--Totales por categoría-->
 							<div id="contenedor-totales-categoria" class="my-4">
-								<h4 class="title text-lg font-bold">Totales por categoría</h4>
-								<div class="grid grid-cols-4 gap-4">
-									<p class="text-base font-medium">Categoría</p>
-									<p class="text-base font-medium text-right">Ganancias</p>
-									<p class="text-base font-medium text-right">Gastos</p>
-									<p class="text-base font-medium text-right">Balance</p>
-								</div>
-								<div id="contenedor-item-totales-categoria"></div>
+									<h4 class="title text-base sm:text-lg font-bold">Totales por categoría</h4>
+									<div class="grid grid-cols-4 gap-4">
+											<p class="text-sm sm:text-base font-medium">Categoría</p>
+											<p class="text-sm sm:text-base font-medium text-right">Ganancias</p>
+											<p class="text-sm sm:text-base font-medium text-right">Gastos</p>
+											<p class="text-sm sm:text-base font-medium text-right">Balance</p>
+									</div>
 							</div>
 
 							<!--Totales por mes-->
 							<div id="contenedor-totales-mes" class="my-6">
-								<h4 class="title text-lg font-bold mb-2">Totales por mes</h4>
+								<h4 class="title text-base sm:text-lg font-bold mb-2">Totales por mes</h4>
 								<div class="grid grid-cols-4 gap-4">
-									<p class="text-base font-medium">Mes</p>
-									<p class="text-base font-medium text-right">Ganancias</p>
-									<p class="text-base font-medium text-right">Gastos</p>
-									<p class="text-base font-medium text-right">Balance</p>
-								</div>
-								<div id="contenedor-totales-mensuales"></div>
+										<p class="text-sm sm:text-base font-medium">Mes</p>
+										<p class="text-sm sm:text-base font-medium text-right">Ganancias</p>
+										<p class="text-sm sm:text-base font-medium text-right">Gastos</p>
+										<p class="text-sm sm:text-base font-medium text-right">Balance</p>
+							</div>
+							<div id="contenedor-totales-mensuales"></div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
 		</main>
+	 <script src="index.js"></script>
 	</body>
 </html>
