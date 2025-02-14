@@ -164,7 +164,9 @@
 							<div class="text-lg m-4">
 								<p>Ganancias</p>
 							</div>
-							<div class="text-xl font-bold text-success text-green-700">
+							<div
+								id="numero-ganancias"
+							  class="text-xl font-bold text-success text-green-700">
 								<p class="mb-2">+$0</p>
 							</div>
 						</div>
@@ -174,7 +176,9 @@
 							<div class="text-lg m-4">
 								<p>Gastos</p>
 							</div>
-							<div class="text-xl font-bold text-dange text-red-700">
+							<div 
+							id="numero-gastos"
+							class="text-xl font-bold text-dange text-red-700">
 								<p class="mb-2">-$0</p>
 							</div>
 						</div>
@@ -184,7 +188,9 @@
 							<div class="text-xl m-4">
 								<p>Total</p>
 							</div>
-							<div class="text-xl font-bold">
+							<div 
+								id="numero-total"
+								class="text-xl font-bold">
 								<p class="mb-2">+$0</p>
 							</div>
 						</div>
@@ -469,7 +475,7 @@
 							<!-- Input descripción -->
 							<div class="mb-2">
 								<label
-									for="descripción-editar-operacion"
+									for="descripcion-editar-operacion"
 									class="label font-semibold"
 									>Descripción</label
 								>
@@ -765,6 +771,7 @@
 											<p class="text-sm sm:text-base font-medium text-right">Gastos</p>
 											<p class="text-sm sm:text-base font-medium text-right">Balance</p>
 									</div>
+									<div id="contenedor-item-totales-categoria"></div>
 							</div>
 
 							<!--Totales por mes-->
