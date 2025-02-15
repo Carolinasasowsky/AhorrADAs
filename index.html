@@ -69,7 +69,7 @@
 								
 								<p class="pl-3">
 									Ah<img
-										src="./img/ahorro.gif"
+										src="assets/img/ahorro.gif"
 										alt="Ahorro GIF"
 										class="w-14 h-14 sm:w-12 sm:h-12 lg:w-16 lg:h-16 inline-block" 
 									/>rrADAs
@@ -81,62 +81,65 @@
 				<!-- ======================== LINKS DE LA BARRA DE NAVEGACIÓN ======================== -->					
 						<!-- Se muestra en mobile -->
 						 <!-- Contenedor de Menú Hamburguesa y Dark Mode -->
-						<div class="flex items-center gap-4 sm:mb-0 mb-2">
-						<div
-							id="menu-desplegable-mobile"
-							class="navbar-menu p-5 w-1/2 flex items-center justify-between gap-4"
+				<div class="flex items-center gap-4 sm:mb-0 mb-2">
+						<!-- Botón Hamburguesa -->
+						<button
+								id="boton-hamburguesa"
+								role="button"
+								class="navbar-burger mt-1 lg:hidden flex flex-col items-center justify-center absolute right-6 pl-2"
+								aria-label="menu"
+								aria-expanded="false"
+								data-target="navbarBasicExample"
 						>
+								<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"></span>										
+								<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"></span>
+								<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1"></span>
+						</button>
 
-								<button
-										id="boton-hamburguesa"
-										role="button"
-										class="navbar-burger mt-1 lg:hidden flex flex-col items-center justify-center absolute right-6 pl-2"
-										aria-label="menu"
-										aria-expanded="false"
-										data-target="navbarBasicExample"
-									>
-									
-								
-										<span
-											aria-hidden="true"
-											class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"
-										></span>
-										
-										<span
-											aria-hidden="true"
-											class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"
-										></span>
-										<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1"></span>
-									</button>
-								</div>
-							</div>
-					<!-- DARK MODE -->
-						<div>
-							<button
-								class="px-8 py-2 sm:flex dark:text-white sm:mb-0 mb-2"
-								onclick="toggleDarkMode()">
-								<!-- Ícono de sol para el modo claro -->
-								<i class="fa fa-sun fa-lg hidden dark:inline"></i>  
-								<!-- Ícono de luna para el modo oscuro -->
-								<i class="fa fa-moon fa-lg dark:hidden"></i>
-							</button>
-						</div>										
+						<!-- Menú Hamburguesa (Inicialmente oculto) -->
+						<div
+								id="menu-desplegable-mobile"
+								class="navbar-menu absolute top-[90px] w-1/2 flex flex-col items-center gap-2 py-2 px-2 bg-gradient-to-r from-fuchsia-500 via-violet-500 to-violet-500 text-white shadow-md hidden"
+						>
+								<a class="link-balance navbar-item p-3" href="">
+										<i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i>
+										<span class="text-lg">Balance</span>
+								</a>
+								<a class="link-categorias navbar-item p-3" href="">
+										<i class="fas fa-tag fa-lg mr-2" aria-hidden="true"></i>
+										<span class="text-lg">Categorías</span>
+								</a>
+								<a class="link-reportes navbar-item p-3" href="">
+										<i class="fas fa-chart-pie fa-lg mr-2" aria-hidden="true"></i>
+										<span class="text-lg">Reportes</span>
+								</a>
 						</div>
-					<div class="navbar-end hidden sm:flex gap-4">
+				</div>
+
+				<!-- DARK MODE -->
+				<div>
+						<button class="px-[80px] py-2 sm:flex dark:text-white sm:mb-0 mb-2" onclick="toggleDarkMode()">
+								<i class="fa fa-sun fa-lg hidden dark:inline"></i>  
+								<i class="fa fa-moon fa-lg dark:hidden"></i>
+						</button>
+				</div>			
+
+				<!-- Navbar End (Elementos de navegación en escritorio) -->
+				<div class="navbar-end hidden sm:flex gap-4">
 						<a class="link-balance navbar-item mr-2 p-3" href="">
-							<i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i
-							><span class="text-lg">Balance</span>
+								<i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i>
+								<span class="text-lg">Balance</span>
 						</a>
 						<a class="link-categorias navbar-item mr-2 p-3" href="">
-							<i class="fas fa-tag fa-lg mr-2" aria-hidden="true"></i
-							><span class="text-lg">Categorías</span>
+								<i class="fas fa-tag fa-lg mr-2" aria-hidden="true"></i>
+								<span class="text-lg">Categorías</span>
 						</a>
 						<a class="link-reportes navbar-item mr-2 p-3" href="">
-							<i class="fas fa-chart-pie fa-lg mr-2" aria-hidden="true"></i
-							><span class="text-lg"> Reportes</span>
+								<i class="fas fa-chart-pie fa-lg mr-2" aria-hidden="true"></i>
+								<span class="text-lg">Reportes</span>
 						</a>
-					</div>
 				</div>
+
 			</nav>
 		</header>
 		<!--Fin del Header. Comienzo del Main-->

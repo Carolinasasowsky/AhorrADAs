@@ -2,7 +2,7 @@
 
 /* >>>>>>>>>>>>>>>>>>>>>>> ***MAQUETADO*** >>>>>>>>>>>>>>>>>>>>>>*/
 
-const linkBalance = document.querySelector(".-balance");
+const linkBalance = document.querySelector(".link-balance");
 const linkCategorias = document.querySelector(".link-categorias");
 const linkReportes = document.querySelector(".link-reportes");
 const seccionPrincipal = document.querySelector("#principal");
@@ -23,9 +23,11 @@ const numeroGananciaBalance = document.querySelector("#numero-ganancias");
 const numeroGastosBalance = document.querySelector("#numero-gastos");
 const numeroTotalBalance = document.querySelector("#numero-total");
 
+
+
 /* >>>>>>>>>>>>>>>>>>>>>>> ***CATEGORIAS*** >>>>>>>>>>>>>>>>>>>>>>*/
 
-const selectTipo = document.getElementByld("select-tipo");
+const selectTipo = document.getElementById("select-tipo");
 const selectCategoria = document.getElementById("select-categoria");
 const selectOrden = document.getElementById("select-orden");
 const formAgregarCategoria = document.getElementById("form-agregar-categoria");
@@ -108,7 +110,12 @@ window.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
-/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* >>>>>>>>>>>>>>>>>>>>>>>***MAQUETADO***>>>>>>>>>>>>>>>>>>>>>>>*/
-/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* >>>>>>>>>>>>>>>>>>>>>>>***MENÚ HAMBURGUESA***>>>>>>>>>>>>>>>>>>>>>>>*/
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
+ botonHamburguesa.addEventListener("click", function () {
+		menuDesplegableMobile.classList.toggle("hidden"); // Alterna visibilidad
+ });
+
+ /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
