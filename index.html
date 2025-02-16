@@ -69,7 +69,7 @@
 								
 								<p class="pl-3">
 									Ah<img
-										src="./img/ahorro.gif"
+										src="./assets/img/ahorro.gif"
 										alt="Ahorro GIF"
 										class="w-14 h-14 sm:w-12 sm:h-12 lg:w-16 lg:h-16 inline-block" 
 									/>rrADAs
@@ -207,7 +207,7 @@
 							</button>
 						</div>
 
-						<div id="contenedor-filtros with:100%">
+						<div id="contenedor-filtros">
 							<div class="m-4">
 								<label for="select-tipo" class="label">Tipo</label>
 								<div class="control">
@@ -290,8 +290,9 @@
 
 								<!-- Botón de Nueva Operación -->
 								<button
-									id="boton-nueva-operacion"
-									class="button bg-indigo-300 text-black font-semibold px-2 py-1 text-sm sm:px-4 sm:py-2 sm:text-base rounded sm:w-auto text-center"
+								id="boton-nueva-operacion"
+								style="border: 2px solid rgba(255, 255, 255, 0.062); pointer-events: auto; z-index: 99999; position: relative;"
+								class="button bg-indigo-300 text-black font-semibold px-2 py-1 text-sm sm:px-4 sm:py-2 sm:text-base rounded sm:w-auto text-center"
 								>
 									+ Nueva operación
 								</button>
@@ -365,7 +366,7 @@
 				<div class="flex justify-center items-center min-h-screen sm:h-screen mx-[-20px] sm:mx-0">
 					<div class="container p-6">
 						<div class="box gap-2 flex flex-col mt-[-300px] sm:mt-0">
-							<h2 class="text-xl sm:text-4xl font-bold mb-2 mt-30 sm:mt-[-380px] md:mt-[-380px">Nueva operación</h2>
+							<h2 class="text-xl sm:text-4xl font-bold mb-2 mt-30 sm:mt-[-380px] md:mt-[-380px]">Nueva operación</h2>
 							<!-- Input descripción -->
 							<div class="mb-2">
 								<label
@@ -790,7 +791,6 @@
 				</div>
 			</section>
 		</main>
-		<!--COMENTARIO PARA PRUEBAR EL CLON DEL REPOSITORIO-->
 	 <script src="index.js"></script>
 	</body>
 </html>

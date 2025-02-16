@@ -12,8 +12,10 @@ const menuDesplegableMobile = document.querySelector("#menu-desplegable-mobile")
 const botonHamburguesa = document.getElementById("boton-hamburguesa");
 const seccionNuevaOperacion = document.getElementById("formulario-nueva-operacion");
 const seccionEditarCategoria = document.querySelector("#seccion-editar-categorias");
-const contenedorFiltros = document.querySelector("#contenedor-filtros");
+const contenedorFiltros = document.getElementById("contenedor-filtros");
 const botonFiltros = document.querySelector("#boton-filtros");
+const contenedorBalance = document.getElementById("balance");
+const contenedorOperaciones = document.getElementById("operaciones");
 
 
 
@@ -25,7 +27,7 @@ const numeroTotalBalance = document.querySelector("#numero-total");
 
 /* >>>>>>>>>>>>>>>>>>>>>>> ***CATEGORIAS*** >>>>>>>>>>>>>>>>>>>>>>*/
 
-const selectTipo = document.getElementByld("select-tipo");
+const selectTipo = document.getElementById("select-tipo");
 const selectCategoria = document.getElementById("select-categoria");
 const selectOrden = document.getElementById("select-orden");
 const formAgregarCategoria = document.getElementById("form-agregar-categoria");
@@ -43,9 +45,10 @@ const formEditarCategoria = document.getElementById("form-editar-categoria");
 const seccionSinOperaciones = document.getElementById("contenedor-sin-operaciones");
 const seccionConOperaciones = document.getElementById("contenedor-titulos-nuevas-operaciones");
 const contenedorNuevasOperaciones = document.getElementById("contenedor-listado-nuevas-operaciones");
-const botonNuevaOperacion = document.getElementById("boton-nueva-operaion");
+const botonNuevaOperacion = document.getElementById("boton-nueva-operacion");
 const botonCancelarNuevasOperaciones = document.getElementById("boton-cancelar-nuevas-operaciones");
 const botonAgregarNuevaOperacion = document.getElementById("boton-agregar-nuevas-operaciones");
+const formularioNuevaOperacion = document.getElementById("formulario-nueva-operacion");
 const inputDescripcionNuevaOperacion = document.getElementById("descripción-nueva-operacion");
 const inputMontoNuevaOperacion = document.getElementById("monto-nueva-operacion");
 const selectTipoNuevaOperacion = document.getElementById("tipo-nueva-operacion");
@@ -111,3 +114,23 @@ window.addEventListener("DOMContentLoaded", () => {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* >>>>>>>>>>>>>>>>>>>>>>>***MAQUETADO***>>>>>>>>>>>>>>>>>>>>>>>*/
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+/*>>>>>>>>>>>>>>>>>>>>>>>FUNCIONAMIENTO SECCIÓN OPERACIONES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+// BOTON NUEVA OPERACIÓN
+document.addEventListener("DOMContentLoaded", function() {
+
+	//Evento clic para:
+	botonNuevaOperacion.addEventListener("click", function() {
+
+	  // ocultar secciones
+	  contenedorBalance.classList.add("hidden");
+	  contenedorFiltros.classList.add("hidden");
+	  contenedorOperaciones.classList.add("hidden");
+  
+	  // mostrar el formulario
+	  formularioNuevaOperacion.classList.remove("hidden");
+
+	});
+  });
+  
