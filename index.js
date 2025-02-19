@@ -8,6 +8,10 @@ const linkReportes = document.querySelector(".link-reportes");
 const seccionPrincipal = document.querySelector("#principal");
 const seccionCategorias = document.querySelector("#seccion-categorias");
 const seccionReportes = document.querySelector("#seccion-reportes");
+const seccionOperaciones = document.querySelector("#operaciones");
+
+
+
 const menuDesplegableMobile = document.querySelector(
 	"#menu-desplegable-mobile"
 );
@@ -185,50 +189,81 @@ botonHamburguesa.addEventListener("click", function () {
 /* >>>>>>>>>>>>>>>>>>>>>>>***NAVEGACIÓN ENTRE SECCIONES***>>>>>>>>>>>>>>>>>>>>>>> */
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
-document.addEventListener("DOMContentLoaded", function () {
-	
-	function cambiarSeccion(seccionMostrar) {
-		document.querySelectorAll("main > section").forEach((seccion) => {
-			seccion.classList.add("hidden");
-		});
-		seccionMostrar.classList.remove("hidden");
+
+/*
+const arraySecciones = [
+	seccionPrincipal,
+	seccionCategorias,
+	seccionReportes,
+	seccionNuevaOperacion,	
+	seccionSinOperaciones,
+	seccionConOperaciones,
+	seccionOperaciones,
+];
+const mostrarSeccion = (array, seccion) => {
+	array.forEach((sec) => sec.classList.add("hidden")); // Oculta todas
+	seccion.classList.remove("hidden");
+};
+const mostrarSeccion = (array, seccion) => {
+	for (let i = 0; i < array.length; i++) {
+		if (array[i] != seccion) {
+			array[i].classList.add("hidden");
+		} else if (array[i] === seccion) {
+			array[i].classList.remove("hidden");
+		}
 	}
+};
 
-	// ------------------------------ Selección Balance ------------------------------
-	linkBalance.addEventListener("click", (e) => {
-		e.preventDefault();
-		console.log("Balance clickeado"); // <-- Agregado para depurar
-		if (!selectBalance) {
-			cambiarSeccion(seccionPrincipal);
-			selectBalance = true;
-			selectCategoria = false;
-			selectReporte = false;
-		}
-	});
+// Links del NAV
+linkReportes.onclick = (event) => {
+	event.preventDefault();	
+	mostrarSeccion(arraySecciones, seccionReportes); 
+};
 
-	// ------------------------------ Selección Categorías ------------------------------
-	linkCategorias.addEventListener("click", (e) => {
-		e.preventDefault();
-		console.log("Categorías clickeado"); // <-- Agregado para depurar
-		if (!selectCategoria) {
-			cambiarSeccion(seccionCategorias);
-			selectBalance = false;
-			selectCategoria = true;
-			selectReporte = false;
-		}
-	});
+linkCategorias.onclick = (event) => {
+	event.preventDefault();
+	mostrarSeccion(arraySecciones, seccionCategorias);
+};
+linkBalance.onclick = (event) => {
+	event.preventDefault();
+	mostrarSeccion(arraySecciones, seccionPrincipal);
+};
+*/
 
-	// ------------------------------ Selección Reportes ------------------------------
-	linkReportes.addEventListener("click", (e) => {
-		e.preventDefault();
-		console.log("Reportes clickeado"); // <-- Agregado para depurar
-		if (!selectReporte) {
-			cambiarSeccion(seccionReportes);
-			selectBalance = false;
-			selectCategoria = false;
-			selectReporte = true;
-		}
-	});
+const arraySecciones = [
+	seccionPrincipal,
+	seccionCategorias,
+	seccionReportes,
+	seccionOperaciones,
+	seccionNuevaOperacion,
+];
 
-	
+
+const mostrarSeccion = (array, seccion) => {
+	array.forEach((sec) => sec.classList.add("hidden")); // Oculta todas
+	seccion.classList.remove("hidden");
+};
+
+document.querySelectorAll(".link-balance").forEach((link) => {
+	link.onclick = (event) => {
+		event.preventDefault();
+		mostrarSeccion(arraySecciones, seccionPrincipal);			
+	};
 });
+
+
+
+document.querySelectorAll(".link-categorias").forEach((link) => {
+	link.onclick = (event) => {
+		event.preventDefault();
+		mostrarSeccion(arraySecciones, seccionCategorias);
+	};
+});
+
+document.querySelectorAll(".link-reportes").forEach((link) => {
+	link.onclick = (event) => {
+		event.preventDefault();
+		mostrarSeccion(arraySecciones, seccionReportes);
+	};
+});
+
