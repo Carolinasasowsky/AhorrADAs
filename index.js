@@ -200,10 +200,7 @@ const arraySecciones = [
 	seccionConOperaciones,
 	seccionOperaciones,
 ];
-const mostrarSeccion = (array, seccion) => {
-	array.forEach((sec) => sec.classList.add("hidden")); // Oculta todas
-	seccion.classList.remove("hidden");
-};
+
 const mostrarSeccion = (array, seccion) => {
 	for (let i = 0; i < array.length; i++) {
 		if (array[i] != seccion) {
@@ -247,7 +244,9 @@ const mostrarSeccion = (array, seccion) => {
 document.querySelectorAll(".link-balance").forEach((link) => {
 	link.onclick = (event) => {
 		event.preventDefault();
-		mostrarSeccion(arraySecciones, seccionPrincipal);			
+		arraySecciones.forEach((sec) => sec.classList.add("hidden")); // Oculta todas
+		seccionPrincipal.classList.remove("hidden");
+		seccionOperaciones.classList.remove("hidden"); // Muestra también la sección de operaciones
 	};
 });
 
