@@ -117,20 +117,23 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 /*>>>>>>>>>>>>>>>>>>>>>>>FUNCIONAMIENTO SECCIÓN OPERACIONES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-// BOTON NUEVA OPERACIÓN
-document.addEventListener("DOMContentLoaded", function() {
 
+document.addEventListener("DOMContentLoaded", function() {
+	// BOTON NUEVA OPERACIÓN
 	//Evento clic para:
 	botonNuevaOperacion.addEventListener("click", function() {
 
 	  // ocultar secciones
-	  contenedorBalance.classList.add("hidden");
-	  contenedorFiltros.classList.add("hidden");
 	  contenedorOperaciones.classList.add("hidden");
+	  seccionPrincipal.classList.add("hidden");
   
 	  // mostrar el formulario
 	  formularioNuevaOperacion.classList.remove("hidden");
 
 	});
+
+
+	// FUNCIONALIDAD FORMULARIO NUEVA OPERACIÓN 
+
   });
   
