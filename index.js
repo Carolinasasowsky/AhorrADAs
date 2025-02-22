@@ -116,24 +116,196 @@ window.addEventListener("DOMContentLoaded", () => {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 
-/*>>>>>>>>>>>>>>>>>>>>>>>FUNCIONAMIENTO SECCIÓN OPERACIONES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+//NAVEGACIÓN ENTRE SECCIONES
+const arraySecciones = [
+    seccionPrincipal,
+    seccionCategorias,
+    seccionReportes,
+    seccionConOperaciones,
+    formularioNuevaOperacion,
+	contenedorOperaciones,
+	seccionSinOperaciones
+	]
 
-document.addEventListener("DOMContentLoaded", function() {
-	// BOTON NUEVA OPERACIÓN
-	//Evento clic para:
-	botonNuevaOperacion.addEventListener("click", function() {
+const mostrarSeccion = (array, seccion) => {
+    array.forEach((sec) => sec.classList.add("hidden")); // Oculta todas las secciones
+    seccion.classList.remove("hidden"); // Muestra la sección deseada
+};
 
-	  // ocultar secciones
-	  contenedorOperaciones.classList.add("hidden");
-	  seccionPrincipal.classList.add("hidden");
-  
-	  // mostrar el formulario
-	  formularioNuevaOperacion.classList.remove("hidden");
+document.querySelectorAll(".link-balance").forEach((link) => {
+    link.onclick = (event) => {
+        event.preventDefault();
+        arraySecciones.forEach((sec) => sec.classList.add("hidden")); 
+        seccionPrincipal.classList.remove("hidden");
+        seccionConOperaciones.classList.remove("hidden"); 
+    };
+});
 
-	});
+document.querySelectorAll(".link-categorias").forEach((link) => {
+    link.onclick = (event) => {
+        event.preventDefault();
+        mostrarSeccion(arraySecciones, seccionCategorias);
+    };
+});
+
+document.querySelectorAll(".link-reportes").forEach((link) => {
+    link.onclick = (event) => {
+        event.preventDefault();
+        mostrarSeccion(arraySecciones, seccionReportes);
+    };
+});
+
+//AGREGAR NUEVA OPERACIÓN 
+
+// Funcionalidad del botón Nueva Operación
+botonNuevaOperacion.addEventListener("click", () => {
+    mostrarSeccion(arraySecciones, formularioNuevaOperacion);
+
+});
+
+// Funcionalidad para el botón Cancelar
+botonCancelarNuevasOperaciones.addEventListener("click", () => {
+    // Ocultar el formulario de nueva operación
+    formularioNuevaOperacion.classList.add("hidden");
+
+	location.reload();
+
+});
 
 
-	// FUNCIONALIDAD FORMULARIO NUEVA OPERACIÓN 
+//Funcionalidad Formulario Nueva Operación 
 
-  });
-  
+// Array para guardar las operaciones
+let arrayOperaciones = [];
+
+// Cargar operaciones desde el localStorage 
+document.addEventListener("DOMContentLoaded", () => {
+    const operacionesGuardadas = JSON.parse(localStorage.getItem("operaciones"));
+    
+    if (operacionesGuardadas && operacionesGuardadas.length > 0) {
+        arrayOperaciones = operacionesGuardadas;
+        pintarOperaciones();  
+
+        // Ocultar seccionSinOperaciones y mostrar seccionConOperaciones y seccionPrincipal
+        seccionSinOperaciones.classList.add("hidden");
+        seccionConOperaciones.classList.remove("hidden");
+        seccionPrincipal.classList.remove("hidden");
+    } else {
+        // Si no hay operaciones, mostrar seccionSinOperaciones y seccionPrincipal
+        seccionSinOperaciones.classList.remove("hidden");
+        seccionConOperaciones.classList.add("hidden");
+        seccionPrincipal.classList.remove("hidden");
+    }
+});
+
+// Enviar del formulario
+formularioNuevaOperacion.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    // Capturar los valores del formulario
+    const descripcion = document.getElementById("descripción-nueva-operacion").value;
+    const monto = document.getElementById("monto-nueva-operacion").value;
+    const tipo = document.getElementById("tipo-nueva-operacion").value;
+    const categoria = document.getElementById("categoria-nueva-operacion").value;
+    const fecha = document.getElementById("fecha-nueva-operacion").value;
+
+    // Validación de correcto llenado del formulario
+    if (!descripcion || !monto || !tipo || !fecha) {
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
+
+    // Objeto con los datos de la nueva operación
+    const nuevaOperacion = {
+        descripcion: descripcion,
+        monto: monto,
+        tipo: tipo,
+        categoria: categoria,
+        fecha: fecha
+    };
+
+    // Agregar la nueva operación al array de operaciones
+    arrayOperaciones.push(nuevaOperacion);
+
+    // Guardar las operaciones en el localStorage
+    localStorage.setItem("operaciones", JSON.stringify(arrayOperaciones));
+
+    // Recargar la página 
+    location.reload();
+});
+
+// Pintar las operaciones en el contenedor
+function pintarOperaciones() {
+    // Limpiar el contenedor
+    contenedorNuevasOperaciones.innerHTML = '';
+
+    // Mostrar las operaciones
+    const contenedorTitulos = document.createElement("div");
+    contenedorTitulos.classList.add("grid", "grid-cols-1", "md:grid-cols-5", "gap-4");
+
+    contenedorTitulos.innerHTML = `
+        <div class="col-span-3 md:col-span-1 text-left pt-4 md:pt-0">
+            <p class="font-semibold">Descripción</p>
+        </div>
+        <div class="col-span-2 md:col-span-1 text-left md:text-center">
+            <p class="font-semibold">Categoría</p>
+        </div>
+        <div class="col-span-2 md:col-span-1 text-left md:text-right">
+            <p class="font-semibold">Fecha</p>
+        </div>
+        <div class="col-span-2 md:col-span-1 text-left md:text-right">
+            <p class="font-semibold">Monto</p>
+        </div>
+        <div class="col-span-2 md:col-span-1 text-left md:text-right">
+            <p class="font-semibold">Acciones</p>
+        </div>
+    `;
+    
+    contenedorNuevasOperaciones.appendChild(contenedorTitulos);
+
+    // Recorrer el array de operaciones y agregar cada una al contenedor
+    arrayOperaciones.forEach((operacion, index) => {
+        const nuevaFila = document.createElement("div");
+        nuevaFila.classList.add("grid", "grid-cols-1", "md:grid-cols-5", "gap-4", "py-4");
+
+        nuevaFila.innerHTML = `
+            <div class="col-span-3 md:col-span-1 text-left">
+                <p>${operacion.descripcion}</p>
+            </div>
+            <div class="col-span-2 md:col-span-1 text-left md:text-center">
+                <p>${operacion.categoria}</p>
+            </div>
+            <div class="col-span-2 md:col-span-1 text-left md:text-right">
+                <p>${operacion.fecha}</p>
+            </div>
+            <div class="col-span-2 md:col-span-1 text-left md:text-right">
+                <p>${operacion.monto}</p>
+            </div>
+            <div class="col-span-2 md:col-span-1 text-left md:text-right">
+                <button class="btn-editar">Editar</button>
+                <button class="btn-eliminar" onclick="eliminarOperacion(${index})">Eliminar</button>
+            </div>
+        `;
+
+        // Agregar la nueva fila al contenedor
+        contenedorNuevasOperaciones.appendChild(nuevaFila);
+    });
+}
+
+// Función para eliminar una operación
+function eliminarOperacion(index) {
+    // Eliminar la operación del array
+    arrayOperaciones.splice(index, 1);
+
+    // Guardar el array actualizado en el localStorage
+    localStorage.setItem("operaciones", JSON.stringify(arrayOperaciones));
+
+    // Volver a pintar las operaciones
+    pintarOperaciones();
+
+    // Si no hay operaciones, mostrar la sección de "sin operaciones"
+    if (arrayOperaciones.length === 0) {
+        seccionSinOperaciones.classList.remove("hidden");
+        seccionConOperaciones.classList.add("hidden");
+    }
+}
