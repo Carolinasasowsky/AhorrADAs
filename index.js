@@ -44,8 +44,14 @@ const botonAgregarCategoria = document.getElementById(
 	"boton-agregar-categoria"
 );
 const contenedorCategoriaAgregada = document.getElementById(
-	"contenedor-categorias-agregdas"
+	"contenedor-categorias-agregadas"
 );
+
+const botonGrabarEditarCategoria = document.getElementById(
+	"boton-editar-categoria"
+);
+
+
 const seccionEditarCategorias = document.getElementById(
 	"seccion-editar-categorias"
 );
@@ -186,7 +192,7 @@ botonHamburguesa.addEventListener("click", function () {
 });
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* >>>>>>>>>>>>>>>>>>>>>>>***NAVEGACIÓN ENTRE SECCIONES***>>>>>>>>>>>>>>>>>>>>>>> */
+/* >>>>>>>>>>>>>>>>>***NAVEGACIÓN ENTRE SECCIONES***>>>>>>>>>>>>>>>>>>*/
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 
@@ -233,6 +239,7 @@ const arraySecciones = [
 	seccionReportes,
 	seccionOperaciones,
 	seccionNuevaOperacion,
+	seccionEditarCategorias, // Agregamos la sección de editar categorías
 ];
 
 
@@ -266,3 +273,155 @@ document.querySelectorAll(".link-reportes").forEach((link) => {
 	};
 });
 
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* >>>>>>>>>>>>>>>>>>>>>***AGREGAR CATEGORÍAS***>>>>>>>>>>>>>>>>>>>>>>*/
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/*
+const categorias = [
+	
+];
+
+// Guardar categorías en localStorage
+const guardarCategoriasLocalStorage = (array, clave) => {
+	const nuevoObjeto = { categorias: array };
+	const objetoJSON = JSON.stringify(nuevoObjeto);
+	localStorage.setItem(clave, objetoJSON);
+};
+
+// Recuperar categorías de localStorage
+const traerCategoriasDesdeLS = (clave) => {
+	const datosLocalStorage = localStorage.getItem(clave);
+	const objetoLS = JSON.parse(datosLocalStorage);
+	if (objetoLS === null) {
+		return null;
+	} else {
+		return objetoLS.categorias;
+	}
+};
+
+//Función para capitalizar texto
+const capitalizar = (str) => {
+	return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+};*/
+
+const iniciarEdicionCategoria = (index) => {
+	const categorias = obtenerCategoriasDesdeLocalStorage();
+	inputEditarNombreCategoria.value = categorias[index]; // Cargar nombre de la categoría
+
+	// Guardar índice de la categoría a editar
+	indiceEdicion = index;
+
+	// Ocultar sección de categorías y mostrar la de edición
+	mostrarSeccion(seccionEditarCategorias);
+};
+
+/* >>>>>>>>>>>>>>>>>>>>>>> VOLVER DE EDICIÓN A CATEGORÍAS >>>>>>>>>>>>>>>>>>>>>> */
+botonCancelarEditarCategoria.addEventListener("click", () => {
+	mostrarSeccion(seccionCategorias);
+});
+
+// Función para capitalizar texto
+const capitalizar = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+};
+
+// Cargar categorías desde localStorage
+const obtenerCategoriasDesdeLocalStorage = () => {
+    return JSON.parse(localStorage.getItem("categorias")) || [];
+};
+
+// Guardar categorías en localStorage
+const guardarCategoriasEnLocalStorage = (categorias) => {
+    localStorage.setItem("categorias", JSON.stringify(categorias));
+};
+
+// Mostrar las categorías en la página
+const renderizarCategorias = () => {
+    const categorias = obtenerCategoriasDesdeLocalStorage();
+    contenedorCategorias.innerHTML = ""; // para limpiar el contenedor antes de agregar nuevas categorías
+
+    if (categorias.length === 0) {
+        seccionCategorias.classList.add("hidden"); // Ocultar si no hay categorías
+    } else {
+        seccionCategorias.classList.remove("hidden"); // Mostrar si hay categorías
+    }
+/*const renderizarCategorias = () => {
+    const categorias = obtenerCategoriasDesdeLocalStorage();
+    contenedorCategorias.innerHTML = ""; // para limpiar el contenedor antes de agregar nuevas categorías
+*/
+    categorias.forEach((categoria, index) => {
+        const categoriaElemento = document.createElement("div");
+        categoriaElemento.classList.add("flex", "justify-between", "items-center", "bg-gray-200", "p-2", "rounded", "mb-2");
+
+        categoriaElemento.innerHTML = `
+            <span>${categoria}</span>
+            <div>
+                <button class="btn-editar bg-blue-500 text-white px-2 py-1 rounded mr-2" data-index="${index}">
+                    Editar
+                </button>
+                <button class="btn-eliminar bg-red-500 text-white px-2 py-1 rounded" data-index="${index}">
+                    Eliminar
+                </button>
+            </div>
+        `;
+
+        contenedorCategorias.appendChild(categoriaElemento);
+    });
+
+    // Agregar eventos a los botones de editar y eliminar
+    document.querySelectorAll(".btn-editar").forEach((boton) => {
+        boton.addEventListener("click", (e) => {
+            const index = e.target.dataset.index;
+            editarCategoria(index);
+        });
+    });
+
+    document.querySelectorAll(".btn-eliminar").forEach((boton) => {
+        boton.addEventListener("click", (e) => {
+            const index = e.target.dataset.index;
+            eliminarCategoria(index);
+        });
+    });
+};
+
+// Agregar categoría
+botonAgregarCategoria.addEventListener("click", (e) => {
+    e.preventDefault();
+    let nuevaCategoria = inputAgregarCategoria.value.trim();
+
+    if (nuevaCategoria === "") {
+        alert("Por favor, ingresa un nombre de categoría válido.");
+        return;
+    }
+
+    nuevaCategoria = capitalizar(nuevaCategoria); // Capitalizar el nombre antes de guardar
+    const categorias = obtenerCategoriasDesdeLocalStorage();
+    categorias.push(nuevaCategoria);
+    guardarCategoriasEnLocalStorage(categorias);
+    inputAgregarCategoria.value = ""; // Limpiar input
+    renderizarCategorias(); // Mostrar en la página
+});
+
+// Editar categoría
+const editarCategoria = (index) => {
+    const categorias = obtenerCategoriasDesdeLocalStorage();
+    let nuevoNombre = prompt("Editar categoría:", categorias[index]);
+
+    if (nuevoNombre && nuevoNombre.trim() !== "") {
+        categorias[index] = capitalizar(nuevoNombre.trim()); // Capitalizar el nombre editado
+        guardarCategoriasEnLocalStorage(categorias);
+        renderizarCategorias(); // Refrescar la vista
+    }
+};
+
+// Eliminar categoría
+const eliminarCategoria = (index) => {
+    const categorias = obtenerCategoriasDesdeLocalStorage();
+    categorias.splice(index, 1);
+    guardarCategoriasEnLocalStorage(categorias);
+    renderizarCategorias(); // Refrescar la vista
+};
+
+// Cargar categorías al inicio
+document.addEventListener("DOMContentLoaded", renderizarCategorias);

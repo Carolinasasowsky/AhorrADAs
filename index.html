@@ -53,7 +53,7 @@
 	</head>
 
 	<body
-		class="min-h-screen relative inset-0 -z-10 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] my-0 dark:bg-gray-900 dark:text-white dark:[background:radial-gradient(125%_125%_at_50%_10%,#1a202c_40%,#2d3748_100%)]"
+		class=" min-h-screen relative inset-0 -z-10 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] my-0 dark:bg-gray-900 dark:text-white dark:[background:radial-gradient(125%_125%_at_50%_10%,#1a202c_40%,#2d3748_100%)]"
 		
 	>
 		<header>
@@ -283,7 +283,7 @@
 					<!-- ================== Sección OPERACIONES ================== -->
 					<div 
 						id="operaciones"
-						class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px] dark:grayscale dark:contrast-190"
+						class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px] dark:bg-gradient-to-b dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:to-transparent"
 					>	 <!-- seccion oculta tmbien despues del div iria hidden-->		
 						<article class="box w-full">
 							<div class="flex justify-between items-center">
@@ -604,6 +604,16 @@
 									>
 										Agregar
 									</button>
+										<div class="hidden flex flex-grow justify-end w-2/8">
+											<button id="boton-editar-categoria"
+												class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-1 md:ml-4 md:mr-2 lg:mx-4 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
+												<i class="fa-regular fa-square-check"></i>
+											</button>
+											<button id="boton-cancelar-editar-categoria"
+												class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-0 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
+												<i class="fa-regular fa-rectangle-xmark"></i>
+											</button>
+										</div>								
 								</div>
 							</div>
 							<!--Categorias agregadas-->
