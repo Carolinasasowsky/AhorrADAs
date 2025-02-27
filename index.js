@@ -43,7 +43,7 @@ const inputAgregarCategoria = document.getElementById(
 const botonAgregarCategoria = document.getElementById(
 	"boton-agregar-categoria"
 );
-const contenedorCategoriaAgregada = document.getElementById(
+const contenedorCategorias = document.getElementById(
 	"contenedor-categorias-agregadas"
 );
 
@@ -321,12 +321,13 @@ botonCancelarEditarCategoria.addEventListener("click", () => {
 	mostrarSeccion(seccionCategorias);
 });
 
+
 // Función para capitalizar texto
 const capitalizar = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 };
 
-// Cargar categorías desde localStorage
+// Obtener categorías desde localStorage
 const obtenerCategoriasDesdeLocalStorage = () => {
     return JSON.parse(localStorage.getItem("categorias")) || [];
 };
@@ -336,58 +337,8 @@ const guardarCategoriasEnLocalStorage = (categorias) => {
     localStorage.setItem("categorias", JSON.stringify(categorias));
 };
 
-// Mostrar las categorías en la página
-const renderizarCategorias = () => {
-    const categorias = obtenerCategoriasDesdeLocalStorage();
-    contenedorCategorias.innerHTML = ""; // para limpiar el contenedor antes de agregar nuevas categorías
-
-    if (categorias.length === 0) {
-        seccionCategorias.classList.add("hidden"); // Ocultar si no hay categorías
-    } else {
-        seccionCategorias.classList.remove("hidden"); // Mostrar si hay categorías
-    }
-/*const renderizarCategorias = () => {
-    const categorias = obtenerCategoriasDesdeLocalStorage();
-    contenedorCategorias.innerHTML = ""; // para limpiar el contenedor antes de agregar nuevas categorías
-*/
-    categorias.forEach((categoria, index) => {
-        const categoriaElemento = document.createElement("div");
-        categoriaElemento.classList.add("flex", "justify-between", "items-center", "bg-gray-200", "p-2", "rounded", "mb-2");
-
-        categoriaElemento.innerHTML = `
-            <span>${categoria}</span>
-            <div>
-                <button class="btn-editar bg-blue-500 text-white px-2 py-1 rounded mr-2" data-index="${index}">
-                    Editar
-                </button>
-                <button class="btn-eliminar bg-red-500 text-white px-2 py-1 rounded" data-index="${index}">
-                    Eliminar
-                </button>
-            </div>
-        `;
-
-        contenedorCategorias.appendChild(categoriaElemento);
-    });
-
-    // Agregar eventos a los botones de editar y eliminar
-    document.querySelectorAll(".btn-editar").forEach((boton) => {
-        boton.addEventListener("click", (e) => {
-            const index = e.target.dataset.index;
-            editarCategoria(index);
-        });
-    });
-
-    document.querySelectorAll(".btn-eliminar").forEach((boton) => {
-        boton.addEventListener("click", (e) => {
-            const index = e.target.dataset.index;
-            eliminarCategoria(index);
-        });
-    });
-};
-
-// Agregar categoría
-botonAgregarCategoria.addEventListener("click", (e) => {
-    e.preventDefault();
+// Función para agregar una nueva categoría a la lista y mostrar botones después de hacer clic
+const agregarCategoria = () => {
     let nuevaCategoria = inputAgregarCategoria.value.trim();
 
     if (nuevaCategoria === "") {
@@ -395,27 +346,96 @@ botonAgregarCategoria.addEventListener("click", (e) => {
         return;
     }
 
-    nuevaCategoria = capitalizar(nuevaCategoria); // Capitalizar el nombre antes de guardar
+    nuevaCategoria = capitalizar(nuevaCategoria);
     const categorias = obtenerCategoriasDesdeLocalStorage();
+
+    // Evitar duplicados
+    if (categorias.includes(nuevaCategoria)) {
+        alert("Esta categoría ya existe.");
+        return;
+    }
+
     categorias.push(nuevaCategoria);
     guardarCategoriasEnLocalStorage(categorias);
+
     inputAgregarCategoria.value = ""; // Limpiar input
-    renderizarCategorias(); // Mostrar en la página
+    renderizarCategorias(); // Refrescar la vista
+};
+
+// Función para renderizar categorías (solo muestra botones después de agregar)
+const renderizarCategorias = () => {
+    const categorias = obtenerCategoriasDesdeLocalStorage();
+    contenedorCategorias.innerHTML = ""; // Limpiar contenedor antes de agregar nuevas categorías
+
+    categorias.forEach((categoria, index) => {
+        const categoriaElemento = document.createElement("div");
+        categoriaElemento.classList.add(
+					"flex",
+					"justify-between",
+					"items-center",
+					"p-2",
+					"rounded",
+					"mb-2",
+					"mt-2"					
+				);
+
+        categoriaElemento.innerHTML = `
+            <span class="mb-2">${categoria}</span>
+            <div class="botones hidden flex justify-end space-x-2">
+                <button class="btn-editar h-8 px-4 rounded-lg bg-indigo-200 hover:bg-indigo-300" data-index="${index}">
+                    <i class="fa-solid fa-pencil w-5"></i>
+                </button>
+                <button class="btn-eliminar h-8 px-4 rounded-lg bg-fuchsia-200 hover:bg-fuchsia-400" data-index="${index}">
+                    <i class="fa-solid fa-trash w-5"></i>
+                </button>
+            </div>
+        `;
+
+        contenedorCategorias.appendChild(categoriaElemento);
+    });
+
+    // Hacer visibles los botones después de agregar una categoría
+    if (categorias.length > 0) {
+        document.querySelectorAll(".botones").forEach((div) => {
+            div.classList.remove("hidden");
+        });
+    }
+
+    // Agregar eventos a los botones de editar y eliminar
+    document.querySelectorAll(".btn-editar").forEach((boton) => {
+        boton.addEventListener("click", (e) => {
+            const index = e.currentTarget.dataset.index;
+            editarCategoria(index);
+        });
+    });
+
+    document.querySelectorAll(".btn-eliminar").forEach((boton) => {
+        boton.addEventListener("click", (e) => {
+            const index = e.currentTarget.dataset.index;
+            eliminarCategoria(index);
+        });
+    });
+};
+
+// Evento para agregar categoría al hacer clic en el botón
+botonAgregarCategoria.addEventListener("click", (e) => {
+    e.preventDefault();
+    agregarCategoria();
 });
 
-// Editar categoría
+// Función para editar categoría
 const editarCategoria = (index) => {
     const categorias = obtenerCategoriasDesdeLocalStorage();
     let nuevoNombre = prompt("Editar categoría:", categorias[index]);
 
     if (nuevoNombre && nuevoNombre.trim() !== "") {
-        categorias[index] = capitalizar(nuevoNombre.trim()); // Capitalizar el nombre editado
+        categorias[index] = capitalizar(nuevoNombre.trim());
         guardarCategoriasEnLocalStorage(categorias);
         renderizarCategorias(); // Refrescar la vista
     }
 };
 
-// Eliminar categoría
+// Función para eliminar categoría
 const eliminarCategoria = (index) => {
     const categorias = obtenerCategoriasDesdeLocalStorage();
     categorias.splice(index, 1);
@@ -423,5 +443,7 @@ const eliminarCategoria = (index) => {
     renderizarCategorias(); // Refrescar la vista
 };
 
-// Cargar categorías al inicio
-document.addEventListener("DOMContentLoaded", renderizarCategorias);
+// Asegurar que las categorías se carguen al inicio sin botones visibles
+document.addEventListener("DOMContentLoaded", () => {
+    renderizarCategorias();
+});

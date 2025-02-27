@@ -458,7 +458,7 @@
 							</button>
 							<button
 								id="boton-agregar-nuevas-operaciones"
-								class="bg-teal-600 shadow-md text-white font-semibold py-2 px-4 rounded-md max-675:py-1 max-675:px-2 max-675:text-sm"
+								class="bg-teal-600 shadow-md text-white font-semibold py-2.5 px-4 rounded-md max-675:py-1 max-675:px-2 max-675:text-sm"
 							>
 								Agregar
 							</button>
@@ -577,21 +577,22 @@
 			<div class="flex justify-center">
 				<section
 					id="seccion-categorias"
-					class="hidden section bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 lg:max-w-[1200px] shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px]"
+					class="hidden section bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 lg:max-w-[1200px] shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] max-h-[80vh] overflow-y-auto"
 				> <!-- RECORDAR poner hidden luego de section: class="section hidden -->
 					<div class="container">
 						<form
 							class="box container mt-[10px] p-2"
-							id="form-agregar-categoria"
+							id="form-agregar-categoria" class="flex flex-col space-y-4"
 						>
 							<h2 class="title text-4xl font-bold mb-2">Categorías</h2>
+
 							<!--Input agregar categorias-->
 							<div class="mt-4">
 								<label for="input-agregar-categoria" class="label font-semibold text-gray-700"
 									>Nombre</label
 								>
 								<div
-									class="control mt-4 grid-cols-2 flex justify-items justify-between"
+									class="control flex items-center space-x-2 w-full"
 								>
 									<input
 										id="input-agregar-categoria"
@@ -600,29 +601,23 @@
 									/>
 									<button
 										id="boton-agregar-categoria"
-										class="button bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-bold text-sm sm:text-sm py-1 px-2 sm:py-2 sm:px-3 rounded mb-2 ml-2 w-auto sm:w-fit"
+										class="button bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-bold text-sm sm:text-sm py-2.5 px-2 sm:py-2 sm:px-3 rounded mb-2 ml-2 w-auto sm:w-fit"
 									>
 										Agregar
-									</button>
-										<div class="hidden flex flex-grow justify-end w-2/8">
-											<button id="boton-editar-categoria"
-												class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-1 md:ml-4 md:mr-2 lg:mx-4 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
-												<i class="fa-regular fa-square-check"></i>
-											</button>
-											<button id="boton-cancelar-editar-categoria"
-												class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-0 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
-												<i class="fa-regular fa-rectangle-xmark"></i>
-											</button>
-										</div>								
-								</div>
-							</div>
-							<!--Categorias agregadas-->
-							<div class="mt-5 mx-4" id="contenedor-categorias-agregadas"></div>
-						</form>
+									</button>						
+						</form>						
 					</div>
+					<!-- Contenedor donde se mostrarán las categorías agregadas -->
+					<div id="contenedor-categorias-agregadas" class="mt-2 flex flex-col space-y-[-5px]">
+
+					</div>
+					
 				</section>
 			</div>
+
+
 			<!-- ================== Sección EDITAR CATEGORIAS ================== -->
+
 			<div class="flex justify-center">
 				<section
 					id="seccion-editar-categorias"
