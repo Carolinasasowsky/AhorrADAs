@@ -51,6 +51,8 @@ const botonGrabarEditarCategoria = document.getElementById(
 	"boton-editar-categoria"
 );
 
+const $contVentanaModal = document.getElementById("cont-ventana-modal");
+
 
 const seccionEditarCategorias = document.getElementById(
 	"seccion-editar-categorias"
@@ -277,33 +279,6 @@ document.querySelectorAll(".link-reportes").forEach((link) => {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* >>>>>>>>>>>>>>>>>>>>>***AGREGAR CATEGORÍAS***>>>>>>>>>>>>>>>>>>>>>>*/
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/*
-const categorias = [
-	
-];
-
-// Guardar categorías en localStorage
-const guardarCategoriasLocalStorage = (array, clave) => {
-	const nuevoObjeto = { categorias: array };
-	const objetoJSON = JSON.stringify(nuevoObjeto);
-	localStorage.setItem(clave, objetoJSON);
-};
-
-// Recuperar categorías de localStorage
-const traerCategoriasDesdeLS = (clave) => {
-	const datosLocalStorage = localStorage.getItem(clave);
-	const objetoLS = JSON.parse(datosLocalStorage);
-	if (objetoLS === null) {
-		return null;
-	} else {
-		return objetoLS.categorias;
-	}
-};
-
-//Función para capitalizar texto
-const capitalizar = (str) => {
-	return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-};*/
 
 const iniciarEdicionCategoria = (index) => {
 	const categorias = obtenerCategoriasDesdeLocalStorage();
@@ -316,10 +291,37 @@ const iniciarEdicionCategoria = (index) => {
 	mostrarSeccion(seccionEditarCategorias);
 };
 
-/* >>>>>>>>>>>>>>>>>>>>>>> VOLVER DE EDICIÓN A CATEGORÍAS >>>>>>>>>>>>>>>>>>>>>> */
-botonCancelarEditarCategoria.addEventListener("click", () => {
-	mostrarSeccion(seccionCategorias);
+
+// >>>>>>>>>>>>>>>>>>>>>>> Volver de Edición a Categorías <<<<<<<<<<<<<<<<<<<<<<<<
+botonCancelarEditarCategoria.addEventListener("click", (e) => {
+    e.preventDefault(); // Evita cualquier comportamiento por defecto
+
+    // Cerrar el modal
+    $contVentanaModal.classList.add("hidden");
+    seccionEditarCategorias.classList.add("hidden");
 });
+
+// >>>>>>>>>>>>>>>>>>>>>>> Guardar Edición de Categoría <<<<<<<<<<<<<<<<<<<<<<<<
+botonEditarCategoriaFormulario.addEventListener("click", (e) => {
+    e.preventDefault(); // Evitar recarga de página
+
+    let categorias = obtenerCategoriasDesdeLocalStorage();
+    let nuevoNombre = inputEditarNombreCategoria.value.trim();
+
+    if (nuevoNombre === "") {
+        alert("El nombre de la categoría no puede estar vacío.");
+        return;
+    }
+
+    categorias[indiceEdicion] = capitalizar(nuevoNombre);
+    guardarCategoriasEnLocalStorage(categorias);
+    renderizarCategorias(); // Refrescar la lista
+
+    // Cerrar el modal
+    $contVentanaModal.classList.add("hidden");
+    seccionEditarCategorias.classList.add("hidden");
+});
+
 
 
 // Función para capitalizar texto
@@ -402,7 +404,8 @@ const renderizarCategorias = () => {
     }
 
     // Agregar eventos a los botones de editar y eliminar
-    document.querySelectorAll(".btn-editar").forEach((boton) => {
+   
+		document.querySelectorAll(".btn-editar").forEach((boton) => {
         boton.addEventListener("click", (e) => {
             const index = e.currentTarget.dataset.index;
             editarCategoria(index);
@@ -425,14 +428,17 @@ botonAgregarCategoria.addEventListener("click", (e) => {
 
 // Función para editar categoría
 const editarCategoria = (index) => {
-    const categorias = obtenerCategoriasDesdeLocalStorage();
-    let nuevoNombre = prompt("Editar categoría:", categorias[index]);
+	const categorias = obtenerCategoriasDesdeLocalStorage();
+	inputEditarNombreCategoria.value = categorias[index]; // Cargar nombre actual
+	indiceEdicion = index; // Guardar índice para edición
 
-    if (nuevoNombre && nuevoNombre.trim() !== "") {
-        categorias[index] = capitalizar(nuevoNombre.trim());
-        guardarCategoriasEnLocalStorage(categorias);
-        renderizarCategorias(); // Refrescar la vista
-    }
+	// Activar la ventana modal y mostrar el formulario de edición
+	activarVentMod(seccionEditarCategorias);
+};
+
+const activarVentMod = (contenAActivar) => {
+	$contVentanaModal.classList.remove("hidden"); // Mostrar fondo modal
+	contenAActivar.classList.remove("hidden"); // Mostrar contenido específico
 };
 
 // Función para eliminar categoría

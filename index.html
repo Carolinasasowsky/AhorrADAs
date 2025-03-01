@@ -617,51 +617,29 @@
 
 
 			<!-- ================== Sección EDITAR CATEGORIAS ================== -->
-
-			<div class="flex justify-center">
-				<section
-					id="seccion-editar-categorias"
-					class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 lg:max-w-[1200px] shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px]"> <!-- class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px]" -->
-					
-					<!--recordar colora de nuevo el hidden a  class="section hidden  ==> esta era la etiqueta anterior <div class="control mt-4 w-full">-->
-						
-						<form class="box w-full container mt-[-20px] p-6" id="form-editar-categoria">
-							<h2 class="title font-bold text-3xl sm:text-6xl py-2 whitespace-nowrap text-center sm:text-left">
-								Editar categoría
-							</h2>
-							<div class="mt-6">
-								<label
-									class="label font-semibold"
-									for="input-editar-nombre-categoria"
-									>Nombre</label>
-								<div
-									class="control mt-4 flex w-full"
-								>
-									<input
-										type="text"
-										id="input-editar-nombre-categoria"
-										class="column input border border-indigo shadow-md py-1 px-2 rounded w-[100%] mb-3"
-									/>
+			 <div id="cont-ventana-modal"
+				class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+				<section id="seccion-editar-categorias"
+						class="bg-white p-6 rounded-lg shadow-xl w-11/12 max-w-md">
+						<h2 class="text-xl font-bold mb-4">Editar Categoría</h2>
+						<form id="form-editar-categoria">
+								<label for="input-editar-nombre-categoria" class="block mb-2">Nombre</label>
+								<input type="text" id="input-editar-nombre-categoria"
+										class="border p-2 w-full rounded-md mb-4">
+								<div class="flex justify-end space-x-2">
+										<button id="boton-cancelar-editar-categoria"
+												class="bg-gray-300 px-4 py-2 rounded-md">
+												Cancelar
+										</button>
+										<button id="boton-editar-categoria-formulario"
+												class="bg-teal-600 text-white px-4 py-2 rounded-md">
+												Guardar
+										</button>
 								</div>
-							</div>
-							<div class="flex justify-end space-x-2">
-								<button
-									id="boton-cancelar-editar-categoria"
-									class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-1 px-2 sm:py-2 sm:px-4 text-sm sm:text-base rounded inline-flex items-center"
-								>
-									Cancelar
-								</button>
-								<button
-									id="boton-editar-categoria-formulario"
-									class="bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-semibold py-1 px-2 sm:py-2 sm:px-4 text-sm sm:text-base rounded inline-flex items-center"
-								>
-									Editar
-								</button>
-							</div>
 						</form>
-					<!--</div>-->
 				</section>
 			</div>
+		
 
 			<!-- ================== Sección REPORTES ================== -->
 			<section
