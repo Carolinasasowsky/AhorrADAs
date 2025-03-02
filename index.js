@@ -664,7 +664,7 @@ const generateId = () => {
 	return `${p1}${p2}`;
 };
 
-/*
+
 // Categorías
 let categories = ["Servicios", "Transporte", "Educación", "Trabajo", "Comida"];
 
@@ -757,4 +757,3 @@ const deleteOperation = (id) => {
 };
 
 updateUI();
-*/
