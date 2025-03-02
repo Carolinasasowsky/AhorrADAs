@@ -35,20 +35,20 @@ const selectTipo = document.getElementById("select-tipo");
 const selectCategoria = document.getElementById("select-categoria");
 const selectOrden = document.getElementById("select-orden");
 const formAgregarCategoria = document.getElementById("form-agregar-categoria");
-const inputAgregarCategoria = document.getElementById(
+/*const inputAgregarCategoria = document.getElementById(
 	"input-agregar-categoria"
 );
-const botonAgregarCategoria = document.getElementById(
+//const botonAgregarCategoria = document.getElementById(
 	"boton-agregar-categoria"
 );
-const contenedorCategorias = document.getElementById(
+//const contenedorCategorias = document.getElementById(
 	"contenedor-categorias-agregadas"
-);
+);*/
 
 const botonGrabarEditarCategoria = document.getElementById(
 	"boton-editar-categoria"
 );
-
+/*>>>>>>>>>>>>>>>>>>>>>>> ***referencia a los elementos de VENTANA MODAL*** >>>>>>>>>>>>>>>>>>>>>>  */ 
 const $contVentanaModal = document.getElementById("cont-ventana-modal");
 
 const seccionEditarCategorias = document.getElementById(
@@ -65,6 +65,21 @@ const botonEditarCategoriaFormulario = document.getElementById(
 );
 const formEditarCategoria = document.getElementById("form-editar-categoria");
 
+const $modalEditarCategorias = document.getElementById("cont-ventana-modal");
+const $seccionEditarCategorias = document.getElementById(
+	"seccion-editar-categorias"
+);
+const $botonCancelarEditar = document.getElementById(
+	"boton-cancelar-editar-categoria"
+);
+const $botonGuardarEditar = document.getElementById(
+	"boton-editar-categoria-formulario"
+);
+const $inputNombreEditar = document.getElementById(
+	"input-editar-nombre-categoria"
+);
+let indiceEdicion = null;
+
 /* >>>>>>>>>>>>>>>>>>>>>>> ***OPERACIONES*** >>>>>>>>>>>>>>>>>>>>>>*/
 
 const seccionSinOperaciones = document.getElementById(
@@ -77,7 +92,6 @@ const contenedorNuevasOperaciones = document.getElementById(
 	"contenedor-listado-nuevas-operaciones"
 );
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion");
-
 
 const botonCancelarNuevasOperaciones = document.getElementById(
 	"boton-cancelar-nuevas-operaciones"
@@ -248,7 +262,7 @@ const arraySecciones = [
 	seccionReportes,
 	seccionOperaciones,
 	seccionNuevaOperacion,
-	seccionEditarCategorias, // Agregamos la sección de editar categorías
+	//seccionEditarCategorias, // Agregamos la sección de editar categorías
 ];
 
 const mostrarSeccion = (array, seccion) => {
@@ -279,10 +293,26 @@ document.querySelectorAll(".link-reportes").forEach((link) => {
 	};
 });
 
+
+
+
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* >>>>>>>>>>>>>>>>>>>>>***AGREGAR CATEGORÍAS***>>>>>>>>>>>>>>>>>>>>>>*/
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
+
+// Referencias a elementos clave
+const inputAgregarCategoria = document.getElementById(
+	"input-agregar-categoria"
+);
+const botonAgregarCategoria = document.getElementById(
+	"boton-agregar-categoria"
+);
+const contenedorCategorias = document.getElementById(
+	"contenedor-categorias-agregadas"
+);
+
+// Función para iniciar la edición de una categoría
 const iniciarEdicionCategoria = (index) => {
 	const categorias = obtenerCategoriasDesdeLocalStorage();
 	inputEditarNombreCategoria.value = categorias[index]; // Cargar nombre de la categoría
@@ -290,20 +320,23 @@ const iniciarEdicionCategoria = (index) => {
 	// Guardar índice de la categoría a editar
 	indiceEdicion = index;
 
-	// Ocultar sección de categorías y mostrar la de edición
-	mostrarSeccion(seccionEditarCategorias);
+	// Mostrar la ventana modal y su contenido sin afectar las secciones
+	$contVentanaModal.classList.remove("hidden");
+	seccionEditarCategorias.classList.remove("hidden");
 };
 
 // >>>>>>>>>>>>>>>>>>>>>>> Volver de Edición a Categorías <<<<<<<<<<<<<<<<<<<<<<<<
+
 botonCancelarEditarCategoria.addEventListener("click", (e) => {
 	e.preventDefault(); // Evita cualquier comportamiento por defecto
 
-	// Cerrar el modal
+	// Cerrar la ventana modal sin afectar la sección de categorías
 	$contVentanaModal.classList.add("hidden");
 	seccionEditarCategorias.classList.add("hidden");
 });
 
 // >>>>>>>>>>>>>>>>>>>>>>> Guardar Edición de Categoría <<<<<<<<<<<<<<<<<<<<<<<<
+
 botonEditarCategoriaFormulario.addEventListener("click", (e) => {
 	e.preventDefault(); // Evitar recarga de página
 
@@ -319,7 +352,7 @@ botonEditarCategoriaFormulario.addEventListener("click", (e) => {
 	guardarCategoriasEnLocalStorage(categorias);
 	renderizarCategorias(); // Refrescar la lista
 
-	// Cerrar el modal
+	// Cerrar la ventana modal sin afectar la sección de categorías
 	$contVentanaModal.classList.add("hidden");
 	seccionEditarCategorias.classList.add("hidden");
 });
@@ -364,6 +397,12 @@ const agregarCategoria = () => {
 	renderizarCategorias(); // Refrescar la vista
 };
 
+// Evento para agregar categoría al hacer clic en el botón
+botonAgregarCategoria.addEventListener("click", (e) => {
+	e.preventDefault();
+	agregarCategoria();
+});
+
 // Función para renderizar categorías (solo muestra botones después de agregar)
 const renderizarCategorias = () => {
 	const categorias = obtenerCategoriasDesdeLocalStorage();
@@ -383,12 +422,12 @@ const renderizarCategorias = () => {
 
 		categoriaElemento.innerHTML = `
             <span class="mb-2">${categoria}</span>
-            <div class="botones hidden flex justify-end space-x-2">
+            <div class="botones flex justify-end space-x-2">
                 <button class="btn-editar h-8 px-4 rounded-lg bg-indigo-200 hover:bg-indigo-300" data-index="${index}">
-                    <i class="fa-solid fa-pencil w-5"></i>
+                    <i class="fa-solid fa-pencil w-5 dark:text-black"></i>
                 </button>
                 <button class="btn-eliminar h-8 px-4 rounded-lg bg-fuchsia-200 hover:bg-fuchsia-400" data-index="${index}">
-                    <i class="fa-solid fa-trash w-5"></i>
+                    <i class="fa-solid fa-trash w-5 dark:text-black"></i>
                 </button>
             </div>
         `;
@@ -396,19 +435,11 @@ const renderizarCategorias = () => {
 		contenedorCategorias.appendChild(categoriaElemento);
 	});
 
-	// Hacer visibles los botones después de agregar una categoría
-	if (categorias.length > 0) {
-		document.querySelectorAll(".botones").forEach((div) => {
-			div.classList.remove("hidden");
-		});
-	}
-
 	// Agregar eventos a los botones de editar y eliminar
-
 	document.querySelectorAll(".btn-editar").forEach((boton) => {
 		boton.addEventListener("click", (e) => {
 			const index = e.currentTarget.dataset.index;
-			editarCategoria(index);
+			iniciarEdicionCategoria(index);
 		});
 	});
 
@@ -420,27 +451,6 @@ const renderizarCategorias = () => {
 	});
 };
 
-// Evento para agregar categoría al hacer clic en el botón
-botonAgregarCategoria.addEventListener("click", (e) => {
-	e.preventDefault();
-	agregarCategoria();
-});
-
-// Función para editar categoría
-const editarCategoria = (index) => {
-	const categorias = obtenerCategoriasDesdeLocalStorage();
-	inputEditarNombreCategoria.value = categorias[index]; // Cargar nombre actual
-	indiceEdicion = index; // Guardar índice para edición
-
-	// Activar la ventana modal y mostrar el formulario de edición
-	activarVentMod(seccionEditarCategorias);
-};
-
-const activarVentMod = (contenAActivar) => {
-	$contVentanaModal.classList.remove("hidden"); // Mostrar fondo modal
-	contenAActivar.classList.remove("hidden"); // Mostrar contenido específico
-};
-
 // Función para eliminar categoría
 const eliminarCategoria = (index) => {
 	const categorias = obtenerCategoriasDesdeLocalStorage();
@@ -449,7 +459,8 @@ const eliminarCategoria = (index) => {
 	renderizarCategorias(); // Refrescar la vista
 };
 
-// Asegurar que las categorías se carguen al inicio sin botones visibles
+// Asegurar que las categorías se carguen al inicio
+
 document.addEventListener("DOMContentLoaded", () => {
 	renderizarCategorias();
 });
@@ -632,33 +643,30 @@ document.addEventListener("DOMContentLoaded", () => {
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***FECHA*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
 const date = () => {
-  let date = new Date();
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-  return `${year}-${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`;
+	let date = new Date();
+	let day = date.getDate();
+	let month = date.getMonth() + 1;
+	let year = date.getFullYear();
+	return `${year}-${month < 10 ? "0" + month : month}-${
+		day < 10 ? "0" + day : day
+	}`;
 };
 
 document.getElementById("fecha-nueva-operacion").value = date();
-console.log("boton-nueva-operacion")
+console.log("boton-nueva-operacion");
 document.getElementById("fecha-editar-operacion").value = date();
-console.log("fecha-editar-operacion")
+console.log("fecha-editar-operacion");
 
 // Generador de ID único
 const generateId = () => {
-  let p1 = Math.floor(Math.random() * 0x10000);
-  let p2 = new Date().getTime();
-  return `${p1}${p2}`;
+	let p1 = Math.floor(Math.random() * 0x10000);
+	let p2 = new Date().getTime();
+	return `${p1}${p2}`;
 };
 
+/*
 // Categorías
-let categories = [
-  "Servicios",
-  "Transporte",
-  "Educación",
-  "Trabajo",
-  "Comida"
-];
+let categories = ["Servicios", "Transporte", "Educación", "Trabajo", "Comida"];
 
 const resetForm = () => {
 	inputDescripcionNuevaOperacion.value = "";
@@ -672,7 +680,7 @@ const toggleTable = () => {
 	if (operaciones.length === 0) {
 		contenedorSinOperaciones.classList.remove("hidden");
 		contenedorOperaciones.classList.add("hidden");
-		console.log("contenedorOperaciones")
+		console.log("contenedorOperaciones");
 	} else {
 		contenedorSinOperaciones.classList.add("hidden");
 		contenedorOperaciones.classList.remove("hidden");
@@ -682,9 +690,8 @@ const toggleTable = () => {
 let operaciones = JSON.parse(localStorage.getItem("operacionesStorage")) || [];
 
 botonNuevaOperacion.addEventListener("click", () => {
-	
 	seccionNuevaOperacion.classList.remove("hidden");
-	
+
 	seccionPrincipal.classList.add("hidden");
 });
 
@@ -692,12 +699,12 @@ document
 	.getElementById("boton-cancelar-nuevas-operaciones")
 	.addEventListener("click", () => {
 		seccionNuevaOperacion.classList.add("hidden");
-		console.log("seccionNuevaOperacion")
+		console.log("seccionNuevaOperacion");
 		seccionPrincipal.classList.remove("hidden");
 	});
 
 botonAgregarNuevaOperacion.addEventListener("click", () => {
-	console.log(botonAgregarNuevaOperacion)
+	console.log(botonAgregarNuevaOperacion);
 	const newOp = {
 		id: generateId(),
 		descripcion: inputDescripcionNuevaOperacion.value,
@@ -750,3 +757,4 @@ const deleteOperation = (id) => {
 };
 
 updateUI();
+*/
