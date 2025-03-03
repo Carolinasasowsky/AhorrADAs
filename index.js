@@ -423,7 +423,7 @@ const renderizarCategorias = () => {
 		categoriaElemento.innerHTML = `
             <span class="mb-2">${categoria}</span>
             <div class="botones flex justify-end space-x-2">
-                <button class="btn-editar h-8 px-4 rounded-lg bg-indigo-200 hover:bg-indigo-300" data-index="${index}">
+                <button type:"button" class="btn-editar h-8 px-4 rounded-lg bg-indigo-200 hover:bg-indigo-300" data-index="${index}">
                     <i class="fa-solid fa-pencil w-5 dark:text-black"></i>
                 </button>
                 <button class="btn-eliminar h-8 px-4 rounded-lg bg-fuchsia-200 hover:bg-fuchsia-400" data-index="${index}">
