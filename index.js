@@ -486,22 +486,8 @@ botonFiltros.addEventListener("click", () => {
 const $$ = (element) => document.querySelectorAll(element);
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Función Fecha*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/*
-const date = () => {
-	let date = new Date();
-	let day = date.getDate();
-	let month = date.getMonth() + 1;
-	let year = date.getFullYear();
-	return `${year}-${month < 10 ? "0" + month : month}-${
-		day < 10 ? "0" + day : day
-	}`;
-};
 
-document.getElementById("fecha-nueva-operacion").value = date();
-console.log("boton-nueva-operacion");
-document.getElementById("fecha-editar-operacion").value = date();
-console.log("fecha-editar-operacion");
-*/
+
 // Función para obtener la fecha actual en formato YYYY-MM-DD
 const date = () => {
 	let date = new Date();
@@ -564,6 +550,19 @@ selectCategoria.addEventListener("input", (e) => {
   // 🔹 Asegurar que el valor seleccionado se mantenga
   selectCategoria.value = e.target.value;
 });
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Filtro por orden*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+// Registrar un evento para ordenar los datos cuando el select cambie.
+selectOrden.addEventListener("input", (e) => {
+	// función para ordenar los datos según la opción elegida por el usuario.
+	const datosOrdenados = funciones.ordenarDatos(e.target.value);
+
+	// Función para actualizar la vista con los datos ordenados
+	pintarDatos(datosOrdenados);
+});
+
 
 
 
