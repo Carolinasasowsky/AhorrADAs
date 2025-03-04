@@ -501,11 +501,45 @@ console.log("boton-nueva-operacion");
 document.getElementById("fecha-editar-operacion").value = date();
 console.log("fecha-editar-operacion");
 
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Filtro por tipo de gastos o ganancia*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+selectTipo.addEventListener("input", (e) => {
+	const datos = funciones.obtenerDatos("operaciones");
+
+	if (e.target.value !== "Todos") {
+		const tipoFiltrado = datos.filter((elem) => elem.tipo === e.target.value);
+		pintarDatos(tipoFiltrado);
+	} else {
+		pintarDatos(datos);
+	}
+
+	// 🔹 Asegurar que el valor seleccionado se mantenga
+	selectTipo.value = e.target.value;
+});
+
+
 //  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* >>>>>>>>>>>>>>>>>>>>>***SECCION OPERACIONES***>>>>>>>>>>>>>>>>>>>>>>*/
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+// Funciones auxiliares o generales para mostrar u ocultar elementos
+const mostrarElemento = (selectors) => {
+    for (const selector of selectors) {        
+        selector.classList.remove('hidden');
+        
+    }
+};
+
+// Funciones auxiliares o generales para mostrar u ocultar elementos
+const ocultarElemento = (selectors) => {
+    for (const selector of selectors) {        
+        selector.classList.add('hidden');
+    }
+};
+
 
 function ocultarTodasLasSecciones() {
 	const secciones = document.querySelectorAll(".section"); // Selecciona todas las secciones
