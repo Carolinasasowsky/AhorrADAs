@@ -189,12 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Ocultar seccionSinOperaciones y mostrar seccionConOperaciones y seccionPrincipal
         seccionSinOperaciones.classList.add("hidden");
         seccionConOperaciones.classList.remove("hidden");
-        seccionPrincipal.classList.remove("hidden");
     } else {
-        // Si no hay operaciones, mostrar seccionSinOperaciones y seccionPrincipal
-        seccionSinOperaciones.classList.remove("hidden");
-        seccionConOperaciones.classList.add("hidden");
-        seccionPrincipal.classList.remove("hidden");
     }
 });
 
