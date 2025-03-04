@@ -65,7 +65,7 @@
 					<div class="w-[100%] min-w-[50px] pl-2.5 flex items-center mt-4 sm:mt-0">						
 						<a href="#principal" class="navbar-item pt-2 lg:ml-4 sm:ml-0">
 							<h1
-								class="GoogleFonts.poppins flex items-center text-4xl sm:text-3xl md:text-5xl lg:text-5xl whitespace-nowrap sm:mb-0 mb-2">								
+								class="GoogleFonts.poppins flex items-center text-2xl sm:text-3xl md:text-5xl lg:text-5xl whitespace-nowrap sm:mb-0 mb-2">								
 								<i class="fa-solid fa-wallet fa-sm text-4xl sm:text-5xl ml-4 sm:ml-0"></i>						
 									<span class="pl-3">
 										Ah<img
@@ -85,7 +85,7 @@
 						<!-- DARK MODE -->
 							<div class="flex items-center gap-4 sm:mb-0 mb-2">
 									<button class="px-[20px] py-2 sm:flex mt-8 sm:mt-0 dark:text-white sm:mb-0 mb-2 
-										flex sm:flex-row flex-col items-center justify-center absolute right-14 pl-2 sm:relative sm:right-auto" onclick="toggleDarkMode()">
+										flex sm:flex-row flex-col items-center justify-center absolute right-[30px] pl-2 sm:relative sm:right-10 md:right-15 lg:right-5" onclick="toggleDarkMode()">
 											<i class="fa fa-sun fa-lg hidden dark:inline"></i>  
 											<i class="fa fa-moon fa-lg dark:hidden"></i>
 									</button>
@@ -94,7 +94,7 @@
 							<button
 									id="boton-hamburguesa"
 									role="button"
-									class="navbar-burger mt-1 lg:hidden items-center justify-center absolute right-7 pl-2 mt-[16px] sm:relative sm:right-auto"
+									class="navbar-burger mt-1 lg:hidden items-center justify-center absolute right-4 pl-2 mt-[16px] sm:relative sm:right-auto text-sm"
 									aria-label="menu"
 									aria-expanded="false"
 									data-target="navbarBasicExample"
@@ -159,12 +159,13 @@
 						class="column mb-30 col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1"
 					></div>
 					<article
-						class="box mb-[30px] p-5 bg-indigo-300 w-80 h-80 rounded-lg shadow-2xl dark:bg-[#5F5F79]"
+						class="box mb-6 p-4 bg-indigo-300 w-[90%] max-w-[280px] h-auto rounded-lg shadow-2xl dark:bg-[#5F5F79] ml-auto mr-4 md:mx-0 
+   					md:w-80 md:max-w-[320px] md:h-80 text-center"
 					>
-						<h2 class="text-4xl m-6 font-bold text-left">Balance</h2>
+						<h2 class="text-2xl md:text-4xl m-4 font-bold text-left">Balance</h2>
 
 						<!-- Ganancias -->
-						<div class="grid grid-cols-2 gap-40 items-center">
+						<div class="grid grid-cols-2 gap-20 items-center">
 							<div class="text-lg m-4">
 								<p>Ganancias</p>
 							</div>
@@ -176,7 +177,7 @@
 						</div>
 
 						<!-- Gastos -->
-						<div class="grid grid-cols-2 gap-40 items-center">
+						<div class="grid grid-cols-2 gap-20 items-center">
 							<div class="text-lg m-4">
 								<p>Gastos</p>
 							</div>
@@ -188,7 +189,7 @@
 						</div>
 
 						<!-- Total -->
-						<div class="grid grid-cols-2 gap-40 items-center">
+						<div class="grid grid-cols-2 gap-20 items-center">
 							<div class="text-xl m-4">
 								<p>Total</p>
 							</div>
@@ -200,18 +201,19 @@
 						</div>
 					</article>
 					<!--  ======================== FILTROS ========================  -->
-					<form class="box p-5 bg-indigo-300 w-80 h-100 rounded-lg shadow-2xl dark:bg-[#5F5F79]"> 					
-						<div class="sm:grid sm:grid-cols-3 sm:gap-40 flex items-center justify-between">
-							<h3 class="text-4xl m-6 font-bold text-left">Filtros</h3>
+					<form class="box p-5 bg-indigo-300 w-[90%] max-w-[280px] h-auto rounded-lg shadow-2xl dark:bg-[#5F5F79] 
+    				ml-auto mr-4 md:mx-0 md:w-80 md:max-w-[320px] md:h-auto"> 					
+						<div class="sm:grid sm:grid-cols-3 sm:gap-10 flex items-center justify-between">
+							<h3 class="text-2xl md:text-4xl m-4 font-bold text-left">Filtros</h3>
 							<button
 								id="boton-filtros"
-								class="column button col-span-1 lg:col-span-2 pr-5 mt-3"
+								class="column button col-span-1 lg:col-span-2 pr-2 mt-3 text-sm md:text-base whitespace-nowrap"
 							>
 								Ocultar filtros
 							</button>
 						</div>
 
-						<div id="contenedor-filtros" class="with100%">
+						<div id="contenedor-filtros" class="with100% max-w-full overflow">
 							<div class="m-4">
 								<label for="select-tipo" class="label">Tipo</label>
 								<div class="control">
@@ -219,7 +221,7 @@
 										<!--Select de Tipo-->
 										<select
 											id="select-tipo"
-											class="box-border p-4 h-px w-64 border-4"
+											class="box-border p-4 h-px w-[100%] max-w-[250px] border-4"
 										>
 											<option value="Todos" selected>Todos</option>
 											<option value="gasto">Gasto</option>
@@ -236,7 +238,7 @@
 										<!--Select de Categorias-->
 										<select
 											id="select-categoria"
-											class="box-border h-0 w-64 p-4 border-4"
+											class="box-border p-4 h-px w-[100%] max-w-[250px] border-4"
 										></select>
 									</div>
 								</div>
@@ -249,7 +251,7 @@
 										<!--Select de Fecha-->
 										<input
 											type="date"
-											class="input box-border h-0 w-64 p-4 border-4"
+											class="input box-border p-4 h-px w-[100%] max-w-[250px] border-4"
 											id="input-fecha"
 										/>
 									</div>
@@ -262,7 +264,7 @@
 										<!--Select de Orden-->
 										<select
 											id="select-orden"
-											class="box-border h-0 w-64 p-4 border-4"
+											class="box-border p-4 h-px w-[100%] max-w-[250px] border-4"
 										>
 											<option value="Mas reciente">Más reciente</option>
 											<option value="Menos reciente">Menos reciente</option>
@@ -283,19 +285,19 @@
 					<!-- ================== Sección OPERACIONES ================== -->
 					<div 
 						id="operaciones"
-						class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto max-h-auto sm:max-h-[620px] min-h-[400px] sm:min-h-[650px] lg:min-h-[600px] max-h-[80vh] overflow-y-auto dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:to-transparent"
+						class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-xs sm:max-w-full sm:w-3/6 shadow-xl gap-2 sm:gap-8 p-3 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-[300px] sm:min-h-[650px] max-h-[60vh] sm:max-h-[620px] overflow-y-auto dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:to-transparent"
 					>	 <!-- seccion oculta tmbien despues del div iria hidden-->		
 						<article class="box w-full">
 							<div class="flex justify-between items-center">
 								<!-- Título de Operaciones -->
-								<h3 class="title text-2xl font-bold py-4 sm:text-4xl">
+								<h3 class="title text-1xl font-bold py-4 sm:text-4xl">
 									Operaciones
 								</h3>
 
 								<!-- Botón de Nueva Operación -->
 								<button
 									 id="boton-nueva-operacion"
-									class="button bg-indigo-300 text-black font-semibold px-2 py-1 text-sm sm:px-4 sm:py-2 sm:text-base rounded sm:w-auto text-center dark:bg-gray-700 dark:text-white"
+									class="button bg-indigo-300 text-black font-semibold px-0.5 py-0.5 text-xs sm:px-4 sm:py-2 sm:text-base rounded sm:w-auto text-center dark:bg-gray-700 dark:text-white"
 								>
 									+ Nueva operación
 								</button>
@@ -322,10 +324,10 @@
 									</div>
 								</div>
 								<div class="col-span-1 mt-20 md:col-span-1 lg:col-span-1 xl:col-span-1">
-									<h4 class="text-xl sm:text-2xl md:text-3xl font-bold text-center mt-[-40px]">
+									<h4 class="text-lg sm:text-xl md:text-3xl font-bold text-center mt-[-40px]">
 										Sin resultados
 									</h4>
-									<p class="text-sm sm:text-base md:text-lg text-center mb-6">
+									<p class="text-sm sm:text-sm md:text-lg text-center mb-6">
 										Cambia los filtros o agrega operaciones
 									</p>
 								</div>
@@ -584,7 +586,7 @@
 							class="box container mt-[10px] p-2 flex flex-col space-y-4"
 							id="form-agregar-categoria"
 						>
-							<h2 class="title text-4xl font-bold mb-2">Categorías</h2>
+							<h2 class="title text-2xl sm:text-4xl font-bold mb-2">Categorías</h2>
 
 							<!--Input agregar categorias-->
 							<div class="mt-4">
@@ -597,11 +599,11 @@
 									<input
 										id="input-agregar-categoria"
 										type="text"
-										class="column input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+										class="column input border border-indigo shadow-md py-1 px-2 sm:py-2 sm:px-3 rounded w-full mb-2"
 									/>
 									<button
 										id="boton-agregar-categoria"
-										class="button bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-bold text-sm sm:text-sm py-2.5 px-2 sm:py-2 sm:px-3 rounded mb-2 ml-2 w-auto sm:w-fit dark:bg-[#0A5C5C]"
+										class="button bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-bold text-xs sm:text-sm py-1 px-2 sm:py-2 sm:px-3 rounded mb-2 ml-2 w-auto sm:w-fit dark:bg-[#0A5C5C]"
 									>
 										Agregar
 									</button>	
@@ -646,73 +648,62 @@
 			<!-- ================== Sección REPORTES ================== -->
 			<section
 				id="seccion-reportes"
-				class="reportes hidden section-desktop bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent 
+				class="reportes section-desktop bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent 
           px-4 rounded-lg w-full sm:w-5/6 md:w-4/6 lg:w-3/6 
           shadow-xl gap-8 p-6 pb-2 sm:pb-6 md:pb-8 max-h-auto mx-auto min-h-[380px] sm:min-h-[500px] lg:min-h-[600px] max-h-[80vh] overflow-y-auto dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:to-transparent dark:text-white"
 				> <!-- Recordar eliminar HIDDEN-->
-			  <!-- RECORDAR AGREGAR hidden en class ==>class despues de md-block="reportes section-desktop md:hidden md-block hidden  -->
+			  <!-- RECORDAR AGREGAR hidden en class ==>class despues de reportes="reportes section-desktop md:hidden md-block hidden  -->
 				<div class="container">
 					<div class="box column px-4 md:col-span-8 md:col-start-3 md:col-end-11 md:my-2">
-						<h2 class="title text-2xl sm:text-4xl font-bold">Reportes</h2>
+						<h2 class="title hidden text-1xl sm:text-4xl font-bold">Reportes</h2> <!--RECORDAR QUITAR EL HIDDEN-->
 
 						<!--Reportes sin datos-->
-						<div id="reportes-sin-datos" class="mt-50">
+						<div id="reportes-sin-datos" class="hidden mt-50">
 							<!-- RECORDAR AGREGAR hidden en class ==> class="hidden"  -->
 							<figure
-								class="image column flex justify-center items-center w-4/5 sm:w-full md:w-4/5 lg:w-3/5 mx-auto mt-6 sm:mt-4">
+								class="image column flex justify-center items-center w-4/5 sm:w-full md:w-4/5 lg:w-3/5 mx-auto mt-6 sm:mt-20">
 								<img
 									src="assets/img/reportes.svg" class="dark:dark:grayscale dark:contrast-200 dark:brightness-180"
 									alt="Imagen de mujer mirando estadísticas"
 								/>
 							</figure>
 							<!-- RecORDAR siempre agregar un alt a las imágenes para que el lector las describa -->
-							<h4 class="title text-base sm:text-lg lg:text-3xl mt-6 sm:mt-8 text-center font-bold">
+							<h4 class="title text-sm sm:text-base lg:text-3xl mt-10 sm:mt-20 text-center font-bold">
 								Operaciones insuficientes
 							</h4>
-							<p class="mt-1 sm:mt-2 mb-4 sm:mb-6 text-center text-sm sm:text-base lg:text-lg">
+							<p class="mt-1 sm:mt-2 mb-4 sm:mb-6 text-center text-sm sm:text-sm lg:text-lg">
 								Prueba agregando más operaciones
 							</p>
 						</div>
 
 						<!-- ================== REPORTES CON DATOS ==================-->
-						<div id="reportes-con-datos" class="hidden">
+						<div id="reportes-con-datos" class="">
 							<!-- RECORDAR AGREGAR hidden en class ==> class="hidden"  -->
 							<div id="contenedor-resumen-" class="my-6">
 								<h4 class="title text-base sm:text-lg font-bold">Resumen</h4>
 								<!--Categoría mayor ganancia-->
-								<div class="columns grid grid-cols-2 gap-4">
-									<p class="column text-sm sm:text-base font-medium my-2 sm:my-4">
-										Categoría con mayor ganancia
-									</p>
-									<div class="column flex justify-end">
-										<p
-											class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
-											id="tag-categoria-mayor-ganancia"
-										></p>
-									</div>
-									<div>
-											<p
-												class="column text-sm sm:text-base font-bold text-green-600 text-right"
-												id="monto-mayor-ganancia"
-											></p>
-									</div>
-									<!--Categoría mayor gasto-->
-									<div class="columns grid grid-cols-2 gap-4">
-											<p class="column text-sm sm:text-base font-medium">
+								<div class="columns grid grid-cols-2 gap-3">
+										<p class="column text-sm sm:text-base font-medium my-2 sm:my-4">
+												Categoría con mayor ganancia										
+										</p>
+										<div class="column flex justify-end">
+												<p class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
+														id="tag-categoria-mayor-ganancia"></p>
+										</div>
+										<p class="column text-sm sm:text-base font-bold text-green-600 text-right" id="monto-mayor-ganancia"></p>
+								</div>
+								<!-- Categoría con mayor gasto -->
+								<div class="columns grid grid-cols-2 gap-3">										
+										<p class="column text-sm sm:text-base font-medium my-2 sm:my-4">
 												Categoría con mayor gasto
-											</p>
-											<div class="column flex justify-end">
-												<p
-													class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
-													id="tag-categoria-mayor-gasto"
-												></p>
-											</div>
-											<p
-												class="column text-sm sm:text-base font-bold text-green-600 text-right"
-												id="monto-mayor-gasto"
-											></p>
-									</div>
-						    </div>
+										</p>
+										<div class="column flex justify-end">
+												<p class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
+														id="tag-categoria-mayor-gasto"></p>
+										</div>
+										<p class="column text-sm sm:text-base font-bold text-green-600 text-right" id="monto-mayor-gasto"></p>
+								</div>
+
 
 								<!--Categoría mayor balance-->
 								<div class="columns grid grid-cols-2 gap-3">
@@ -755,11 +746,11 @@
 							  <!--Totales por categoría-->
 								<div id="contenedor-totales-categoria" class="my-4">
 										<h4 class="title text-base sm:text-lg font-bold">Totales por categoría</h4>
-										<div class="grid grid-cols-4 gap-4">
-												<p class="text-sm sm:text-base font-medium">Categoría</p>
-												<p class="text-sm sm:text-base font-medium text-right">Ganancias</p>
-												<p class="text-sm sm:text-base font-medium text-right">Gastos</p>
-												<p class="text-sm sm:text-base font-medium text-right">Balance</p>
+										<div class="grid grid-cols-4 gap-2 sm:gap-4">
+												<p class="text-[10px] sm:text-sm font-medium">Categoría</p>
+												<p class="text-[10px] sm:text-sm font-medium text-right">Ganancias</p>
+												<p class="text-[10px] sm:text-sm font-medium text-right">Gastos</p>
+												<p class="text-[10px] sm:text-sm font-medium text-right">Balance</p>
 										</div>
 										<div id="contenedor-item-totales-categoria"></div>
 								</div>
@@ -768,10 +759,10 @@
 								<div id="contenedor-totales-mes" class="my-6">
 									<h4 class="title text-base sm:text-lg font-bold mb-2">Totales por mes</h4>
 										<div class="grid grid-cols-4 gap-4">
-												<p class="text-sm sm:text-base font-medium">Mes</p>
-												<p class="text-sm sm:text-base font-medium text-right">Ganancias</p>
-												<p class="text-sm sm:text-base font-medium text-right">Gastos</p>
-												<p class="text-sm sm:text-base font-medium text-right">Balance</p>
+												<p class="text-[10px] sm:text-sm font-medium">Mes</p>
+												<p class="text-[10px] sm:text-sm font-medium text-right">Ganancias</p>
+												<p class="text-[10px] sm:text-sm font-medium text-right">Gastos</p>
+												<p class="text-[10px] sm:text-sm font-medium text-right">Balance</p>
 										</div>
 									<div id="contenedor-totales-mensuales"></div>
 								</div>
