@@ -67,81 +67,80 @@
 							<h1
 								class="GoogleFonts.poppins flex items-center text-4xl sm:text-3xl md:text-5xl lg:text-5xl whitespace-nowrap sm:mb-0 mb-2">								
 								<i class="fa-solid fa-wallet fa-sm text-4xl sm:text-5xl ml-4 sm:ml-0"></i>						
-								
-								<p class="pl-3">
-									Ah<img
-										src="assets/img/ahorro.gif"
-										alt="Ahorro GIF"
-										class="w-14 h-14 sm:w-12 sm:h-12 lg:w-16 lg:h-16 inline-block" 
-									/>rrADAs
-									
-								</p>
-							</h1>
+									<span class="pl-3">
+										Ah<img
+											src="assets/img/ahorro.gif"
+											alt="Ahorro GIF"
+											class="w-14 h-14 sm:w-12 sm:h-12 lg:w-16 lg:h-16 inline-block" 
+										/>rrADAs							
+									</span>
+							</h1>							
 						</a>
-					
+					</div>	
+				<!--</div>-->
 				<!-- ======================== LINKS DE LA BARRA DE NAVEGACIÓN ======================== -->					
-						<!-- Se muestra en mobile -->
-						 <!-- Contenedor de Menú Hamburguesa y Dark Mode -->
-				<div class="flex items-center gap-4 sm:mb-0 mb-2">
-						<!-- Botón Hamburguesa -->
-						<button
-								id="boton-hamburguesa"
-								role="button"
-								class="navbar-burger mt-1 lg:hidden flex flex-col items-center justify-center absolute right-6 pl-2"
-								aria-label="menu"
-								aria-expanded="false"
-								data-target="navbarBasicExample"
-						>
-								<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"></span>										
-								<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"></span>
-								<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1"></span>
-						</button>
+						
+				<!-- Contenedor de Menú Hamburguesa y Dark Mode -->
+					<div class="flex items-center gap-4 sm:mb-0 mb-2">
+						<!-- DARK MODE -->
+							<div class="flex items-center gap-4 sm:mb-0 mb-2">
+									<button class="px-[20px] py-2 sm:flex mt-8 sm:mt-0 dark:text-white sm:mb-0 mb-2 
+										flex sm:flex-row flex-col items-center justify-center absolute right-14 pl-2 sm:relative sm:right-auto" onclick="toggleDarkMode()">
+											<i class="fa fa-sun fa-lg hidden dark:inline"></i>  
+											<i class="fa fa-moon fa-lg dark:hidden"></i>
+									</button>
+							</div>
+							<!-- Botón Hamburguesa -->
+							<button
+									id="boton-hamburguesa"
+									role="button"
+									class="navbar-burger mt-1 lg:hidden items-center justify-center absolute right-7 pl-2 mt-[16px] sm:relative sm:right-auto"
+									aria-label="menu"
+									aria-expanded="false"
+									data-target="navbarBasicExample"
+							>
+									<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"></span>										
+									<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"></span>
+									<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1"></span>
+							</button>
 
-						<!-- Menú Hamburguesa (Inicialmente oculto) -->
+							<!-- Menú Hamburguesa (Inicialmente oculto) -->
 						<div
-								id="menu-desplegable-mobile"
-								class="navbar-menu absolute top-[90px] w-1/2 flex flex-col items-center gap-2 py-2 px-2 bg-gradient-to-r from-fuchsia-500 via-violet-500 to-violet-500 text-white shadow-md hidden dark:text-white dark:bg-gradient-to-b dark:from-gray-900 dark:via-gray-700 dark:to-[#9692B0]"
-						>
-								<a class="link-balance navbar-item p-3" href="#">
-										<i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i>
-										<span class="text-lg">Balance</span>
-								</a>
-								<a class="link-categorias navbar-item p-3" href="#">
-										<i class="fas fa-tag fa-lg mr-2" aria-hidden="true"></i>
-										<span class="text-lg">Categorías</span>
-								</a>
-								<a class="link-reportes navbar-item p-3" href="#">
-										<i class="fas fa-chart-pie fa-lg mr-2" aria-hidden="true"></i>
-										<span class="text-lg">Reportes</span>
-								</a>
+									id="menu-desplegable-mobile"
+									class="navbar-menu absolute top-[85px] w-1/2 flex flex-col items-center justify-rigth right-0 gap-2 py-2 px-1 bg-gradient-to-r from-fuchsia-500 via-violet-500 to-violet-500 text-white shadow-md dark:text-white dark:bg-gradient-to-b dark:from-gray-900 dark:via-gray-700 dark:to-[#9692B0] hidden"
+									>
+									<a class="link-balance navbar-item p-3" href="#">
+											<i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i>
+											<span class="text-lg">Balance</span>
+									</a>
+									<a class="link-categorias navbar-item p-3" href="#">
+											<i class="fas fa-tag fa-lg mr-2" aria-hidden="true"></i>
+											<span class="text-lg">Categorías</span>
+									</a>
+									<a class="link-reportes navbar-item p-3" href="#">
+											<i class="fas fa-chart-pie fa-lg mr-2" aria-hidden="true"></i>
+											<span class="text-lg">Reportes</span>
+									</a>
 						</div>
+					</div>
 				</div>
-
-				<!-- DARK MODE -->
-				<div>
-						<button class="px-[80px] py-2 sm:flex dark:text-white sm:mb-0 mb-2" onclick="toggleDarkMode()">
-								<i class="fa fa-sun fa-lg hidden dark:inline"></i>  
-								<i class="fa fa-moon fa-lg dark:hidden"></i>
-						</button>
-				</div>			
+					
 
 				<!-- Navbar End (Elementos de navegación en escritorio) -->
 				<div class="hidden md:flex gap-4 ml-auto items-center justify-end">
-						<a class="link-balance navbar-item mr-2 p-3 flex items-center" href="#">
-								<i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i>
-								<span class="text-lg">Balance</span>
-						</a>
-						<a class="link-categorias navbar-item mr-2 p-3 flex items-center" href="#">
-								<i class="fas fa-tag fa-lg mr-2" aria-hidden="true"></i>
-								<span class="text-lg">Categorías</span>
-						</a>
-						<a class="link-reportes navbar-item mr-2 p-3 flex items-center" href="#">
-								<i class="fas fa-chart-pie fa-lg mr-2" aria-hidden="true"></i>
-								<span class="text-lg">Reportes</span>
-						</a>
-				</div>
-
-
+							<a class="link-balance navbar-item mr-2 p-3 flex items-center" href="#">
+									<i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i>
+									<span class="text-lg">Balance</span>
+							</a>
+							<a class="link-categorias navbar-item mr-2 p-3 flex items-center" href="#">
+									<i class="fas fa-tag fa-lg mr-2" aria-hidden="true"></i>
+									<span class="text-lg">Categorías</span>
+							</a>
+							<a class="link-reportes navbar-item mr-2 p-3 flex items-center" href="#">
+									<i class="fas fa-chart-pie fa-lg mr-2" aria-hidden="true"></i>
+									<span class="text-lg">Reportes</span>
+							</a>				 
+				 </div>
 			</nav>
 		</header>
 		<!--Fin del Header. Comienzo del Main-->
@@ -212,7 +211,7 @@
 							</button>
 						</div>
 
-						<div id="contenedor-filtros with:100%">
+						<div id="contenedor-filtros" class="with100%">
 							<div class="m-4">
 								<label for="select-tipo" class="label">Tipo</label>
 								<div class="control">
@@ -359,8 +358,7 @@
 						<div id="contenedor-listado-nuevas-operaciones">
 							<!-- Contenido del listado de nuevas operaciones aquí -->
 						</div>
-					</div>
-				</div>
+					</div>				
 			</div>
 
 			<!-- ================== Sección NUEVA OPERACIÓN ================== -->
@@ -431,7 +429,7 @@
 											id="categoria-nueva-operacion"
 											class="bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
 										>
-											<option value=""></option>
+											<option value="" label="Selecciona una opción"></option>
 										</select>
 									</div>
 								</div>
@@ -488,7 +486,7 @@
 								<div class="control">
 									<input
 										type="text"
-										id="descripción-editar-operacion"
+										id="descripcion-editar-operacion"
 										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
 									/>
 								</div>
@@ -537,7 +535,7 @@
 											id="categoria-editar-operacion"
 											class="bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
 										>
-											<option value=""></option>
+											<option value="" label="Selecciona una opción"></option>
 										</select>
 									</div>
 								</div>
@@ -583,8 +581,8 @@
 				> <!-- RECORDAR poner hidden luego de section: class="section hidden -->
 					<div class="container">
 						<form
-							class="box container mt-[10px] p-2"
-							id="form-agregar-categoria" class="flex flex-col space-y-4"
+							class="box container mt-[10px] p-2 flex flex-col space-y-4"
+							id="form-agregar-categoria"
 						>
 							<h2 class="title text-4xl font-bold mb-2">Categorías</h2>
 
@@ -650,21 +648,18 @@
 				id="seccion-reportes"
 				class="reportes hidden section-desktop bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent 
           px-4 rounded-lg w-full sm:w-5/6 md:w-4/6 lg:w-3/6 
-          shadow-xl gap-8 p-6 pb-2 sm:pb-6 md:pb-8 max-h-auto mx-auto min-h-[380px] sm:min-h-[500px] lg:min-h-[600px] max-h-[80vh] overflow-y-auto dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:to-transparent dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:to-transparent dark:text-white"
+          shadow-xl gap-8 p-6 pb-2 sm:pb-6 md:pb-8 max-h-auto mx-auto min-h-[380px] sm:min-h-[500px] lg:min-h-[600px] max-h-[80vh] overflow-y-auto dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:to-transparent dark:text-white"
 				> <!-- Recordar eliminar HIDDEN-->
-			<!-- RECORDAR AGREGAR hidden en class ==>class despues de md-block="reportes section-desktop md:hidden md-block hidden  -->
+			  <!-- RECORDAR AGREGAR hidden en class ==>class despues de md-block="reportes section-desktop md:hidden md-block hidden  -->
 				<div class="container">
-					<div
-						class="box column px-4 md:col-span-8 md:col-start-3 md:col-end-11 md:my-2"
-					>
+					<div class="box column px-4 md:col-span-8 md:col-start-3 md:col-end-11 md:my-2">
 						<h2 class="title text-2xl sm:text-4xl font-bold">Reportes</h2>
 
 						<!--Reportes sin datos-->
 						<div id="reportes-sin-datos" class="mt-50">
 							<!-- RECORDAR AGREGAR hidden en class ==> class="hidden"  -->
 							<figure
-								class="image column flex justify-center items-center w-4/5 sm:w-full md:w-4/5 lg:w-3/5 mx-auto mt-6 sm:mt-4"
-							>
+								class="image column flex justify-center items-center w-4/5 sm:w-full md:w-4/5 lg:w-3/5 mx-auto mt-6 sm:mt-4">
 								<img
 									src="assets/img/reportes.svg" class="dark:dark:grayscale dark:contrast-200 dark:brightness-180"
 									alt="Imagen de mujer mirando estadísticas"
@@ -695,27 +690,29 @@
 											id="tag-categoria-mayor-ganancia"
 										></p>
 									</div>
-									<p
-										class="column text-sm sm:text-base font-bold text-green-600 text-right"
-										id="monto-mayor-ganancia"
-									></p>
-								</div>
-								<!--Categoría mayor gasto-->
-								<div class="columns grid grid-cols-2 gap-4">
-									<p class="column text-sm sm:text-base font-medium">
-										Categoría con mayor gasto
-									</p>
-									<div class="column flex justify-end">
-										<p
-											class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
-											id="tag-categoria-mayor-gasto"
-										></p>
+									<div>
+											<p
+												class="column text-sm sm:text-base font-bold text-green-600 text-right"
+												id="monto-mayor-ganancia"
+											></p>
 									</div>
-									<p
-										class="column text-sm sm:text-base font-bold text-green-600 text-right"
-										id="monto-mayor-gasto"
-									></p>
-								</div>
+									<!--Categoría mayor gasto-->
+									<div class="columns grid grid-cols-2 gap-4">
+											<p class="column text-sm sm:text-base font-medium">
+												Categoría con mayor gasto
+											</p>
+											<div class="column flex justify-end">
+												<p
+													class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
+													id="tag-categoria-mayor-gasto"
+												></p>
+											</div>
+											<p
+												class="column text-sm sm:text-base font-bold text-green-600 text-right"
+												id="monto-mayor-gasto"
+											></p>
+									</div>
+						    </div>
 
 								<!--Categoría mayor balance-->
 								<div class="columns grid grid-cols-2 gap-3">
@@ -733,13 +730,13 @@
 								</div>
 
 								<!--Mes con mayor ganancia-->
-								 <div class="columns grid grid-cols-2 gap-3">
+								<div class="columns grid grid-cols-2 gap-3">
 										<p class="column text-sm sm:text-base font-medium">Mes con mayor ganancia</p>
 										<div class="column flex justify-end">
 												<p class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light" id="fecha-mayor-ganancia"></p>
 										</div>
 										<p class="column text-sm sm:text-base font-bold text-green-600 text-right" id="monto-mes-mayor-ganancia"></p>
-								 </div>
+								</div>
 
 								<!--Mes con mayor gasto-->
 								<div class="columns grid grid-cols-2 gap-3">
@@ -752,34 +749,35 @@
 										<p class="column text-sm sm:text-base font-bold text-green-600 text-right"
 												id="monto-mes-mayor-gasto">
 										</p>
+										</div>
 								</div>
 
-							<!--Totales por categoría-->
-							<div id="contenedor-totales-categoria" class="my-4">
-									<h4 class="title text-base sm:text-lg font-bold">Totales por categoría</h4>
-									<div class="grid grid-cols-4 gap-4">
-											<p class="text-sm sm:text-base font-medium">Categoría</p>
-											<p class="text-sm sm:text-base font-medium text-right">Ganancias</p>
-											<p class="text-sm sm:text-base font-medium text-right">Gastos</p>
-											<p class="text-sm sm:text-base font-medium text-right">Balance</p>
-									</div>
-									<div id="contenedor-item-totales-categoria"></div>
-							</div>
+							  <!--Totales por categoría-->
+								<div id="contenedor-totales-categoria" class="my-4">
+										<h4 class="title text-base sm:text-lg font-bold">Totales por categoría</h4>
+										<div class="grid grid-cols-4 gap-4">
+												<p class="text-sm sm:text-base font-medium">Categoría</p>
+												<p class="text-sm sm:text-base font-medium text-right">Ganancias</p>
+												<p class="text-sm sm:text-base font-medium text-right">Gastos</p>
+												<p class="text-sm sm:text-base font-medium text-right">Balance</p>
+										</div>
+										<div id="contenedor-item-totales-categoria"></div>
+								</div>
 
-							<!--Totales por mes-->
-							<div id="contenedor-totales-mes" class="my-6">
-								<h4 class="title text-base sm:text-lg font-bold mb-2">Totales por mes</h4>
-								<div class="grid grid-cols-4 gap-4">
-										<p class="text-sm sm:text-base font-medium">Mes</p>
-										<p class="text-sm sm:text-base font-medium text-right">Ganancias</p>
-										<p class="text-sm sm:text-base font-medium text-right">Gastos</p>
-										<p class="text-sm sm:text-base font-medium text-right">Balance</p>
-							</div>
-							<div id="contenedor-totales-mensuales"></div>
+								<!--Totales por mes-->
+								<div id="contenedor-totales-mes" class="my-6">
+									<h4 class="title text-base sm:text-lg font-bold mb-2">Totales por mes</h4>
+										<div class="grid grid-cols-4 gap-4">
+												<p class="text-sm sm:text-base font-medium">Mes</p>
+												<p class="text-sm sm:text-base font-medium text-right">Ganancias</p>
+												<p class="text-sm sm:text-base font-medium text-right">Gastos</p>
+												<p class="text-sm sm:text-base font-medium text-right">Balance</p>
+										</div>
+									<div id="contenedor-totales-mensuales"></div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
+				</div>				
 			</section>
 		</main>		
 	<script src="index.js"></script>
