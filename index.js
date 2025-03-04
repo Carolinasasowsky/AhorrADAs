@@ -467,10 +467,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* >>>>>>>>>>>>>>>>>>>>>***SECCION OPERACIONES***>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>***SECCION FILTROS***>>>>>>>>>>>>>>>>>>>>>>*/
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***FECHA*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Funcion para Ocultar y Mostrar Filtros*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+// Agregamos el evento al botón
+botonFiltros.addEventListener("click", () => {
+  // Alternamos la clase 'hidden' para mostrar/ocultar los filtros
+  contenedorFiltros.classList.toggle("hidden");
+
+  // Cambiamos el texto del botón según el estado
+  botonFiltros.textContent = contenedorFiltros.classList.contains("hidden")
+    ? "Mostrar filtros"
+    : "Ocultar filtros";
+});
+// Funciones para buscar los elementos del DOM
+
+const $$ = (element) => document.querySelectorAll(element);
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Función Fecha*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 const date = () => {
 	let date = new Date();
 	let day = date.getDate();
@@ -487,8 +504,12 @@ document.getElementById("fecha-editar-operacion").value = date();
 console.log("fecha-editar-operacion");
 
 
+
 //  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* >>>>>>>>>>>>>>>>>>>>>***SECCION OPERACIONES***>>>>>>>>>>>>>>>>>>>>>>*/
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 // Generador de ID único
 const generateId = () => {
@@ -665,7 +686,7 @@ const deleteOperation = (id) => {
 updateUI();
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-*/
+
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* >>>>>>>>>>>>>>>>>>>>>***SECCION REPORTES***>>>>>>>>>>>>>>>>>>>>>>*/
