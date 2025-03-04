@@ -48,7 +48,7 @@ const formAgregarCategoria = document.getElementById("form-agregar-categoria");
 const botonGrabarEditarCategoria = document.getElementById(
 	"boton-editar-categoria"
 );
-/*>>>>>>>>>>>>>>>>>>>>>>> ***referencia a los elementos de VENTANA MODAL*** >>>>>>>>>>>>>>>>>>>>>>  */ 
+/*>>>>>>>>>>>>>>>>>>>>>>> ***referencia a los elementos de VENTANA MODAL*** >>>>>>>>>>>>>>>>>>>>>>  */
 const $contVentanaModal = document.getElementById("cont-ventana-modal");
 
 const seccionEditarCategorias = document.getElementById(
@@ -125,6 +125,9 @@ const contenedorOperaciones = document.getElementById(
 	"contenedor-listado-nuevas-operaciones"
 );
 /* >>>>>>>>>>>>>>>>>>>>>>> ***EDITAR OPERACIONES*** >>>>>>>>>>>>>>>>>>>>>>*/
+const formularioNuevaOperacion = document.getElementById(
+	"formulario-nueva-operacion"
+);
 
 const formularioEditarOperacion = document.getElementById(
 	"formulario-editar-operacion"
@@ -262,7 +265,8 @@ const arraySecciones = [
 	seccionReportes,
 	seccionOperaciones,
 	seccionNuevaOperacion,
-	//seccionEditarCategorias, // Agregamos la sección de editar categorías
+	seccionNuevaOperacion,
+	formularioEditarOperacion, // Agregamos la sección de editar operación
 ];
 
 const mostrarSeccion = (array, seccion) => {
@@ -293,13 +297,9 @@ document.querySelectorAll(".link-reportes").forEach((link) => {
 	};
 });
 
-
-
-
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* >>>>>>>>>>>>>>>>>>>>>***AGREGAR CATEGORÍAS***>>>>>>>>>>>>>>>>>>>>>>*/
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-
 
 // Referencias a elementos clave
 const inputAgregarCategoria = document.getElementById(
@@ -465,23 +465,21 @@ document.addEventListener("DOMContentLoaded", () => {
 	renderizarCategorias();
 });
 
-
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* >>>>>>>>>>>>>>>>>>>>>***SECCION FILTROS***>>>>>>>>>>>>>>>>>>>>>>*/
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Funcion para Ocultar y Mostrar Filtros*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
 // Agregamos el evento al botón
 botonFiltros.addEventListener("click", () => {
-  // Alternamos la clase 'hidden' para mostrar/ocultar los filtros
-  contenedorFiltros.classList.toggle("hidden");
+	// Alternamos la clase 'hidden' para mostrar/ocultar los filtros
+	contenedorFiltros.classList.toggle("hidden");
 
-  // Cambiamos el texto del botón según el estado
-  botonFiltros.textContent = contenedorFiltros.classList.contains("hidden")
-    ? "Mostrar filtros"
-    : "Ocultar filtros";
+	// Cambiamos el texto del botón según el estado
+	botonFiltros.textContent = contenedorFiltros.classList.contains("hidden")
+		? "Mostrar filtros"
+		: "Ocultar filtros";
 });
 // Funciones para buscar los elementos del DOM
 
@@ -503,13 +501,49 @@ console.log("boton-nueva-operacion");
 document.getElementById("fecha-editar-operacion").value = date();
 console.log("fecha-editar-operacion");
 
-
-
 //  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* >>>>>>>>>>>>>>>>>>>>>***SECCION OPERACIONES***>>>>>>>>>>>>>>>>>>>>>>*/
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+function ocultarTodasLasSecciones() {
+	const secciones = document.querySelectorAll(".section"); // Selecciona todas las secciones
+	secciones.forEach((seccion) => seccion.classList.add("hidden")); // Oculta todas las secciones
+}
+
+// Evento para crear una nueva operación
+document
+	.getElementById("boton-nueva-operacion")
+	.addEventListener("click", () => {
+		ocultarTodasLasSecciones(); // Oculta todas las secciones antes de mostrar la deseada
+		document
+			.getElementById("formulario-nueva-operacion")
+			.classList.remove("hidden"); // Muestra el formulario
+	});
+
+// Creación de la nueva operación
+const nuevaOperacion = {
+	id: crypto.randomUUID(),
+	descripcion: document.getElementById("descripción-nueva-operacion").value,
+	monto: Number(document.getElementById("monto-nueva-operacion").value),
+	tipo: document.getElementById("tipo-nueva-operacion").value,
+	categoria: document.getElementById("categoria-nueva-operacion").value,
+	fecha: dayjs(document.getElementById("fecha-nueva-operacion").value).format(
+		"YYYY-MM-DD"
+	),
+};
+
+// Agregar operación y actualizar datos
+funciones.agregarOperacion(nuevaOperacion);
+const datos = funciones.obtenerDatos("operaciones");
+pintarDatos(datos);
+
+// Mostrar la sección de edición y ocultar las demás
+mostrarSeccion(arraySecciones, formularioEditarOperacion);
+
+// Resetear el formulario después de enviar
+formularioNuevaOperacion.reset();
 
 // Generador de ID único
 const generateId = () => {
@@ -518,7 +552,7 @@ const generateId = () => {
 	return `${p1}${p2}`;
 };
 
-
+/*
 // Categorías
 let categories = ["Servicios", "Transporte", "Educación", "Trabajo", "Comida"];
 
@@ -684,9 +718,9 @@ const deleteOperation = (id) => {
 };
 
 updateUI();
+*/
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* >>>>>>>>>>>>>>>>>>>>>***SECCION REPORTES***>>>>>>>>>>>>>>>>>>>>>>*/
