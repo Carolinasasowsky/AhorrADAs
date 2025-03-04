@@ -486,6 +486,7 @@ botonFiltros.addEventListener("click", () => {
 const $$ = (element) => document.querySelectorAll(element);
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Función Fecha*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/*
 const date = () => {
 	let date = new Date();
 	let day = date.getDate();
@@ -500,6 +501,35 @@ document.getElementById("fecha-nueva-operacion").value = date();
 console.log("boton-nueva-operacion");
 document.getElementById("fecha-editar-operacion").value = date();
 console.log("fecha-editar-operacion");
+*/
+// Función para obtener la fecha actual en formato YYYY-MM-DD
+const date = () => {
+	let date = new Date();
+	let day = date.getDate();
+	let month = date.getMonth() + 1;
+	let year = date.getFullYear();
+	return `${year}-${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`;
+};
+
+// Establecer la fecha actual en los inputs de nueva y edición de operación
+document.getElementById("fecha-nueva-operacion").value = date();
+document.getElementById("fecha-editar-operacion").value = date();
+
+//Event listener para filtrar operaciones por fecha
+inputFecha.addEventListener("input", (e) => {
+  const datos = funciones.obtenerDatos("operaciones"); // Obtener todas las operaciones
+  const fechaSeleccionada = e.target.value;
+
+  if (fechaSeleccionada) {
+    // 🔹 Filtrar operaciones con fecha mayor o igual a la seleccionada
+    const datosFiltrados = datos.filter(operacion => operacion.fecha >= fechaSeleccionada);
+    pintarDatos(datosFiltrados);
+  } else {
+    // 🔹 Si no hay fecha seleccionada, mostrar todas las operaciones
+    pintarDatos(datos);
+  }
+});
+
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Filtro por tipo de gastos o ganancia*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -514,9 +544,27 @@ selectTipo.addEventListener("input", (e) => {
 		pintarDatos(datos);
 	}
 
-	// 🔹 Asegurar que el valor seleccionado se mantenga
+	// Función para asegurar que el valor seleccionado se mantenga
 	selectTipo.value = e.target.value;
 });
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Filtro por categorías*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+selectCategoria.addEventListener("input", (e) => {
+  const datos = funciones.obtenerDatos("operaciones");
+
+  if (e.target.value !== "Todos") {
+    const categoriaFiltrada = datos.filter((elem) => elem.categoria === e.target.value);
+    pintarDatos(categoriaFiltrada);
+  } else {
+    pintarDatos(datos);
+  }
+
+  // 🔹 Asegurar que el valor seleccionado se mantenga
+  selectCategoria.value = e.target.value;
+});
+
 
 
 //  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
