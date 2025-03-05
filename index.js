@@ -1,3 +1,4 @@
+
 /* ///////////////////////////////////////// ***ELEMENTOS***/ ////////////////////////////////////*/
 
 /* >>>>>>>>>>>>>>>>>>>>>>> ***MAQUETADO*** >>>>>>>>>>>>>>>>>>>>>>*/
@@ -35,15 +36,15 @@ const selectTipo = document.getElementById("select-tipo");
 const selectCategoria = document.getElementById("select-categoria");
 const selectOrden = document.getElementById("select-orden");
 const formAgregarCategoria = document.getElementById("form-agregar-categoria");
-/*const inputAgregarCategoria = document.getElementById(
+const inputAgregarCategoria = document.getElementById(
 	"input-agregar-categoria"
 );
-//const botonAgregarCategoria = document.getElementById(
+const botonAgregarCategoria = document.getElementById(
 	"boton-agregar-categoria"
 );
-//const contenedorCategorias = document.getElementById(
+const contenedorCategorias = document.getElementById(
 	"contenedor-categorias-agregadas"
-);*/
+);
 
 const botonGrabarEditarCategoria = document.getElementById(
 	"boton-editar-categoria"
@@ -63,6 +64,7 @@ const inputEditarNombreCategoria = document.getElementById(
 const botonEditarCategoriaFormulario = document.getElementById(
 	"boton-editar-categoria-formulario"
 );
+
 const formEditarCategoria = document.getElementById("form-editar-categoria");
 
 const $modalEditarCategorias = document.getElementById("cont-ventana-modal");
@@ -88,9 +90,11 @@ const seccionSinOperaciones = document.getElementById(
 const seccionConOperaciones = document.getElementById(
 	"contenedor-titulos-nuevas-operaciones"
 );
+
 const contenedorNuevasOperaciones = document.getElementById(
 	"contenedor-listado-nuevas-operaciones"
 );
+
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion");
 
 const botonCancelarNuevasOperaciones = document.getElementById(
@@ -121,9 +125,11 @@ const contenedorSinOperaciones = document.getElementById(
 const contenedorConOperaciones = document.getElementById(
 	"contenedor-titulos-nuevas-operaciones"
 );
+
 const contenedorOperaciones = document.getElementById(
 	"contenedor-listado-nuevas-operaciones"
 );
+
 /* >>>>>>>>>>>>>>>>>>>>>>> ***EDITAR OPERACIONES*** >>>>>>>>>>>>>>>>>>>>>>*/
 const formularioNuevaOperacion = document.getElementById(
 	"formulario-nueva-operacion"
@@ -132,6 +138,7 @@ const formularioNuevaOperacion = document.getElementById(
 const formularioEditarOperacion = document.getElementById(
 	"formulario-editar-operacion"
 );
+
 const inputDescripcionEditarOperacion = document.getElementById(
 	"descripcion-editar-operacion"
 );
@@ -186,6 +193,7 @@ const montoMesMayorGanancia = document.getElementById(
 );
 const fechaMayorGasto = document.getElementById("fecha-mayor-gasto");
 const montoMesMayorGasto = document.getElementById("monto-mes-mayor-gasto");
+
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* >>>>>>>>>>>>>>>>>>>>>>>***DARK MODE***>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -301,16 +309,6 @@ document.querySelectorAll(".link-reportes").forEach((link) => {
 /* >>>>>>>>>>>>>>>>>>>>>***AGREGAR CATEGORÍAS***>>>>>>>>>>>>>>>>>>>>>>*/
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
-// Referencias a elementos clave
-const inputAgregarCategoria = document.getElementById(
-	"input-agregar-categoria"
-);
-const botonAgregarCategoria = document.getElementById(
-	"boton-agregar-categoria"
-);
-const contenedorCategorias = document.getElementById(
-	"contenedor-categorias-agregadas"
-);
 
 // Función para iniciar la edición de una categoría
 const iniciarEdicionCategoria = (index) => {
@@ -487,14 +485,15 @@ const $$ = (element) => document.querySelectorAll(element);
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Función Fecha*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-
 // Función para obtener la fecha actual en formato YYYY-MM-DD
 const date = () => {
 	let date = new Date();
 	let day = date.getDate();
 	let month = date.getMonth() + 1;
 	let year = date.getFullYear();
-	return `${year}-${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`;
+	return `${year}-${month < 10 ? "0" + month : month}-${
+		day < 10 ? "0" + day : day
+	}`;
 };
 
 // Establecer la fecha actual en los inputs de nueva y edición de operación
@@ -503,25 +502,25 @@ document.getElementById("fecha-editar-operacion").value = date();
 
 //Event listener para filtrar operaciones por fecha
 inputFecha.addEventListener("input", (e) => {
-  const datos = funciones.obtenerDatos("operaciones"); // Obtener todas las operaciones
-  const fechaSeleccionada = e.target.value;
+	const datos = obtenerDatos("operaciones"); // Obtener todas las operaciones
+	const fechaSeleccionada = e.target.value;
 
-  if (fechaSeleccionada) {
-    // 🔹 Filtrar operaciones con fecha mayor o igual a la seleccionada
-    const datosFiltrados = datos.filter(operacion => operacion.fecha >= fechaSeleccionada);
-    pintarDatos(datosFiltrados);
-  } else {
-    // 🔹 Si no hay fecha seleccionada, mostrar todas las operaciones
-    pintarDatos(datos);
-  }
+	if (fechaSeleccionada) {
+		// 🔹 Filtrar operaciones con fecha mayor o igual a la seleccionada
+		const datosFiltrados = datos.filter(
+			(operacion) => operacion.fecha >= fechaSeleccionada
+		);
+		pintarDatos(datosFiltrados);
+	} else {
+		// 🔹 Si no hay fecha seleccionada, mostrar todas las operaciones
+		pintarDatos(datos);
+	}
 });
-
-
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Filtro por tipo de gastos o ganancia*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
 selectTipo.addEventListener("input", (e) => {
-	const datos = funciones.obtenerDatos("operaciones");
+	const datos = obtenerDatos("operaciones");
 
 	if (e.target.value !== "Todos") {
 		const tipoFiltrado = datos.filter((elem) => elem.tipo === e.target.value);
@@ -534,104 +533,479 @@ selectTipo.addEventListener("input", (e) => {
 	selectTipo.value = e.target.value;
 });
 
-
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Filtro por categorías*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
 selectCategoria.addEventListener("input", (e) => {
-  const datos = funciones.obtenerDatos("operaciones");
+	const datos = obtenerDatos("operaciones");
 
-  if (e.target.value !== "Todos") {
-    const categoriaFiltrada = datos.filter((elem) => elem.categoria === e.target.value);
-    pintarDatos(categoriaFiltrada);
-  } else {
-    pintarDatos(datos);
-  }
+	if (e.target.value !== "Todos") {
+		const categoriaFiltrada = datos.filter(
+			(elem) => elem.categoria === e.target.value
+		);
+		pintarDatos(categoriaFiltrada);
+	} else {
+		pintarDatos(datos);
+	}
 
-  // 🔹 Asegurar que el valor seleccionado se mantenga
-  selectCategoria.value = e.target.value;
+	// 🔹 Asegurar que el valor seleccionado se mantenga
+	selectCategoria.value = e.target.value;
 });
-
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ***Filtro por orden*** >>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+document.addEventListener("DOMContentLoaded", () => {
+	const selectOrden = document.getElementById("select-orden");
 
-// Registrar un evento para ordenar los datos cuando el select cambie.
-selectOrden.addEventListener("input", (e) => {
-	// función para ordenar los datos según la opción elegida por el usuario.
-	const datosOrdenados = funciones.ordenarDatos(e.target.value);
+	if (!selectOrden) {
+		console.error("⚠️ Error: No se encontró el elemento select-orden.");
+		return;
+	}
 
-	// Función para actualizar la vista con los datos ordenados
-	pintarDatos(datosOrdenados);
+	selectOrden.addEventListener("input", (e) => {
+		const datosOrdenados = ordenarDatos(e.target.value); // función para ordenar los datos según la opción elegida por el usuario.
+		pintarDatos(datosOrdenados); // Función para actualizar la vista con los datos ordenados
+	});
 });
 
 
+// Función para obtener datos desde LocalStorage
+function obtenerDatos(key) {
+  const datos = JSON.parse(localStorage.getItem(key));
+  return datos ? datos : [];
+}
+
+// Función para ordenar los datos según el criterio seleccionado
+function ordenarDatos(criterio) {
+  let datos = obtenerDatos("operaciones");
+
+  if (!Array.isArray(datos)) {
+    return [];
+  }
+
+  return datos.sort((a, b) => {
+    switch (criterio) {
+      case "masReciente":
+        return new Date(b.fecha) - new Date(a.fecha);
+      case "menosReciente":
+        return new Date(a.fecha) - new Date(b.fecha);
+      case "mayorMonto":
+        return b.monto - a.monto;
+      case "menorMonto":
+        return a.monto - b.monto;
+      case "az":
+        return a.descripcion.localeCompare(b.descripcion);
+      case "za":
+        return b.descripcion.localeCompare(a.descripcion);
+      default:
+        return 0;
+    }
+  });
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* >>>>>>>>>>>>>>>>>>>>>***SECCION BALANCE***>>>>>>>>>>>>>>>>>>>>>>*/
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+// Función para actualizar el balance total
+const actualizarTotalBalance = () => {
+  const datos = obtenerDatos("operaciones");
+
+  const datosGanancias = datos.filter(operacion => operacion.tipo === "ganancia");
+  const totalDatosGanancias = datosGanancias.reduce((acc, curr) => acc + curr.monto, 0);
+
+  const datosGastos = datos.filter(operacion => operacion.tipo === "gasto");
+  const totalDatosGastos = datosGastos.reduce((acc, curr) => acc + curr.monto, 0);
+
+  const totalBalance = totalDatosGanancias - totalDatosGastos;
+
+  // Actualizar valores en la interfaz
+  numeroGananciaBalance.innerText = `+$${totalDatosGanancias}`;
+  numeroGastosBalance.innerText = `-$${totalDatosGastos}`;
+  numeroTotalBalance.innerText = `$${totalBalance}`;
+};
 
 
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* >>>>>>>>>>>>>>>>>>>>>***SECCION OPERACIONES***>>>>>>>>>>>>>>>>>>>>>>*/
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
-// Funciones auxiliares o generales para mostrar u ocultar elementos
+
+const seccionEditarOperacion = document.getElementById(
+	"seccion-editar-operacion"
+);
+const balance = document.getElementById("balance");
+const columnasCategorias = document.getElementById("columnas-categorias");
+//const seccionOperaciones = document.getElementById("seccion-operaciones");
+
+if (formularioNuevaOperacion && formularioEditarOperacion) {
+	formularioNuevaOperacion.className = formularioEditarOperacion.className;
+}
+
+// Función para mostrar los datos en pantalla
+function pintarDatos(array) {
+	if (!contenedorNuevasOperaciones) {
+		console.error("⚠️ Error: No se encontró el contenedor de operaciones.");
+		return;
+	}
+
+	contenedorNuevasOperaciones.innerHTML = ""; // Limpiar el contenedor
+
+	if (array.length > 0) {
+		columnasCategorias.classList.remove("hidden");
+	} else {
+		columnasCategorias.classList.add("hidden");
+	}
+
+	contenedorNuevasOperaciones.innerHTML = `
+    <div class="grid grid-cols-5 gap-4 w-full">`;
+
+	for (const operacion of array) {
+		contenedorNuevasOperaciones.innerHTML += `
+      <div class="flex flex-row justify-between items-center w-full bg-gray-100 p-3 rounded-lg shadow-md m-1">
+        <span class="text-left font-semibold w-1/4">${
+					operacion.descripcion
+				}</span>
+        <span class="text-center bg-violet-200 text-violet-600 text-xs p-1 rounded m-1 w-1/6">
+          ${operacion.categoria}
+        </span>
+        <span class="text-center text-sm w-1/6">${operacion.fecha}</span>
+        <span class="text-center font-semibold w-1/6 ${
+					operacion.monto < 0 ? "text-red-500" : "text-green-500"
+				}">
+          $${operacion.monto}
+        </span>
+        <div class="flex gap-4 text-xs text-pink-500 w-1/6 justify-end">
+          <button id="editar-${
+						operacion.id
+					}" class="hover:underline editar-boton">Editar</button>
+          <button id="eliminar-${
+						operacion.id
+					}" class="hover:underline eliminar-boton">Eliminar</button>
+        </div>
+      </div>`;
+	}
+
+	mostrarElemento([balance]);
+	ocultarElemento([seccionEditarOperacion]);
+
+	actualizarTotalBalance();
+	actualizarReportes();
+	botonesDeEdicionOperacion();
+}
+
+
+//Función para mostrar los datos en pantalla
+function pintarDatos(array) {
+  if (!contenedorNuevasOperaciones) {
+    console.error("⚠️ Error: No se encontró el contenedor de operaciones.");
+    return;
+  }
+
+  contenedorNuevasOperaciones.innerHTML = ""; // Limpiar el contenedor
+
+  if (array.length > 0) {
+    columnasCategorias.classList.remove("hidden");
+  } else {
+    columnasCategorias.classList.add("hidden");
+  }
+
+  for (const operacion of array) {
+    const operacionElemento = document.createElement("div");
+    operacionElemento.className = "flex flex-row justify-between items-center bg-gray-100 p-3 rounded-lg shadow-md w-full";
+    operacionElemento.innerHTML = `
+      <span class="text-left font-semibold w-1/5">${operacion.descripcion}</span>
+      <span class="text-center bg-violet-200 text-violet-600 text-xs p-1 rounded w-1/5">${operacion.categoria}</span>
+      <span class="text-center text-sm w-1/5">${operacion.fecha}</span>
+      <span class="text-center font-semibold w-1/5 ${operacion.monto < 0 ? 'text-red-500' : 'text-green-500'}">
+        $${operacion.monto}
+      </span>
+      <div class="flex gap-4 text-xs text-pink-500 justify-end w-1/5">
+        <button id="editar-${operacion.id}" class="hover:underline editar-boton">Editar</button>
+        <button id="eliminar-${operacion.id}" class="hover:underline eliminar-boton">Eliminar</button>
+      </div>
+    `;
+    contenedorNuevasOperaciones.appendChild(operacionElemento);
+  }
+
+  mostrarElemento([balance]);
+  ocultarElemento([seccionEditarOperacion]);
+
+  actualizarTotalBalance();
+  actualizarReportes();
+  botonesDeEdicionOperacion();
+}
+
+	
+	// Ajustar el contenedor de nueva operación para que use los estilos de editar operación
+
+if (formularioNuevaOperacion && formularioEditarOperacion) {
+  formularioNuevaOperacion.className = formularioEditarOperacion.className;
+}
+
+// Función para mostrar los datos en pantalla
+function pintarDatos(array) {
+  if (!contenedorNuevasOperaciones) {
+    console.error("⚠️ Error: No se encontró el contenedor de operaciones.");
+    return;
+  }
+
+  contenedorNuevasOperaciones.innerHTML = ""; // Limpiar el contenedor
+
+  for (const operacion of array) {
+    contenedorNuevasOperaciones.innerHTML += `
+      <div class="flex justify-between items-center w-full bg-gray-100 dark:bg-gray-800 p-3 rounded-lg shadow-md m-1">
+        <span class="text-left font-semibold w-1/4">${operacion.descripcion}</span>
+        <span class="text-center bg-white dark:bg-violet-600 text-violet-600 dark:text-white text-xs p-1 rounded m-1 w-1/6">
+          ${operacion.categoria}
+        </span>
+        <span class="text-center text-sm w-1/6">${operacion.fecha}</span>
+        <span class="text-center font-semibold w-1/6 ${operacion.monto < 0 ? 'text-red-500' : 'text-green-500'}">
+          $${operacion.monto}
+        </span>
+        <div class="flex gap-4 text-xs text-pink-500 w-1/6 justify-end">
+          <button id="editar-${operacion.id}" class="hover:underline editar-boton">Editar</button>
+          <button id="eliminar-${operacion.id}" class="hover:underline eliminar-boton">Eliminar</button>
+        </div>
+      </div>`;
+  }
+}
+	
+
+// Aplicar estilos al cargar la página
+window.onload = () => {
+  const datos = obtenerDatos("operaciones");
+  pintarDatos(datos);
+};
+
+// Evento para ordenar los datos cuando el select cambie
+document.addEventListener("DOMContentLoaded", () => {
+  const selectOrden = document.getElementById("select-orden");
+
+  if (!selectOrden) {
+    console.error("⚠️ Error: No se encontró el elemento select-orden.");
+    return;
+  }
+
+  selectOrden.addEventListener("input", (e) => {
+    const datosOrdenados = ordenarDatos(e.target.value);
+    pintarDatos(datosOrdenados);
+  });
+});
+
+
+
+
+
+// Función para mostrar las operaciones en pantalla
+function pintarDatos(array) {
+  contenedorNuevasOperaciones.innerHTML = "";
+
+  for (const operacion of array) {
+    contenedorNuevasOperaciones.innerHTML += `
+      <div class="flex justify-between items-center w-full bg-gray-100 dark:bg-gray-800 p-3 rounded-lg shadow-md m-1">
+        <span class="text-left font-semibold w-1/4">${operacion.descripcion}</span>
+        <span class="text-center bg-white dark:bg-violet-600 text-violet-600 dark:text-white text-xs p-1 rounded m-1 w-1/6">
+          ${operacion.categoria}
+        </span>
+        <span class="text-center text-sm w-1/6">${operacion.fecha}</span>
+        <span class="text-center font-semibold w-1/6 ${operacion.monto < 0 ? 'text-red-500' : 'text-green-500'}">
+          $${operacion.monto}
+        </span>
+        <div class="flex gap-4 text-xs text-pink-500 w-1/6 justify-end">
+          <button id="editar-${operacion.id}" class="hover:underline editar-boton">Editar</button>
+          <button id="eliminar-${operacion.id}" class="hover:underline eliminar-boton">Eliminar</button>
+        </div>
+      </div>`;
+  }
+
+  actualizarTotalBalance();
+}
+	
+/*
+// Ejecutar funciones al cargar la página
+window.onload = () => {
+  const datos = obtenerDatos("operaciones");
+  pintarDatos(datos);
+  actualizarTotalBalance();
+};
+
+// Evento para ordenar los datos cuando cambia el select
+selectOrden.addEventListener("input", (e) => {
+  const datosOrdenados = ordenarDatos(e.target.value);
+  pintarDatos(datosOrdenados);
+});*/
+
+//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* >>>>>>>>>>>>>>***SECCION OPERACIONES -Nueva Operación***>>>>>>>>>>>>>>*/
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/// Funciones auxiliares para mostrar y ocultar elementos
 const mostrarElemento = (selectors) => {
-    for (const selector of selectors) {        
-        selector.classList.remove('hidden');
-        
-    }
+	for (const selector of selectors) {
+		selector.classList.remove("hidden");
+	}
 };
 
-// Funciones auxiliares o generales para mostrar u ocultar elementos
 const ocultarElemento = (selectors) => {
-    for (const selector of selectors) {        
-        selector.classList.add('hidden');
-    }
+	for (const selector of selectors) {
+		selector.classList.add("hidden");
+	}
 };
 
-
+// Ocultar todas las secciones
 function ocultarTodasLasSecciones() {
-	const secciones = document.querySelectorAll(".section"); // Selecciona todas las secciones
-	secciones.forEach((seccion) => seccion.classList.add("hidden")); // Oculta todas las secciones
+	const secciones = document.querySelectorAll(".section");
+	secciones.forEach((seccion) => seccion.classList.add("hidden"));
 }
 
 // Evento para crear una nueva operación
 document
 	.getElementById("boton-nueva-operacion")
 	.addEventListener("click", () => {
-		ocultarTodasLasSecciones(); // Oculta todas las secciones antes de mostrar la deseada
-		document
-			.getElementById("formulario-nueva-operacion")
-			.classList.remove("hidden"); // Muestra el formulario
+		ocultarTodasLasSecciones();
+		document.getElementById("formulario-nueva-operacion").classList.remove("hidden");
 	});
-
-// Creación de la nueva operación
-const nuevaOperacion = {
-	id: crypto.randomUUID(),
-	descripcion: document.getElementById("descripción-nueva-operacion").value,
-	monto: Number(document.getElementById("monto-nueva-operacion").value),
-	tipo: document.getElementById("tipo-nueva-operacion").value,
-	categoria: document.getElementById("categoria-nueva-operacion").value,
-	fecha: dayjs(document.getElementById("fecha-nueva-operacion").value).format(
-		"YYYY-MM-DD"
-	),
-};
-
-// Agregar operación y actualizar datos
-funciones.agregarOperacion(nuevaOperacion);
-const datos = funciones.obtenerDatos("operaciones");
-pintarDatos(datos);
-
-// Mostrar la sección de edición y ocultar las demás
-mostrarSeccion(arraySecciones, formularioEditarOperacion);
-
-// Resetear el formulario después de enviar
-formularioNuevaOperacion.reset();
 
 // Generador de ID único
 const generateId = () => {
-	let p1 = Math.floor(Math.random() * 0x10000);
-	let p2 = new Date().getTime();
-	return `${p1}${p2}`;
+  let p1 = Math.floor(Math.random() * 0x10000);
+  let p2 = new Date().getTime();
+  return `${p1}${p2}`;
 };
+
+// Función para obtener datos de LocalStorage
+function obtenerDatos(key) {
+  const datos = JSON.parse(localStorage.getItem(key));
+  return datos ? datos : [];
+}
+
+// Función para agregar una nueva operación al LocalStorage
+function agregarOperacion(objetoNuevaOperacion) {
+  const datos = obtenerDatos("operaciones");
+  localStorage.setItem("operaciones", JSON.stringify([...datos, objetoNuevaOperacion]));
+}
+
+// Evento para agregar una nueva operación
+document.getElementById("boton-agregar-nuevas-operaciones").addEventListener("click", () => {
+  const nuevaOperacion = {
+    id: generateId(),
+    descripcion: document.getElementById("descripción-nueva-operacion").value,
+    monto: Number(document.getElementById("monto-nueva-operacion").value),
+    tipo: document.getElementById("tipo-nueva-operacion").value,
+    categoria: document.getElementById("categoria-nueva-operacion").value,
+    fecha: document.getElementById("fecha-nueva-operacion").value,
+  };
+
+  // Agregar operación y actualizar datos
+  agregarOperacion(nuevaOperacion);
+  const datos = obtenerDatos("operaciones");
+  pintarDatos(datos);
+
+  // Mostrar la sección principal después de agregar la operación
+  mostrarSeccion(arraySecciones, seccionPrincipal);
+
+  // Resetear el formulario después de enviar
+  document.getElementById("formulario-nueva-operacion").reset();
+});
+
+
+
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* >>>>>>>>>>>>>>***EDITAR OPERACIONES ***>>>>>>>>>>>>>>*/
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+function pintarDatos(array) {
+	contenedorNuevasOperaciones.innerHTML = "";
+
+	if (array.length > 0) {
+		columnasCategorias.classList.remove("hidden");
+		contenedorSinOperaciones.classList.add("hidden");
+	} else {
+		columnasCategorias.classList.add("hidden");
+		contenedorSinOperaciones.classList.remove("hidden");
+	}
+
+	array.forEach((operacion) => {
+		const operacionElemento = document.createElement("div");
+		operacionElemento.className =
+			"flex justify-between items-center bg-gray-100 p-3 rounded-lg shadow-md w-full";
+
+		operacionElemento.innerHTML = `
+            <span class="text-left font-semibold w-1/5">${
+							operacion.descripcion
+						}</span>
+            <span class="text-center bg-violet-200 text-violet-600 text-xs p-1 rounded w-1/5">${
+							operacion.categoria
+						}</span>
+            <span class="text-center text-sm w-1/5">${operacion.fecha}</span>
+            <span class="text-center font-semibold w-1/5 ${
+							operacion.monto < 0 ? "text-red-500" : "text-green-500"
+						}">
+                $${operacion.monto}
+            </span>
+            <div class="flex gap-4 text-xs text-pink-500 justify-end w-1/5">
+                <button id="editar-${
+									operacion.id
+								}" class="hover:underline editar-boton">Editar</button>
+                <button id="eliminar-${
+									operacion.id
+								}" class="hover:underline eliminar-boton">Eliminar</button>
+            </div>
+        `;
+
+		contenedorNuevasOperaciones.appendChild(operacionElemento);
+	});
+
+	actualizarTotalBalance();
+}
+
+const botonesDeEdicionOperacion = () => {
+	document.querySelectorAll(".editar-boton").forEach((boton) => {
+		boton.addEventListener("click", (e) => {
+			const idOperacion = e.target.id.replace("editar-", "");
+			mostrarElemento([seccionEditarOperacion]);
+			ocultarElemento([seccionOperaciones]);
+
+			const datos = obtenerDatos("operaciones");
+			const operacionParaEditar = datos.find((op) => op.id === idOperacion);
+
+			inputDescripcionEditarOperacion.value = operacionParaEditar.descripcion;
+			inputMontoEditarOperacion.value = operacionParaEditar.monto;
+			selectTipoEditarOperacion.value = operacionParaEditar.tipo;
+			selectCategoriaEditarOperacion.value = operacionParaEditar.categoria;
+			inputFechaEditarOperacion.value = operacionParaEditar.fecha;
+
+			botonFormularioEditarOperaciones.dataset.id = operacionParaEditar.id;
+		});
+	});
+
+	document.querySelectorAll(".eliminar-boton").forEach((boton) => {
+		boton.addEventListener("click", (e) => {
+			const idOperacion = e.target.id.replace("eliminar-", "");
+			let operaciones = obtenerDatos("operaciones").filter(
+				(op) => op.id !== idOperacion
+			);
+			localStorage.setItem("operaciones", JSON.stringify(operaciones));
+
+			pintarDatos(operaciones);
+
+			if (operaciones.length === 0) {
+				columnasCategorias.classList.add("hidden");
+				contenedorSinOperaciones.classList.remove("hidden");
+			}
+		});
+	});
+};
+
+window.onload = () => {
+	const datos = obtenerDatos("operaciones");
+	pintarDatos(datos);
+};
+
+
+
 
 /*
 // Categorías
