@@ -392,8 +392,10 @@ const agregarCategoria = () => {
 	guardarCategoriasEnLocalStorage(categorias);
 
 	inputAgregarCategoria.value = ""; // Limpiar input
-	renderizarCategorias(); // Refrescar la vista
+	renderizarCategorias(); // Refrescar la vista de categorías
+	actualizarSelectCategorias(); // Actualizar los select de categorías en Nueva Operación y Filtros
 };
+
 
 // Evento para agregar categoría al hacer clic en el botón
 botonAgregarCategoria.addEventListener("click", (e) => {
@@ -402,6 +404,7 @@ botonAgregarCategoria.addEventListener("click", (e) => {
 });
 
 // Función para renderizar categorías (solo muestra botones después de agregar)
+// Función para renderizar categorías (actualiza select después de cambios)
 const renderizarCategorias = () => {
 	const categorias = obtenerCategoriasDesdeLocalStorage();
 	contenedorCategorias.innerHTML = ""; // Limpiar contenedor antes de agregar nuevas categorías
@@ -447,6 +450,9 @@ const renderizarCategorias = () => {
 			eliminarCategoria(index);
 		});
 	});
+
+	// Función para asegurar que los select de categoría se actualicen después de renderizar
+	actualizarSelectCategorias();
 };
 
 // Función para eliminar categoría
@@ -454,8 +460,28 @@ const eliminarCategoria = (index) => {
 	const categorias = obtenerCategoriasDesdeLocalStorage();
 	categorias.splice(index, 1);
 	guardarCategoriasEnLocalStorage(categorias);
-	renderizarCategorias(); // Refrescar la vista
+	renderizarCategorias(); //Funcion que refresca la vista y actualiza los selects
 };
+
+const actualizarSelectCategorias = () => {
+	const categorias = obtenerCategoriasDesdeLocalStorage();
+	const selectsCategorias = [
+		document.getElementById("categoria-nueva-operacion"),
+		document.getElementById("select-categoria"),
+	];
+
+	selectsCategorias.forEach((select) => {
+		select.innerHTML = ""; // Limpiar opciones
+		select.innerHTML += `<option value="Todos">Todos</option>`; // Opción por defecto
+
+		categorias.forEach((categoria) => {
+			select.innerHTML += `<option value="${categoria}">${categoria}</option>`;
+		});
+	});
+};
+
+// Llamar a la función al cargar la página
+document.addEventListener("DOMContentLoaded", actualizarSelectCategorias);
 
 // Asegurar que las categorías se carguen al inicio
 
@@ -1006,174 +1032,6 @@ window.onload = () => {
 
 
 
-
-/*
-// Categorías
-let categories = ["Servicios", "Transporte", "Educación", "Trabajo", "Comida"];
-
-const resetForm = () => {
-	inputDescripcionNuevaOperacion.value = "";
-	inputMontoNuevaOperacion.value = 0;
-	selectTipoNuevaOperacion.value = "gasto";
-	selectCategoriaNuevaOperacion.value = categories[0];
-	inputFechaNuevaOperacion.value = date();
-};
-
-const toggleTable = () => {
-	if (operaciones.length === 0) {
-		contenedorSinOperaciones.classList.remove("hidden");
-		contenedorOperaciones.classList.add("hidden");
-		console.log("contenedorOperaciones");
-	} else {
-		contenedorSinOperaciones.classList.add("hidden");
-		contenedorOperaciones.classList.remove("hidden");
-	}
-};
-
-let operaciones = JSON.parse(localStorage.getItem("operacionesStorage")) || [];
-
-
-
-// Botón nueva operación
-botonNuevaOperacion.addEventListener("click", () => {
-  formularioNuevaOperacion.classList.remove("hidden");
-  seccionOperaciones.classList.add("hidden");
-  contenedorSinOperaciones.classList.add("hidden");
-});
-
-// Botón agregar operación
-botonAgregarNuevaOperacion.addEventListener("click", () => {
-  const nuevaOperacion = {
-    id: generateId(),
-    descripcion: inputDescripcionNuevaOperacion.value,
-    monto: Number(inputMontoNuevaOperacion.value),
-    tipo: selectTipoNuevaOperacion.value,
-    categoria: selectCategoriaNuevaOperacion.value,
-    fecha: inputFechaNuevaOperacion.value,
-  };
-
-  if (nuevaOperacion.tipo === "gasto") {
-    nuevaOperacion.monto *= -1;
-  }
-
-  operaciones.push(nuevaOperacion);
-  localStorage.setItem("operacionesStorage", JSON.stringify(operaciones));
-  escribirOperacion(operaciones);
-  operacionResetearFormulario();
-  checkearOperaciones(operaciones);
-
-  formularioNuevaOperacion.classList.add("hidden");
-  seccionOperaciones.classList.remove("hidden");
-});
-
-
-botonNuevaOperacion.addEventListener("click", () => {
-	seccionNuevaOperacion.classList.remove("hidden");
-
-	seccionPrincipal.classList.add("hidden");
-});
-
-document
-	.getElementById("boton-cancelar-nuevas-operaciones")
-	.addEventListener("click", () => {
-		seccionNuevaOperacion.classList.add("hidden");
-		console.log("seccionNuevaOperacion");
-		seccionPrincipal.classList.remove("hidden");
-	});
-
-botonAgregarNuevaOperacion.addEventListener("click", () => {
-	console.log(botonAgregarNuevaOperacion);
-	const newOp = {
-		id: generateId(),
-		descripcion: inputDescripcionNuevaOperacion.value,
-		monto: Number(inputMontoNuevaOperacion.value),
-		tipo: selectTipoNuevaOperacion.value,
-		categoria: selectCategoriaNuevaOperacion.value,
-		fecha: inputFechaNuevaOperacion.value,
-	};
-
-
-	if (newOp.tipo === "gasto") newOp.monto *= -1;
-
-	operaciones.push(newOp);
-	localStorage.setItem("operacionesStorage", JSON.stringify(operaciones));
-	updateUI();
-	resetForm();
-	seccionNuevaOperacion.classList.add("hidden");
-	seccionPrincipal.classList.remove("hidden");
-});
-
-// Escribir operación en el DOM
-const escribirOperacion = (operaciones) => {
-  contenedorOperaciones.innerHTML = "";
-  checkearOperaciones(operaciones);
-  operaciones.forEach((op) => {
-    let div = document.createElement("div");
-    div.classList.add("flex", "justify-between", "items-center", "p-2", "border-b");
-    div.innerHTML = `
-      <p>${op.descripcion}</p>
-      <span class="text-sm px-2 py-1 rounded bg-blue-200">${op.categoria}</span>
-      <p>${op.fecha}</p>
-      <p class="${op.tipo === "ganancia" ? "text-green-500" : "text-red-500"}">$${op.monto}</p>
-      <button onclick="eliminarOperacion('${op.id}')">🗑️</button>
-    `;
-    contenedorOperaciones.appendChild(div);
-  });
-};
-
-const updateUI = () => {
-	contenedorOperaciones.innerHTML = "";
-	toggleTable();
-
-	operaciones.forEach((op) => {
-		let div = document.createElement("div");
-		div.classList.add(
-			"flex",
-			"justify-between",
-			"items-center",
-			"p-2",
-			"border-b"
-		);
-		div.innerHTML = `
-      <p>${op.descripcion}</p>
-      <span class="text-sm px-2 py-1 rounded bg-blue-200">${op.categoria}</span>
-      <p>${op.fecha}</p>
-      <p class="${
-				op.tipo === "ganancia" ? "text-green-500" : "text-red-500"
-			}">$${op.monto}</p>
-      <button onclick="deleteOperation('${op.id}')">🗑️</button>
-    `;
-		contenedorOperaciones.appendChild(div);
-	});
-};
-
-// Eliminar operación
-const eliminarOperacion = (id) => {
-  operaciones = operaciones.filter((o) => o.id !== id);
-  localStorage.setItem("operacionesStorage", JSON.stringify(operaciones));
-  escribirOperacion(operaciones);
-  checkearOperaciones(operaciones);
-};
-
-// Cargar operaciones al inicio
-escribirOperacion(operaciones);
-checkearOperaciones(operaciones);
-
-// Cancelar nueva operación
-botonCancelarNuevasOperaciones.addEventListener("click", () => {
-  formularioNuevaOperacion.classList.add("hidden");
-  seccionOperaciones.classList.remove("hidden");
-});
-
-
-const deleteOperation = (id) => {
-	operaciones = operaciones.filter((o) => o.id !== id);
-	localStorage.setItem("operacionesStorage", JSON.stringify(operaciones));
-	updateUI();
-};
-
-updateUI();
-*/
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
