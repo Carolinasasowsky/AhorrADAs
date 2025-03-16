@@ -9,7 +9,7 @@ ________________________________
 #### Gestión de Finanzas Personales con el proyecto AhorrADAs
 
 Las aplicaciones web, también llamadas apps, han adquirido un papel fundamental en nuestra vida diaria, facilitando tareas cotidianas y brindando acceso a múltiples herramientas de entretenimiento y productividad. AhorrADAs es una aplicación web diseñada para permitir a cualquier usuario registrar operaciones financieras, ya sea a nivel personal o para una pequeña empresa, agilizando así el paso de un sistema manual a uno digital. Esto no solo optimiza el tiempo de gestión, sino que también simplifica procesos y reduce costos asociados a la administración de gastos.
-Explora el proyecto y conoce su interfaz: 
+Explora el proyecto y conoce su interfaz: https://carolinasasowsky.github.io/AhorrADAs/
 
 
 ________________________________
