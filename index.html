@@ -1,795 +1,1080 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>AhorrADAs</title>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-			integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
+		<link rel="icon" type="image/png" href="imagenes/favicon.png" />
 		<link rel="icon" type="image/ico" href="FAVICON.ico" />
-		
-
+		<script
+			src="https://kit.fontawesome.com/2b4110b56c.js"
+			crossorigin="anonymous"
+		></script>
 		<!-- Tailwind CSS -->
 		<script src="https://cdn.tailwindcss.com"></script>
+		
 		<script>
 			tailwind.config = {
-				darkMode: "class", // Modo oscuro basado en clases
-				theme: {
-					extend: {
-						screens: {
-							sm: "600px",
-							md: "860px",
-							lg: "1024px",
-							tablet: "640px",
-							laptop: "1024px",
-							desktop: "1280px",
-							"max-675": { max: "675px" },
-							"max-1145": { max: "1145px" }, 
-							"max-980": { max: "980px" },
-							"max-1024": { max: "1024px" },
-						},
-					},
-				},
-				plugins: [
-					function({ addUtilities }) {
-						addUtilities({
-							".fa-sun-o:before": {
-								content: '"\\f185"',
-							},
-							".fa-moon-o:before": {
-								content: '"\\f186"',
-							},
-						});
-					},
-				],
+				darkMode: "class",
 			};
 		</script>
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>		<title>AhorrADAs</title>
 	</head>
+	
+	<body class="flex flex-col min-h-screen dark:bg-gray-800">
 
-	<body
-		class="min-h-screen relative inset-0 -z-10 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] my-0 dark:bg-gray-900 dark:text-white dark:[background:radial-gradient(125%_125%_at_50%_10%,#1a202c_40%,#2d3748_100%)]"
-		
-	>
-		<header>
-			<nav
-				class="navbar bg-gradient-to-r from-teal-500 via-fuchsia-500 to-violet-500 dark:bg-gray-500 w-full h-[auto] md:h-[100px] flex flex-col md:flex-row shadow-md shadow-gray-400"
-			>
-				<div class="navbar-brand flex items-center w-full relative">					
-					<div class="w-[80%] min-w-[50px] pl-2.5 flex items-center mt-4 sm:mt-0">						
-						<a href="#principal" class="navbar-item pt-2 lg:ml-4 sm:ml-0">
-							<h1
-								class="GoogleFonts.poppins flex items-center text-4xl sm:text-3xl md:text-5xl lg:text-5xl whitespace-nowrap sm:mb-0 mb-2">								
-								<i class="fa-solid fa-wallet fa-sm text-4xl sm:text-5xl ml-4 sm:ml-0"></i>						
-								
-								<p class="pl-3">
-									Ah<img
-										src="./img/ahorro.gif"
-										alt="Ahorro GIF"
-										class="w-14 h-14 sm:w-12 sm:h-12 lg:w-16 lg:h-16 inline-block" 
-									/>rrADAs
-									
-								</p>
-							</h1>
-						</a>
-					
-				<!-- ======================== LINKS DE LA BARRA DE NAVEGACIÓN ======================== -->					
-						<!-- Se muestra en mobile -->
-						 <!-- Contenedor de Menú Hamburguesa y Dark Mode -->
-						<div class="flex items-center gap-4 sm:mb-0 mb-2">
-						<div
-							id="menu-desplegable-mobile"
-							class="navbar-menu p-5 w-1/2 flex items-center justify-between gap-4"
-						>
+			<!-- ================== Inicio HEADER ================== -->
+		<header
+			class="p-6 bg-gradient-to-r from-teal-500 via-fuchsia-500 to-violet-500 w-full h-[auto] md:h-[100px] relative z-10 shadow-sm shadow-gray-500/60 dark:text-white dark:from-gray-500 dark:via-[#403962] to-black-700"
+		>
+			<nav class="flex flex-col md:flex-row gap-5" id="navegador">
+				<div class="flex justify-between w-full">
+					<div
+						class="GoogleFonts.poppins flex items-center text-xl sm:text-3xl md:text-5xl lg:text-5xl whitespace-nowrap sm:mb-0 mb-2"
+					>
+						<i
+							class="fa-solid fa-wallet fa-sm mt-1 text-3xl sm:text-5xl ml-[-4px] sm:ml-0 mr-3"
+						></i>
+						<h1 class="text-xl sm:text-3xl md:text-5xl flex gap-1 items-center">
+							Ah<img
+								src="imagenes/ahorro.gif"
+								alt="Ahorro GIF"
+								class="w-11 h-11 sm:w-16 sm:h-16 lg:w-18 lg:h-18 inline-block"
+							/>rrADAs
+						</h1>
+					</div>
 
-								<button
-										id="boton-hamburguesa"
-										role="button"
-										class="navbar-burger mt-1 lg:hidden flex flex-col items-center justify-center absolute right-6 pl-2"
-										aria-label="menu"
-										aria-expanded="false"
-										data-target="navbarBasicExample"
-									>
-									
-								
-										<span
-											aria-hidden="true"
-											class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"
-										></span>
-										
-										<span
-											aria-hidden="true"
-											class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1 mb-1"
-										></span>
-										<span aria-hidden="true" class="block bg-white h-0.5 w-5 sm:w-6 sm:h-1"></span>
-									</button>
-								</div>
-							</div>
-					<!-- DARK MODE -->
-						<div>
-							<button
-								class="px-8 py-2 sm:flex dark:text-white sm:mb-0 mb-2"
-								onclick="toggleDarkMode()">
-								<!-- Ícono de sol para el modo claro -->
+					<div class="flex flex-row-reverse gap-3 items-center">
+						<button class="md:hidden" id="btn-menu-hamburguesa">
+							<i
+								class="fa-solid fa-bars block text-2xl"
+								id="icono-hamburguesa"
+							></i>
+							<i class="fa-solid fa-times hidden text-2xl" id="icono-x"></i>
+						</button>
+
+						<button class="px-[10px] py-2 sm:flex mt-2 sm:mt-0 dark:text-white sm:mb-0 mb-2 
+							flex justify-center items-center flex justify-center items-center" onclick="toggleDarkMode()">
 								<i class="fa fa-sun fa-lg hidden dark:inline"></i>  
-								<!-- Ícono de luna para el modo oscuro -->
 								<i class="fa fa-moon fa-lg dark:hidden"></i>
-							</button>
-						</div>										
-						</div>
-					<div class="navbar-end hidden sm:flex gap-4">
-						<a class="link-balance navbar-item mr-2 p-3" href="">
-							<i class="fas fa-chart-line fa-lg mr-2" aria-hidden="true"></i
-							><span class="text-lg">Balance</span>
-						</a>
-						<a class="link-categorias navbar-item mr-2 p-3" href="">
-							<i class="fas fa-tag fa-lg mr-2" aria-hidden="true"></i
-							><span class="text-lg">Categorías</span>
-						</a>
-						<a class="link-reportes navbar-item mr-2 p-3" href="">
-							<i class="fas fa-chart-pie fa-lg mr-2" aria-hidden="true"></i
-							><span class="text-lg"> Reportes</span>
-						</a>
+						</button>						
 					</div>
 				</div>
+
+				<ul
+					class="hidden flex flex-col md:flex md:flex-row md:items-center gap-3"
+					id="menu-nav"
+				>
+					<li>
+						<a
+							href="Javascript:void(0);"
+							class="flex gap-2 items-center hover:text-white dark:hover:text-black dark:active:text-white"
+							id="enlace-balance"
+							><i class="fa-solid fa-chart-line"></i>Balance</a
+						>
+					</li>
+
+					<li>
+						<a
+							href="Javascript:void(0);"
+							class="flex gap-2 items-center hover:text-white dark:hover:text-black dark:active:text-white"
+							id="enlace-categoria"
+							><i class="fa-solid fa-tag"></i>Categoría</a
+						>
+					</li>
+
+					<li>
+						<a
+							href="Javascript:void(0);"
+							class="flex gap-2 items-center hover:text-white dark:hover:text-black dark:active:text-white"
+							id="enlace-reporte"
+							><i class="fa-solid fa-chart-pie"></i>Reporte</a
+						>
+					</li>
+				</ul>
 			</nav>
 		</header>
-		<!--Fin del Header. Comienzo del Main-->
+		<!-- ================== Fin HEADER ================== -->
 
+		<!-- ==================INICIO MAIN ================== -->
 		<main
 			id="main"
-			class="mt-10 px-10 gap-5 min-h-screen flex-wrap md:flex-nowrap items-start"		
-		>			
-			<div class="flex gap-[30px] w-full justify-center flex flex-wrap md:flex">				
-
-				<!-- seccion principal --  BALANCE -- seccion principal -->
-
-				<section id="principal" class="section md:flex-row"> <!--RECORDAR ELIMINAR HIDDEN-->
+			class="flex gap-5 py-5 md:px-5 lg:flex-row lg:py-10 flex-1 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] my-0 dark:bg-gradient-to-b from-[#C5C0CF] via-[#39324A] to-[#020203] h-full-screen"
+		>
+		<!-- ================== Sección BALANCE ================== -->
+			<section
+				class="flex flex-col md:flex-row gap-[15px] justify-center w-full items-center md:items-stretch"
+				id="seccion-principal"
+			>
+				<div
+					class="lg:w-1/3 flex flex-col items-center gap-5 md:max-w-[320px] w-[90%]"
+					id="container-balance-filtros"
+				>
+					
 					<div
-						id="balance"
-						class="column mb-30 col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1"
-					></div>
-					<article
-						class="box mb-[30px] p-5 bg-indigo-300 w-80 h-80 rounded-lg shadow-2xl"
+						class="w-full p-4  dark:border-gray-300 rounded-md flex flex-col gap-5 bg-indigo-300 w-[90%] rounded-lg shadow-2xl dark:bg-[#5F5F79]"
+						id="container-balance"
 					>
-						<h2 class="text-4xl m-6 font-bold text-left">Balance</h2>
+						<h2 class="text-2xl md:text-4xl font-bold dark:text-gray-200">Balance</h2>
 
-						<!-- Ganancias -->
-						<div class="grid grid-cols-2 gap-40 items-center">
-							<div class="text-lg m-4">
-								<p>Ganancias</p>
-							</div>
+						<div class="flex justify-between text-l">
+							<div>Ganacias</div>
+							<div class="font-bold text-green-700 dark:text-[#00FF7F]" id="balance-ganancia">+$0</div>
+						</div>
+
+						<div class="flex justify-between text-l">
+							<div>Gastos</div>
 							<div
-								id="numero-ganancias"
-							  class="text-xl font-bold text-success text-green-700">
-								<p class="mb-2">+$0</p>
-							</div>
-						</div>
-
-						<!-- Gastos -->
-						<div class="grid grid-cols-2 gap-40 items-center">
-							<div class="text-lg m-4">
-								<p>Gastos</p>
-							</div>
-							<div 
-							id="numero-gastos"
-							class="text-xl font-bold text-dange text-red-700">
-								<p class="mb-2">-$0</p>
-							</div>
-						</div>
-
-						<!-- Total -->
-						<div class="grid grid-cols-2 gap-40 items-center">
-							<div class="text-xl m-4">
-								<p>Total</p>
-							</div>
-							<div 
-								id="numero-total"
-								class="text-xl font-bold">
-								<p class="mb-2">+$0</p>
-							</div>
-						</div>
-					</article>
-					<!--  ======================== FILTROS ========================  -->
-					<form class="box p-5 bg-indigo-300 w-80 h-100 rounded-lg shadow-2xl"> <!-- RECORDAR ELIMINAR HIDDEN-->						
-						<div class="sm:grid sm:grid-cols-3 sm:gap-40 flex items-center justify-between">
-							<h3 class="text-4xl m-6 font-bold text-left">Filtros</h3>
-							<button
-								id="boton-filtros"
-								class="column button col-span-1 lg:col-span-2 pr-5 mt-3"
+								class="font-bold  text-red-700 dark:text-[#FF8500]"
+								id="balance-gasto"
 							>
-								Ocultar filtros
-							</button>
-						</div>
-
-						<div id="contenedor-filtros with:100%">
-							<div class="m-4">
-								<label for="select-tipo" class="label">Tipo</label>
-								<div class="control">
-									<div class="select w-full">
-										<!--Select de Tipo-->
-										<select
-											id="select-tipo"
-											class="box-border p-4 h-px w-64 border-4"
-										>
-											<option value="Todos" selected>Todos</option>
-											<option value="gasto">Gasto</option>
-											<option value="ganancia">Ganancia</option>
-										</select>
-									</div>
-								</div>
-							</div>
-
-							<div class="m-4">
-								<label for="select-categoria" class="label">Categoría</label>
-								<div class="control">
-									<div class="select w-full">
-										<!--Select de Categorias-->
-										<select
-											id="select-categoria"
-											class="box-border h-0 w-64 p-4 border-4"
-										></select>
-									</div>
-								</div>
-							</div>
-
-							<div class="m-4">
-								<label for="input-fecha" class="label">Desde</label>
-								<div class="control">
-									<div class="date w-full">
-										<!--Select de Fecha-->
-										<input
-											type="date"
-											class="input box-border h-0 w-64 p-4 border-4"
-											id="input-fecha"
-										/>
-									</div>
-								</div>
-							</div>
-							<div class="m-4">
-								<label for="select-orden" class="label">Ordenar por</label>
-								<div class="control">
-									<div class="select w-full">
-										<!--Select de Orden-->
-										<select
-											id="select-orden"
-											class="box-border h-0 w-64 p-4 border-4"
-										>
-											<option value="Mas reciente">Más reciente</option>
-											<option value="Menos reciente">Menos reciente</option>
-											<option value="Mayor monto">Mayor monto</option>
-											<option value="Menor monto">Menor monto</option>
-											<option class="a/z">A/Z</option>
-											<option class="z/a">Z/A</option>
-										</select>
-									</div>
-								</div>
+								-$0
 							</div>
 						</div>
-					</form>
-				</section>
 
-				
-					
-					<!-- ================== Sección OPERACIONES ================== -->
-					<div
-						id="operaciones"
-						class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px]"
-					>	 <!-- seccion oculta tmbien despues del div iria hidden-->		
-						<article class="box w-full">
-							<div class="flex justify-between items-center">
-								<!-- Título de Operaciones -->
-								<h3 class="title text-2xl font-bold py-4 sm:text-4xl">
-									Operaciones
-								</h3>
-
-								<!-- Botón de Nueva Operación -->
-								<button
-									id="boton-nueva-operacion"
-									class="button bg-indigo-300 text-black font-semibold px-2 py-1 text-sm sm:px-4 sm:py-2 sm:text-base rounded sm:w-auto text-center"
-								>
-									+ Nueva operación
-								</button>
-							</div>
-						</article>
-
-						<!-- Contenedor de Sección SIN Operaciones -->
-						<div id="contenedor-sin-operaciones" class=" mt-[-90px]">
-							<!-- la propiedad hidden oculta el contenido de la sección -->
-							<div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
-								<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-									<div class="card-image">
-										<figure id="imagen-seccion-principal" class="image">
-											<div class="flex justify-center items-start">
-												<div class="mt-[40px] sm:mt-[10px]">
-													<img
-														src="assets/img/gastos.svg"
-														alt="Mujer con dinero en la mano"
-													/>
-												</div>
-											</div>
-										</figure>
-									</div>
-								</div>
-								<div class="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-									<h4 class="text-2xl font-bold text-center mt-[-40px]">
-										Sin resultados
-									</h4>
-									<p class="text-center mb-6">
-										Cambia los filtros o agrega operaciones
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<!-- Contenedor de Sección CON Operaciones -->
-					<div id="contenedor-titulos-nuevas-operaciones">
-						<!-- Titulos de las operaciones-->
-						<div class="grid hidden grid-cols-1 md:grid-cols-5 gap-4"> <!-- Recordar quitar el hidden -->
-							<div class="col-span-3 md:col-span-1 text-left pt-4 md:pt-0">
-								<p class="font-semibold">Descripción</p>
-							</div>
-							<div class="col-span-2 md:col-span-1 text-left md:text-center">
-								<p class="font-semibold">Categoría</p>
-							</div>
-							<div class="col-span-2 md:col-span-1 text-left md:text-right">
-								<p class="font-semibold">Fecha</p>
-							</div>
-							<div class="col-span-2 md:col-span-1 text-left md:text-right">
-								<p class="font-semibold">Monto</p>
-							</div>
-							<div class="col-span-2 md:col-span-1 text-left md:text-right">
-								<p class="font-semibold">Acciones</p>
-							</div>
-						</div>
-						<!-- Items nuevas operaciones-->
-						<div id="contenedor-listado-nuevas-operaciones">
-							<!-- Contenido del listado de nuevas operaciones aquí -->
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- ================== Sección NUEVA OPERACIÓN ================== -->
-			<form
-				id="formulario-nueva-operacion"
-				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl items-center mx-auto gap-8 p-6 min-h-[600px] max-h-[600px]"
-			> <!-- hidden va despues de class="section hidden"-->
-				<div class="flex justify-center items-center min-h-screen sm:h-screen mx-[-20px] sm:mx-0">
-					<div class="container p-6">
-						<div class="box gap-2 flex flex-col mt-[-300px] sm:mt-0">
-							<h2 class="text-xl sm:text-4xl font-bold mb-2 mt-30 sm:mt-[-380px] md:mt-[-380px">Nueva operación</h2>
-							<!-- Input descripción -->
-							<div class="mb-2">
-								<label
-									for="descripción-nueva-operacion"
-									class="label font-semibold"
-									>Descripción</label
-								>
-								<div class="control">
-									<input
-										type="text"
-										id="descripción-nueva-operacion"
-										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-									/>
-								</div>
-							</div>
-							<!-- Input monto -->
-							<div class="mb-2">
-								<label for="monto-nueva-operacion" class="label font-semibold"
-									>Monto</label
-								>
-								<div class="control">
-									<input
-										type="number"
-										id="monto-nueva-operacion"
-										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-										value="0"
-									/>
-								</div>
-							</div>
-							<!-- Input tipo -->
-							<div class="mb-2">
-								<label for="tipo-nueva-operacion" class="label font-semibold"
-									>Tipo</label
-								>
-								<div class="control">
-									<div class="select">
-										<select
-											id="tipo-nueva-operacion"
-											class="bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-										>
-											<option value="gasto">Gasto</option>
-											<option value="ganancia">Ganancia</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<!-- Input categoria -->
-							<div class="mb-2">
-								<label
-									for="categoria-nueva-operacion"
-									class="label font-semibold"
-									>Categoría</label
-								>
-								<div class="control">
-									<div class="select">
-										<select
-											id="categoria-nueva-operacion"
-											class="bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-										>
-											<option value=""></option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<!-- Input fecha -->
-							<div class="mb-2">
-								<label for="fecha-nueva-operacion" class="label font-semibold"
-									>Fecha</label
-								>
-								<div class="control">
-									<input
-										type="date"
-										id="fecha-nueva-operacion"
-										class="input bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-8"
-									/>
-								</div>
-							</div>
-						</div>
-						<!-- ================== Botones AGREGAR o CANCELAR NUEVAS OPERACIONES ================== -->
-						<div class="buttons flex justify-end mt-[-20px] mb-5">
-							<button
-								id="boton-cancelar-nuevas-operaciones"
-								class="bg-gray-300 shadow-md text-gray-800 font-semibold py-2 px-4 rounded-md mr-2 max-675:py-1 max-675:px-2 max-675:text-sm"
-							>
-								Cancelar
-							</button>
-							<button
-								id="boton-agregar-nuevas-operaciones"
-								class="bg-teal-600 shadow-md text-white font-semibold py-2 px-4 rounded-md max-675:py-1 max-675:px-2 max-675:text-sm"
-							>
-								Agregar
-							</button>
-						</div>
-					</div>
-				</div>
-			</form>
-
-			<!--FORMULARIO OCULTO EDITAR OPERACIONES se oculta con HIDDEN-->
-			<form
-				id="formulario-editar-operacion"
-				class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl items-center mx-auto gap-8 p-6 min-h-[600px] max-h-[600px]"
-			> <!-- hidden va despues de class="section hidden"-->
-				<div class="flex justify-center items-center min-h-screen sm:h-screen mx-[-20px] sm:mx-0">
-					<div class="container p-6">
-						<div class="box gap-2 flex flex-col mt-[-300px] sm:mt-0">
-							<h2 class="text-xl sm:text-4xl font-bold mb-2 mt-30 sm:mt-[-380px] md:mt-[-380px]">Editar operación</h2>
-							<!-- Input descripción -->
-							<div class="mb-2">
-								<label
-									for="descripcion-editar-operacion"
-									class="label font-semibold"
-									>Descripción</label
-								>
-								<div class="control">
-									<input
-										type="text"
-										id="descripción-editar-operacion"
-										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-									/>
-								</div>
-							</div>
-							<!-- Input monto -->
-							<div class="mb-2">
-								<label for="monto-editar-operacion" class="label font-semibold"
-									>Monto</label
-								>
-								<div class="control">
-									<input
-										type="number"
-										id="monto-editar-operacion"
-										class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-										value="0"
-									/>
-								</div>
-							</div>
-							<!-- Input tipo -->
-							<div class="mb-2">
-								<label for="tipo-editar-operacion" class="label font-semibold"
-									>Tipo</label
-								>
-								<div class="control">
-									<div class="select">
-										<select
-											id="tipo-editar-operacion"
-											class="bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-										>
-											<option value="gasto">Gasto</option>
-											<option value="ganancia">Ganancia</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<!-- Input categoria -->
-							<div class="mb-2">
-								<label
-									for="categoria-editar-operacion"
-									class="label font-semibold"
-									>Categoría</label
-								>
-								<div class="control">
-									<div class="select">
-										<select
-											id="categoria-editar-operacion"
-											class="bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-										>
-											<option value=""></option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<!-- Input fecha -->
-							<div class="mb-2">
-								<label for="fecha-editar-operacion" class="label font-semibold"
-									>Fecha</label
-								>
-								<div class="control">
-									<input
-										type="date"
-										id="fecha-editar-operacion"
-										class="input bg-white border border-indigo shadow-md py-2 px-2 rounded w-full mb-8"
-									/>
-								</div>
-							</div>
-						</div>
-						<!-- ================== Botones AGREGAR o CANCELAR NUEVAS OPERACIONES ================== -->
-						<div class="buttons flex justify-end mt-[-20px] mb-5">
-							<button
-								id="boton-cancelar-editar-operaciones"
-								class="bg-gray-300 shadow-md text-gray-800 font-semibold py-2 px-4 rounded-md mr-2 max-675:py-1 max-675:px-2 max-675:text-sm"
-							>
-								Cancelar
-							</button>
-							<button
-								id="boton-formulario-editar-operaciones"
-								class="bg-teal-600 shadow-md text-white font-semibold py-2 px-4 rounded-md max-675:py-1 max-675:px-2 max-675:text-sm"
-							>
-								Agregar
-							</button>
-						</div>
-					</div>
-				</div>
-			</form>
-
-			<!-- ================== SECCION CATEGORÍAS ================== -->
-			<div class="flex justify-center">
-				<section
-					id="seccion-categorias"
-					class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 lg:max-w-[1200px] shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px]"
-				> <!-- RECORDAR poner hidden luego de section: class="section hidden -->
-					<div class="container">
-						<form
-							class="box container mt-[10px] p-2"
-							id="form-agregar-categoria"
+						<div
+							class="flex justify-between text-xl border-t border-t-red-400 dark:border-t-white"
 						>
-							<h2 class="title text-4xl font-bold mb-2">Categorías</h2>
-							<!--Input agregar categorias-->
-							<div class="mt-4">
-								<label for="input-agregar-categoria" class="label font-semibold text-gray-700"
-									>Nombre</label
-								>
-								<div
-									class="control mt-4 grid-cols-2 flex justify-items justify-between"
-								>
-									<input
-										id="input-agregar-categoria"
-										type="text"
-										class="column input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
-									/>
-									<button
-										id="boton-agregar-categoria"
-										class="button bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-bold text-sm sm:text-sm py-1 px-2 sm:py-2 sm:px-3 rounded mb-2 ml-2 w-auto sm:w-fit"
-									>
-										Agregar
-									</button>
-								</div>
-							</div>
-							<!--Categorias agregadas-->
-							<div class="mt-5 mx-4" id="contenedor-categorias-agregadas"></div>
-						</form>
+							<div>Total</div>
+							<div id="balance-total">$0</div>
+						</div>
+
+						<div class="flex justify-center">
+							<div
+								id="contenedor-gif"
+								class="h-40 w-44 rounded-lg hidden"
+							></div>
+						</div>
 					</div>
-				</section>
-			</div>
-			<!-- ================== Sección EDITAR CATEGORIAS ================== -->
-			<div class="flex justify-center">
-				<section
-					id="seccion-editar-categorias"
-					class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-sm sm:max-w-full sm:w-3/6 lg:max-w-[1200px] shadow-xl gap-4 sm:gap-8 p-4 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-auto sm:min-h-[620px] max-h-auto sm:max-h-[620px]"> <!-- class="section hidden bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 shadow-xl gap-8 p-6 min-h-[600px] max-h-[600px]" -->
-					
-					<!--recordar colora de nuevo el hidden a  class="section hidden  ==> esta era la etiqueta anterior <div class="control mt-4 w-full">-->
-						
-						<form class="box w-full container mt-[-20px] p-6" id="form-editar-categoria">
-							<h2 class="title font-bold text-3xl sm:text-6xl py-2 whitespace-nowrap text-center sm:text-left">
-								Editar categoría
-							</h2>
-							<div class="mt-6">
-								<label
-									class="label font-semibold"
-									for="input-editar-nombre-categoria"
-									>Nombre</label>
-								<div
-									class="control mt-4 flex w-full"
-								>
+					<!-- ================== Fin SECCION BALANCE ================== -->
+
+					<!-- ================== Inicio SECCION FILTROS ================== -->
+					<div
+						class="w-full p-4 dark:border-gray-300 rounded-md flex flex-col gap-5 bg-indigo-300 w-[90%] max-w-[280px] h-auto rounded-lg shadow-2xl dark:bg-[#5F5F79] ml-auto mr-4 md:mx-0 md:w-80 md:max-w-[320px] md:h-auto"
+						id="container-filtros"
+					>
+						<div class="flex justify-between">
+							<h3 class="text-2xl md:text-4xl font-bold dark:text-gray-200">
+								Filtros
+							</h3>
+							<button
+								class="text-black dark:text-white font-medium"
+								id="btn-ocultar-filtros"
+							>
+								Ocultar Filtros
+							</button>
+						</div>
+
+						<!--  inicio de formulario filtros  -->
+						<form>
+							<div id="contenedor-filtros">
+								<div class="flex flex-col gap-2">
+									<label for="filtro-tipo" class="dark:text-[#f5f5f5]"
+										>Tipo</label
+									>
+									<select
+										name="tipo"
+										id="filtro-tipo"
+										class="box-border p-1 w-full border-4 text-black dark:text-black bg-white dark:bg-white border-gray-200 dark:border-gray-400 p-2 rounded shadow-md"
+									>
+										<option value="todos">Todos</option>
+										<option value="gasto">Gasto</option>
+										<option value="ganancia">Ganacia</option>
+									</select>
+								</div>
+
+								<div class="flex flex-col gap-2">
+									<label for="filtro-categoria" class="dark:text-[#f5f5f5]"
+										>Categoría</label
+									>
+									<select
+										name="categoria"
+										id="filtro-categoria"
+										class="filtro select-categoria box-border p-1 w-full border-4 text-black dark:text-black bg-white dark:bg-white border-gray-200 dark:border-gray-400 p-2 rounded shadow-md"
+									></select>
+								</div>
+
+								<div class="flex flex-col gap-2">
+									<label for="filtro-fecha" class="dark:text-[#f5f5f5]"
+										>Desde</label
+									>
 									<input
-										type="text"
-										id="input-editar-nombre-categoria"
-										class="column input border border-indigo shadow-md py-1 px-2 rounded w-[100%] mb-3"
+										type="date"
+										id="filtro-fecha"
+										class="box-border p-1 w-full border-4 text-black dark:text-black bg-white dark:bg-white border-gray-200 dark:border-gray-400 p-2 rounded shadow-md"
 									/>
 								</div>
-							</div>
-							<div class="flex justify-end space-x-2">
-								<button
-									id="boton-cancelar-editar-categoria"
-									class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-1 px-2 sm:py-2 sm:px-4 text-sm sm:text-base rounded inline-flex items-center"
-								>
-									Cancelar
-								</button>
-								<button
-									id="boton-editar-categoria-formulario"
-									class="bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-semibold py-1 px-2 sm:py-2 sm:px-4 text-sm sm:text-base rounded inline-flex items-center"
-								>
-									Editar
-								</button>
+
+								<div class="flex flex-col gap-2">
+									<label for="filtro-ordenar" class="dark:text-[#f5f5f5]"
+										>Ordenar por</label
+									>
+									<select
+										name="ordenar"
+										id="filtro-ordenar"
+										class="box-border p-1 w-full border-4 text-black dark:text-black bg-white dark:bg-white border-gray-200 dark:border-gray-400 p-2 rounded shadow-md"
+									>
+										<option value="mas">Más Reciente</option>
+										<option value="menos">Menos Reciente</option>
+										<option value="mayor">Mayor Monto</option>
+										<option value="menor">Menor Monto</option>
+										<option value="A/Z">A/Z</option>
+										<option value="Z/A">Z/A</option>
+									</select>
+								</div>
 							</div>
 						</form>
-					<!--</div>-->
-				</section>
-			</div>
+						<!--  fin de formulario filtros -->
+					</div>
+					<!-- ================== Fin SECCION FILTROS ================== -->
+				</div>
 
-			<!-- ================== Sección REPORTES ================== -->
-			<section 
-				class="reportes hidden section-desktop md:hidden md:block bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent 
-				px-4 rounded-lg w-full sm:w-5/6 md:w-4/6 lg:w-3/6 
-				shadow-xl gap-8 p-6 pb-2 sm:pb-6 md:pb-8 max-h-auto mx-auto"
-				> <!-- Recordar eliminar HIDDEN-->
-			<!-- RECORDAR AGREGAR hidden en class ==>class despues de md-block="reportes section-desktop md:hidden md-block hidden  -->
-				<div class="container">
+				<!-- ================== Inicio SECCION OPERACIONES ================== -->
+				<div
+					class="flex flex-col p-5 gap-3 flex flex-col p-5 gap-3 bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-full max-w-xs sm:max-w-full sm:w-3/6 shadow-xl p-3 sm:p-6 mb-12 pb-8 sm:pb-0 sm:mb-0 min-h-[300px] sm:min-h-[650px] max-h-[60vh] sm:max-h-[620px] overflow-y-auto dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:to-transparent lg:max-w-[630px] w-[90%]"
+					id="container-operaciones"
+				>
 					<div
-						class="box column px-4 md:col-span-8 md:col-start-3 md:col-end-11 md:my-2"
+						class="flex flex-col items-center gap-3 lg:flex-row justify-between"
 					>
-						<h2 class="title text-2xl sm:text-4xl font-bold">Reportes</h2>
+						<h3 class="text-2xl md:text-4xl font-bold dark:text-gray-200
+						">
+							Operaciones
+						</h3>
+						<button
+							id="btn-operacion"
+							class="bg-indigo-300 text-black font-semibold dark:bg-[#354153] p-2 rounded dark:bg-gray-700 dark:text-white"
+						>
+							+ Nueva operación
+						</button>
+					</div>
 
-						<!--Reportes sin datos-->
-						<div id="reportes-sin-datos" class="hidden">
-							<!-- RECORDAR AGREGAR hidden en class ==> class="hidden"  -->
-							<figure
-								class="image column w-4/5 sm:w-full md:w-4/5 lg:w-3/5 mx-auto mt-6 sm:mt-4"
+					<div
+						class="flex flex-col gap-3 items-center h-5/6 justify-center"
+						id="contenedor-img-operaciones"
+					>
+						<img
+							src="imagenes/gastos.svg"
+							alt="Sin operaciones"
+							class="h-auto max-h-[170px] sm:max-h-[250px] md:max-h-[300px] lg:max-h-[400px] sm:mt-2 lg:mt-2 object-contain mx-auto dark:grayscale dark:contrast-130"
+						/>
+						<p class="text-lg sm:text-xl md:text-3xl font-bold text-center mt-6 dark:text-gray-200"
+						>
+							Sin resultados
+						</p>
+						<p class="text-sm sm:text-sm md:text-lg text-center mt-[-12px] dark:text-gray-200">Cambia los filtros o agrega operaciones</p>
+					</div>
+
+					<!--  inicio de tabla de operaciones -->
+					<div
+						class="rounded-md overflow-auto max-h-700"
+						id="contenedor-tabla-operaciones"
+					>
+						<div
+							id="cabecera-tabla-operaciones"
+							class="hidden text-black flex text-center font-bold"
+						>
+							<div class="flex-1 py-2">
+								<span>Descripción</span>
+							</div>
+
+							<div class="flex-1 py-2">
+								<span>Categoría</span>
+							</div>
+
+							<div class="flex-1 py-2">
+								<span>Fecha</span>
+							</div>
+
+							<div class="flex-1 py-2">
+								<span>Monto</span>
+							</div>
+
+							<div class="flex-1 py-2">
+								<span>Acciones</span>
+							</div>
+						</div>
+
+						<div id="cuerpo-tabla-operaciones"></div>
+					</div>
+					<!--fin de tabla de operaciones-->
+				</div>
+				<!-- ================== Fin SECCION OPERACIONES  ================== -->
+			</section>
+
+			<!-- ================== Inicio SECCION NUEVA OPERACION ================== -->
+			<section class="hidden w-full" id="seccion-nueva-operacion">
+				<div
+					class="max-w-[850px] bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl items-center mx-auto gap-8 p-6 min-h-[600px] max-h-[600px] dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:to-transparent lg:max-w-[630px] w-[90%]"
+				>
+					<h2
+						class="text-xl sm:text-4xl font-bold dark:text-gray-200 pb-7 text-left"
+					>
+						Nueva Operación
+					</h2>
+
+					<!--inicio de formulario Nueva Operacion-->
+					
+					<form id="form-nueva-operacion" class="flex flex-col gap-2">
+						<div class="flex flex-col gap-2">
+							<label
+								for="input-descripcion"
+								class="font-bold dark:text-[#f5f5f5]"
+								>Descripción</label
 							>
-								<img
-									src="assets/img/reportes.svg"
-									alt="Imagen de mujer mirando estadísticas"
-								/>
-							</figure>
-							<!-- RecORDAR siempre agregar un alt a las imágenes para que el lector las describa -->
-							<h4 class="title text-base sm:text-lg lg:text-3xl mt-6 sm:mt-8 text-center font-bold">
-								Operaciones insuficientes
-							</h4>
-							<p class="mt-1 sm:mt-2 mb-4 sm:mb-6 text-center text-sm sm:text-base lg:text-lg">
-								Prueba agregando más operaciones
+							<input
+								type="text"
+								id="input-descripcion"
+								placeholder="Ingresar descripción"
+								class="border-solid border border-indigo shadow-md py-2 px-2 rounded w-full mb-2 dark:border-none rounded focus:outline-none"
+								required
+							/>
+							<p
+								class="mensaje-input-vacio text-red-500 dark:text-black text-xs italic hidden"
+							>
+								Ingrese una descripción por favor.
 							</p>
 						</div>
 
-						<!-- ================== REPORTES CON DATOS ==================-->
-						<div id="reportes-con-datos" class="hidden">
-							<!-- RECORDAR AGREGAR hidden en class ==> class="hidden"  -->
-							<div id="contenedor-resumen-" class="my-6">
-								<h4 class="title text-base sm:text-lg font-bold">Resumen</h4>
-								<!--Categoría mayor ganancia-->
-								<div class="columns grid grid-cols-2 gap-4">
-									<p class="column text-sm sm:text-base font-medium my-2 sm:my-4">
-										Categoría con mayor ganancia
-									</p>
-									<div class="column flex justify-end">
-										<p
-											class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
-											id="tag-categoria-mayor-ganancia"
-										></p>
-									</div>
-									<p
-										class="column text-sm sm:text-base font-bold text-green-600 text-right"
-										id="monto-mayor-ganancia"
-									></p>
-								</div>
-								<!--Categoría mayor gasto-->
-								<div class="columns grid grid-cols-2 gap-4">
-									<p class="column text-sm sm:text-base font-medium">
-										Categoría con mayor gasto
-									</p>
-									<div class="column flex justify-end">
-										<p
-											class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
-											id="tag-categoria-mayor-gasto"
-										></p>
-									</div>
-									<p
-										class="column text-sm sm:text-base font-bold text-green-600 text-right"
-										id="monto-mayor-gasto"
-									></p>
+						<div class="flex flex-col gap-2">
+							<label for="input-monto" class="font-bold dark:text-[#f5f5f5]"
+								>Monto</label
+							>
+							<input
+								type="number"
+								id="input-monto"
+								placeholder="Ingresar monto"
+								class="border-solidborder border-indigo shadow-md py-2 px-2 rounded w-full mb-2 dark:border-none rounded focus:outline-none"
+								min="0"
+								required
+							/>
+							<p
+								id="mensaje-error"
+								class="text-red-500 text-semibold dark:text-white text-xs italic hidden"
+							>
+								El número no puede tener más de 10 dígitos.
+							</p>
+							<p
+								id="mensaje-input-vacio"
+								class="text-red-500 text-semibold dark:text-white text-xs italic hidden"
+							>
+								Ingrese un monto por favor
+							</p>
+						</div>
+
+						<div class="flex flex-col gap-2">
+							<label for="select-tipo" class="font-bold dark:text-[#f5f5f5]"
+								>Tipo</label
+							>
+							<select
+								name="select-tipo"
+								id="select-tipo"
+								class="border-solid border border-indigo shadow-md py-2 px-2 rounded w-full mb-2 dark:border-none rounded"
+							>
+								<option value="gasto">Gasto</option>
+								<option value="ganancia">Ganancia</option>
+							</select>
+						</div>
+
+						<div class="flex flex-col gap-2">
+							<label
+								for="select-categoria"
+								class="font-bolddark:text-[#f5f5f5]"
+								>Categoria</label
+							>
+							<select
+								name="select-categoria"
+								id="select-categoria"
+								class="select-categoria border-solid border border-indigo shadow-md py-2 px-2 rounded w-full mb-2] dark:border-none rounded"
+							></select>
+						</div>
+
+						<div class="flex flex-col gap-2 pb-7">
+							<label for="input-fecha" class="font-bold dark:text-[#f5f5f5]"
+								>Fecha</label
+							>
+							<input
+								type="date"
+								id="input-fecha"
+								class="border-solid border border-indigo shadow-md py-2 px-2 rounded w-full mb-2 dark:border-none rounded"
+								required
+							/>
+						</div>
+
+						<div class="flex justify-end gap-2 mt-[-18px]">
+							<button
+								type="button"
+								class="rounded-md bg-gray-300 shadow-md text-gray-800 font-semibold py-2 px-4 rounded-md mr-2 max-675:py-1 max-675:px-2 max-675:text-sm"
+								id="btn-cancelar--nueva"
+							>
+								Cancelar
+							</button>
+							<button
+								type="submit"
+								class="rounded-md bg-teal-600 shadow-md text-white font-semibold py-2.5 px-4 rounded-md max-675:py-1 max-675:px-2 max-675:text-sm"
+								id="btn-agregar-operacion"
+							>
+								Agregar
+							</button>
+						</div>
+					</form>
+					
+					<!--fin de formulario Nueva Operacion-->
+				</div>
+			</section>
+			<!-- ================== Fin SECCION NUEVA OPERACION ================== -->
+
+			<!-- ================== Inicio SECCION EDITAR OPERACION ================== -->
+			<section class="hidden w-full" id="editar-nueva-operacion">
+				<div
+					class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent px-4 rounded-lg w-3/6 w-full max-w-sm sm:max-w-full sm:w-3/6 shadow-xl items-center mx-auto gap-8 p-6 max-w-[850px] w-[90%] m-auto dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:to-transparent"
+				>
+					<h2 class="text-xl sm:text-4xl font-bold text-black dark:text-gray-200 pb-7">
+						Editar Operación
+					</h2>
+
+					<!--inicio formulario Editar Operacion-->
+					<form id="form-editar-operacion" class="flex flex-col gap-2">
+						<div class="flex flex-col gap-2">
+							<label
+								for="editar-input-descripcion"
+								class="font-bold dark:text-[#f5f5f5]"
+								>Descripción</label
+							>
+							<input
+								type="text"
+								id="editar-input-descripcion"
+								class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+								required
+							/>
+						</div>
+						<p
+							id="error-descripcion"
+							class="text-red-500 font-semibold dark:text-white text-xs italic hidden"
+						>
+							Ingrese una descripción por favor.
+						</p>
+
+						<div class="flex flex-col gap-2">
+							<label
+								for="editar-input-monto"
+								class="font-bold dark:text-[#f5f5f5]"
+								>Monto</label
+							>
+							<input
+								type="number"
+								id="editar-input-monto"
+								class="input border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+								required
+								min="0"
+							/>
+
+							<p
+								id="editar-mensaje-error"
+								class="text-red-500 font-semibold dark:text-white text-xs italic hidden"
+							>
+								El número no puede tener más de 10 dígitos.
+							</p>
+
+							<p
+								id="editar-mensaje-input-vacio"
+								class="text-red-500 font-semibold dark:text-white text-xs italic hidden"
+							>
+								Ingrese un monto por favor
+							</p>
+						</div>
+
+						<div class="flex flex-col gap-2">
+							<label
+								for="editar-select-tipo"
+								class="font-bold dark:text-[#f5f5f5]"
+								>Tipo</label
+							>
+							<select
+								name="editar-select-tipo"
+								id="editar-select-tipo"
+								class="border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+							>
+								<option value="gasto">Gasto</option>
+								<option value="ganancia">Ganancia</option>
+							</select>
+						</div>
+
+						<div class="flex flex-col gap-2">
+							<label
+								for="editar-select-categoria"
+								class="font-bold dark:text-[#f5f5f5]"
+								>Categoria</label
+							>
+							<select
+								name="editar-select-categoria"
+								id="editar-select-categoria"
+								class="select-categoria border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+							></select>
+						</div>
+
+						<div class="flex flex-col gap-2 pb-7">
+							<label
+								for="editar-input-fecha"
+								class="font-bold dark:text-[#f5f5f5]"
+								>Fecha</label
+							>
+							<input
+								type="date"
+								id="editar-input-fecha"
+								class="border border-indigo shadow-md py-2 px-2 rounded w-full mb-2"
+							/>
+						</div>
+
+						<div class="flex justify-end gap-2">
+							<button
+								type="button"
+								class="rounded-md bg-gray-300 shadow-md text-gray-800 font-semibold py-2 px-[17px] text-black"
+								id="editar-btn-cancelar--nueva"
+							>
+								Cancelar
+							</button>
+
+							<button
+								type="submit"
+								class="rounded-md bg-teal-600 shadow-md text-white font-semibold py-2 px-[17px] text-[#254438] rounded-md bg-teal-600 shadow-md text-white font-semibold py-2 px-[17px] text-[#254438] dark:bg-[#2c123e] dark:text-white"
+								id="editar-btn-agregar"
+							>
+								Guardar Cambios
+							</button>
+						</div>
+					</form>
+					<!--fin formulario Editar Operacion-->
+				</div>
+			</section>
+			<!-- ================== Fin SECCION EDITAR OPERACION ================== -->
+
+			<!-- ================== Inicio SECCION CATEGORÍAS ================== -->
+			<section
+				class="hidden flex justify-center items-center w-full"
+				id="seccion-categoria"
+			>
+				<div
+					class="bg-gradient-to-r from-indigo-100 via-teal-100 via-opacity-100 to-transparent rounded-md shadow-xl max-w-[850px] p-5 w-[90%] overflow-y-auto dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:to-transparent dark:text-white"
+				>
+					<h2
+						class="text-3xl sm:text-4xl font-bold pb-10"
+					>
+						Categoría
+					</h2>
+
+					<!--inicio formulario Agregar Categoria-->
+					<form id="form-agregar-categoria">
+						<label
+							for="nombre"
+							class="text-xl font-bold pb-2 block dark:text-gray-300"
+							>Nombre</label
+						>
+						<div class="flex justify-between gap-[4px]">
+							<input
+								type="text"
+								id="nombre"
+								class="border border-indigo shadow-md p-2 rounded-md w-[87%]"
+								placeholder="Ingrese nombre para nueva categoria"
+								required
+							/>
+
+							<button
+								type="submit"
+								class="bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-bold text-xs sm:text-sm rounded-md dark:bg-[#2c123e] dark:hover:bg-teal-400 dark:hover:text-black py-2 px-[17px] text-[#254438] dark:text-white"
+								id="btn-agregar-categoria"
+							>
+								Agregar
+							</button>
+						</div>
+					</form>
+					<!--fin formulario Agregar Categoria-->
+
+					<!--INICIO TABLA CATEGORIAS-->
+					<div class="pt-11 leading-[3rem]" id="tabla-categorias"></div>
+					<!--FIN TABLA CATEGORIAS-->
+				</div>
+			</section>
+				<!-- ================== Fin SECCION CATEGORÍAS ================== -->
+
+				<!-- ================== Inicio SECCION EDITAR CATEGORÍAS ================== -->
+			<section class="hidden w-full flex-grow" id="seccion-editar">
+				<div
+					class="rounded-md bg-gradient-to-r from-indigo-100 via-teal-100 to-teal-200 dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:text-white m-auto w-[90%] w-[90%] max-w-[850px] p-5 m-auto flex flex-col justify-center gap-10"
+				>
+					<h2
+						class="text-3xl sm:text-4xl font-bold"
+					>
+						Editar Categoría
+					</h2>
+
+					<!--inicio formulario Editar Categoria-->
+					<form class="flex flex-col gap-5" id="form-editar-categoria">
+						<div class="flex flex-col gap-y-2">
+							<label for="label-editar" class="dark:text-[#f5f5f5]"
+								>Nombre</label
+							>
+							<input
+								type="text"
+								id="label-editar"
+								class="border border-indigo shadow-md rounded-md p-1.5 ps-2 dark:text-black"
+								required
+							/>
+						</div>
+
+						<div class="flex justify-center gap-x-4">
+							<button
+								type="button"
+								class="rounded-md bg-gray-300 shadow-md text-black font-semibold dark:hover:bg-gray-700 dark:hover:text-white px-[15px] py-1.5 px-[15px]"
+								id="btn-cancelar--editar"
+							>
+								Cancelar
+							</button>
+
+							<button
+								type="submit"
+								class="aceptar-editar rounded-md bg-purple-600 shadow-md text-white font-semibold dark:bg-[#2c123e] py-1.5 px-[15px] dark:text-white dark:hover:bg-teal-400 dark:hover:text-black"
+								id="btn-aceptar-editar"
+							>
+								Editar
+							</button>
+						</div>
+					</form>
+					<!--fin formulario Editar Categoria-->
+				</div>
+			</section>
+			
+			<!-- ================== Fin SECCION EDITAR CATEGORÍAS ================== -->
+
+			<!-- ================== Inicio VENTANAS MODALES EDITAR ================== -->
+			<!--inicio ventana modal editar operación-->
+			<section class="hidden w-full" id="advertencia-editar--operaciones">
+				<div
+					class="flex flex-col gap-8 rounded-md max-w-[600px] p-5 bg-gradient-to-r from-indigo-100 via-teal-100 to-teal-200 dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] m-auto w-[90%]"
+				>
+					<div class="flex items-center gap-[14px]">
+						<img
+							src="imagenes/alerta.gif"
+							alt="gif-mensaje-de-alerta"
+							class="w-[60px] rounded-[27px]"
+						/>
+						<h2 class="text-4xl text-[red] font-bold dark:text-[orange]">Advertencia</h2>
+					</div>
+
+					<div>
+						<p
+							class="ps-8 dark:text-[#faebd7]"
+							id="advertencia-editar--operacion"
+						>
+							Está seguro que quiere editar esta
+							<span class="font-black">operación</span>?
+						</p>
+					</div>
+
+					<div class="flex justify-center md:justify-end gap-x-4">
+						<button
+							class="rounded-md bg-gray-300 shadow-md text-gray-800 font-semibold py-1.5 px-[15px] text-[#254438]"
+							id="btn-advertencia-editar--cancelar-op"
+						>
+							Cancelar
+						</button>
+
+						<button
+							class="btn-advertencia-editar--aceptar-op rounded-md bg-purple-600 shadow-md text-white font-semibold py-1.5 px-[15px] text-[#254438] dark:bg-[#2c123e]"
+						>
+							Aceptar
+						</button>
+					</div>
+				</div>
+			</section>
+			<!--fin ventana modal editar operación-->
+
+			<!--inicio ventana modal editar categoría-->
+			<section class="hidden w-full" id="advertencia-editar">
+				<div
+					class="flex flex-col gap-8 rounded-md  bg-gradient-to-r from-indigo-100 via-teal-100 to-teal-200 dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] max-w-[500px] p-5 m-auto w-[90%]"
+				>
+					<div class="flex items-center gap-[14px]">
+						<img
+							src="imagenes/alerta.gif"
+							alt="gif-mensaje-de-alerta"
+							class="w-[60px] rounded-[27px]"
+						/>
+						<h2 class="text-4xl text-[red] font-bold dark:text-[orange]">Advertencia</h2>
+					</div>
+
+					<div>
+						<p
+							class="ps-8 dark:text-white"
+							id="advertencia-editar--categoria"
+						>
+							Está seguro que quiere editar la categoría
+							<span id="advertencia-categoria" class="font-black"></span>?
+						</p>
+					</div>
+
+					<div class="flex justify-center md:justify-end gap-x-4">
+						<button
+							class="rounded-md bg-gray-300 shadow-md text-gray-800 font-semibold hover:bg-gray-500 hover:text-gray-200 py-1.5 px-[15px]"
+							id="btn-advertencia-editar--cancelar"
+						>
+							Cancelar
+						</button>
+						<button
+							class="btn-advertencia-editar--aceptar rounded-md bg-purple-600 hover:bg-[#ff69b4] hover:font-white shadow-md text-white dark:bg-[#2c123e] dark:hover:bg-purple-400 dark:hover:text-black font-semibold py-1.5 px-[15px]"
+						>
+							Aceptar
+						</button>
+					</div>
+				</div>
+			</section>
+			<!--Fin ventana modal editar categoría-->
+			<!-- ================== Fin VENTANAS MODALES EDITAR ================== -->
+
+			<!-- ================== Inicio VENTANAS MODALES ELIMINAR ================== -->
+			<!--inicio ventana modal elimiar operación-->
+			<section class="hidden w-full" id="advertencia-eliminar--operaciones">
+				<div
+					class="flex flex-col gap-8 rounded-md max-w-[600px] p-5 bg-gradient-to-r from-indigo-100 via-teal-100 to-teal-200 dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] m-auto w-[90%]"
+				>
+					<div class="flex items-center gap-[14px]">
+						<img
+							src="imagenes/alerta.gif"
+							alt="gif-mensaje-de-alerta"
+							class="w-[60px] rounded-[27px]"
+						/>
+						<h2 class="text-4xl text-[red] font-bold dark:text-[orange]">Advertencia</h2>
+					</div>
+
+					<div>
+						<p
+							class="ps-8 dark:text-[#faebd7]"
+							id="advertencia-eliminar--operacion"
+						>
+							Está seguro que quiere eliminar esta
+							<span class="font-black">operación</span>? Todos los datos de esta
+							operación se eliminaran de forma permanente.
+						</p>
+					</div>
+
+					<div class="flex justify-center md:justify-end gap-x-4">
+						<button
+							class="rounded-md bg-gray-300 shadow-md text-gray-800 font-semibold py-2 px-4 mr-2 max-675:py-1 max-675:px-2 max-675:text-sm"
+							id="btn-advertencia-eliminar--cancelar-op"
+						>
+							Cancelar
+						</button>
+
+						<button
+							class="btn-advertencia-eliminar--aceptar-op rounded-md bg-purple-600 shadow-md text-white font-semibold py-2.5 px-4 max-675:py-1 max-675:px-2 max-675:text-sm dark:bg-[#2c123e]"
+						>
+							Aceptar
+						</button>
+					</div>
+				</div>
+			</section>
+			<!--Fin ventana modal elimiar operación-->
+
+			<!--Inicio ventana modal elimiar categoría-->
+			<section class="hidden w-full" id="advertencia-eliminar">
+				<div
+					class="flex flex-col gap-8 rounded-md max-w-[600px] p-5 bg-gradient-to-r from-indigo-100 via-teal-100 to-teal-200 dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] dark:text-white m-auto w-[90%]"
+				>
+					<div class="flex items-center gap-[14px]">
+						<img
+							src="imagenes/alerta.gif"
+							alt="gif-mensaje-de-alerta"
+							class="w-[60px] rounded-[27px]"
+						/>
+						<h2 class="text-4xl text-[red] font-bold dark:text-[orange]">Advertencia</h2>
+					</div>
+
+					<div>
+						<p
+							class="ps-8 dark:text-white"
+							id="advertencia-eliminar--categoria"
+						>
+							Está seguro que quiere eliminar la categoría
+							<span
+								id="eliminar-advertencia-categoria"
+								class="font-black"
+							></span
+							>?
+						</p>
+					</div>
+
+					<div class="flex justify-center md:justify-end gap-x-4">
+						<button
+							class="rounded-md bg-gray-300 shadow-md text-gray-800 font-semibold hover:bg-gray-500 hover:text-gray-200 py-1.5 px-[15px]"
+							id="btn-advertencia-eliminar--cancelar"
+						>
+							Cancelar
+						</button>
+
+						<button
+							class="btn-advertencia-eliminar--aceptar rounded-md bg-purple-600 hover:bg-[#ff69b4] hover:font-white shadow-md text-white dark:bg-[#2c123e] dark:hover:bg-purple-400 dark:hover:text-black font-semibold py-1.5 px-[15px]"
+						>
+							Eliminar
+						</button>
+					</div>
+				</div>
+			</section>
+			<!--Fin ventana modal elimiar categoría-->
+
+			<!--Inicio ventana modal no elimiar categoría porque hay operaciones asociadas a ella-->
+			<section class="hidden w-full" id="advertencia-no-eliminar">
+				<div
+					class="flex flex-col gap-8 rounded-md max-w-[600px] p-5  bg-gradient-to-r from-indigo-100 via-teal-100 to-teal-200 dark:bg-gradient-to-r dark:from-[#3E3861] dark:via-[#817D9E] dark:to-[#9692B0] m-auto w-[90%]"
+				>
+					<div class="flex items-center gap-[14px]">
+						<img
+							src="imagenes/alerta.gif"
+							alt="gif-mensaje-de-alerta"
+							class="w-[60px] rounded-[27px]"
+						/>
+						<h2 class="text-4xl text-[red] font-bold dark:text-[orange]">Advertencia</h2>
+					</div>
+
+					<div>
+						<p class="ps-8 dark:text-[#faebd7]">
+							<span class="font-black">No</span> se puede eliminar esta
+							<span class="font-black">categoría</span> porque existen
+							operaciones asociadas. Por favor, elimine las operaciones primero.
+						</p>
+					</div>
+
+					<div class="flex justify-center md:justify-end gap-x-4">
+						<button
+							class="bg-teal-600 hover:bg-violet-400 hover:text-black text-white font-bold text-xs sm:text-sm rounded-md dark:bg-[#2c123e] dark:hover:bg-teal-400 dark:hover:text-black py-2 px-[17px] text-[#254438] dark:text-white"
+							id="btn-advertencia-no-eliminar"
+						>
+							Aceptar
+						</button>
+					</div>
+				</div>
+			</section>
+			<!--Fin ventana modal no elimiar categoría porque hay operaciones asociadas a ella-->
+			<!-- ================== Fin VENTANAS MODALES ELIMINAR ================== -->		
+
+			<!-- ================== Inicio SECCION REPORTES ================== -->
+			<section id="seccion-reportes" class="hidden w-full">
+				<div
+					class="bg-indigo-50 px-4 rounded-lg w-full max-w-xs sm:max-w-full sm:w-3/6 shadow-2xl flex flex-col items-center gap-6 p-2 md:p-5 max-w-[800px] m-auto overflow-y-auto dark:bg-[#8e89b0] lg:max-w-[630px] w-[90%]"
+				>
+					<h2 class="text-2xl sm:text-4xl font-bold dark:text-gray-300">Reportes</h2>
+
+					<div id="container-img-reportes">
+						<figure class=" flex justify-center items-center w-4/5 sm:w-full md:w-4/5 lg:w-3/5 mx-auto sm:mt-4">
+							<img
+								src="imagenes/reportes.svg"
+								class="dark:dark:grayscale dark:contrast-200 dark:brightness-180"
+								alt="Imagen reportes"
+							/>
+						</figure>
+
+						<p
+							class="text-sm sm:text-base lg:text-3xl mt-10 sm:mt-10 text-center font-bold dark:text-gray-300"
+						>
+							Operaciones insuficientes
+						</p>
+
+						<p class="text-center pb-7 text-sm sm:text-sm lg:text-lg dark:text-gray-300">Prueba agregando más operaciones</p>
+					</div>
+
+					<div
+						class="w-full flex flex-col gap-3 md:gap-6 hidden"
+						id="tabla-reportes"
+					>
+						<h3
+							class="text-xl text-center text-left text-[#791cf8] font-bold border-b border-b-[#791cf8] dark:text-black dark:border-b dark:border-black"
+						>
+							Resumen
+						</h3>
+
+						<div class="flex flex-col gap-3">
+							<div class="flex flex-col text-center sm:flex-row">
+								<div class="sm:w-[50%] font-bold sm:text-left">
+									Categoría con mayor ganancia
 								</div>
 
-								<!--Categoría mayor balance-->
-								<div class="columns grid grid-cols-2 gap-3">
-										<p class="column text-sm sm:text-base font-medium my-2 sm:my-4">
-												Categoría con mayor balance
-										</p>
-										<div class="column flex justify-end">
-												<p class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light"
-														id="tag-categoria-mayor-balance">
-												</p>
-										</div>
-										<p class="column text-sm sm:text-base font-bold text-green-600 text-right"
-												id="monto-mayor-balance">
-										</p>
-								</div>
+								<div
+									class="sm:w-[25%] text-center"
+									id="container-categoria-mayor-ganancia"
+								></div>
 
-								<!--Mes con mayor ganancia-->
-								 <div class="columns grid grid-cols-2 gap-3">
-										<p class="column text-sm sm:text-base font-medium">Mes con mayor ganancia</p>
-										<div class="column flex justify-end">
-												<p class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light" id="fecha-mayor-ganancia"></p>
-										</div>
-										<p class="column text-sm sm:text-base font-bold text-green-600 text-right" id="monto-mes-mayor-ganancia"></p>
-								 </div>
-
-								<!--Mes con mayor gasto-->
-								<div class="columns grid grid-cols-2 gap-3">
-										<p class="column text-sm sm:text-base font-medium my-2 sm:my-4">
-												Mes con mayor gasto
-										</p>
-										<div class="tag py-1 px-2 text-xs sm:text-sm font-semibold text-white bg-primary-light">
-												<p id="fecha-mayor-gasto"></p>
-										</div>
-										<p class="column text-sm sm:text-base font-bold text-green-600 text-right"
-												id="monto-mes-mayor-gasto">
-										</p>
-								</div>
-
-							<!--Totales por categoría-->
-							<div id="contenedor-totales-categoria" class="my-4">
-									<h4 class="title text-base sm:text-lg font-bold">Totales por categoría</h4>
-									<div class="grid grid-cols-4 gap-4">
-											<p class="text-sm sm:text-base font-medium">Categoría</p>
-											<p class="text-sm sm:text-base font-medium text-right">Ganancias</p>
-											<p class="text-sm sm:text-base font-medium text-right">Gastos</p>
-											<p class="text-sm sm:text-base font-medium text-right">Balance</p>
-									</div>
-									<div id="contenedor-item-totales-categoria"></div>
+								<div
+									class="sm:w-[25%] text-center"
+									id="container-mayor-ganacia-categoria"
+								></div>
 							</div>
 
-							<!--Totales por mes-->
-							<div id="contenedor-totales-mes" class="my-6">
-								<h4 class="title text-base sm:text-lg font-bold mb-2">Totales por mes</h4>
-								<div class="grid grid-cols-4 gap-4">
-										<p class="text-sm sm:text-base font-medium">Mes</p>
-										<p class="text-sm sm:text-base font-medium text-right">Ganancias</p>
-										<p class="text-sm sm:text-base font-medium text-right">Gastos</p>
-										<p class="text-sm sm:text-base font-medium text-right">Balance</p>
+							<div class="flex flex-col text-center sm:flex-row">
+								<div class="sm:w-[50%] font-bold sm:text-left">
+									Categoría con mayor gasto
+								</div>
+
+								<div
+									class="sm:w-[25%] text-center"
+									id="container-categoria-mayor-gasto"
+								></div>
+
+								<div
+									class="sm:w-[25%] text-center"
+									id="container-mayor-gasto-categoria"
+								></div>
 							</div>
-							<div id="contenedor-totales-mensuales"></div>
+
+							<div class="flex flex-col text-center sm:flex-row">
+								<div class="sm:w-[50%] font-bold sm:text-left">
+									Categoría con mayor balance
+								</div>
+
+								<div
+									class="sm:w-[25%] text-center"
+									id="container-categoria-mayor-balance"
+								></div>
+
+								<div
+									class="sm:w-[25%] text-center"
+									id="container-mayor-balance-categoria"
+								></div>
 							</div>
+
+							<div class="flex flex-col text-center sm:flex-row">
+								<div class="sm:w-[50%] font-bold sm:text-left">
+									Mes con mayor ganancia
+								</div>
+
+								<div
+									class="sm:w-[25%] text-center"
+									id="container-mes-mayor-ganacia"
+								></div>
+
+								<div
+									class="sm:w-[25%] text-center"
+									id="container-mayor-ganancia-mes"
+								></div>
+							</div>
+
+							<div class="flex flex-col text-center sm:flex-row">
+								<div class="sm:w-[50%] font-bold sm:text-left sm:text-left">
+									Mes con mayor gasto
+								</div>
+
+								<div
+									class="sm:w-[25%] text-center"
+									id="container-mes-mayor-gasto"
+								></div>
+
+								<div
+									class="sm:w-[25%] text-center"
+									id="container-mayor-gasto-mes"
+								></div>
+							</div>
+						</div>
+
+						<h3
+							class="text-xl text-center text-left text-[#791cf8] font-bold border-b border-b-[#791cf8] dark:text-black dark:border-b dark:border-b-black"
+						>
+							Totales por categorías
+						</h3>
+
+						<div
+							class="flex flex-col text-center text-[14px] md:text-base border border-teal-600 dark:border-gray-300 md:border-none"
+						>
+							<div
+								class="flex border-b border-b-teal-600 dark:border-b-gray-300 md:border-none"
+							>
+								<div class="w-[25%] font-bold sm:text-left">Categoría</div>
+
+								<div
+									class="w-[25%] font-bold border-l border-l-teal-600 dark:border-l-gray-300 md:border-none"
+								>
+									Ganancias
+								</div>
+
+								<div
+									class="w-[25%] font-bold border-l border-l-teal-600 dark:border-l-gray-300 md:border-none"
+								>
+									Gastos
+								</div>
+
+								<div
+									class="w-[25%] font-bold border-l border-l-teal-600 dark:border-l-gray-300 md:border-none"
+								>
+									Balance
+								</div>
+							</div>
+
+							<div id="cuerpo-tabla-totales-categorias"></div>
+						</div>
+
+						<h3
+							class="text-xl text-center text-left text-[#791cf8] font-bold border-b border-b-[#791cf8] dark:text-black dark:border-b dark:border-b-black"
+						>
+							Totales por mes
+						</h3>
+
+						<div
+							class="flex flex-col text-center text-[14px] md:text-base border border-teal-600 dark:border-gray-300 md:border-none"
+						>
+							<div
+								class="flex border-b border-b-teal-600 dark:border-b-gray-300 md:border-none"
+							>
+								<div class="w-[25%] font-bold sm:text-left">Mes</div>
+
+								<div
+									class="w-[25%] font-bold border-l border-l-teal-600 dark:border-l-gray-300 md:border-none"
+								>
+									Ganancias
+								</div>
+
+								<div
+									class="w-[25%] font-bold border-l border-l-teal-600 dark:border-l-gray-300 md:border-none"
+								>
+									Gastos
+								</div>
+
+								<div
+									class="w-[25%] font-bold border-l border-l-teal-600 dark:border-l-gray-300 md:border-none"
+								>
+									Balance
+								</div>
+							</div>
+
+							<div id="cuerpo-tabla-totales-mes"></div>
 						</div>
 					</div>
 				</div>
 			</section>
+			<!-- ================== Fin SECCION REPORTES ================== -->
 		</main>
-	 <script src="index.js"></script>
+		<!-- ========================== FIN MAIN ======================== -->
+
+		<!-- ================== Inicio FOOTER ================== -->
+		<footer
+			class="w-full flex justify-end items-center justify-center gap-2 text-white p-3 bg-[#2c123e] dark:bg-gray-900"
+		>			
+				<p>Hecho con 💖 Por developCreativeCode</p>				
+				
+					<a href="https://github.com/Carolinasasowsky" target="_blank"
+						><i
+							class="fa-brands fa-github inline-block text-white text-center hover:text-[teal] text-2xl sm:text-3xl"
+						></i
+					></a>
+
+					<a href="www.linkedin.com/in/maríacarolinasasowsky" target="_blank"
+						><i
+							class="fa-brands fa-linkedin inline-block text-white text-center hover:text-[teal] text-2xl sm:text-3xl"
+						></i
+					></a>
+
+					<a href="www.linkedin.com/in/maríacarolinasasowsky" target="_blank"
+						><i
+							class="fa-brands fa-square-whatsapp inline-block text-white text-center hover:text-[teal] text-2xl sm:text-3xl"
+						></i
+					></a>						
+		</footer>
+		<!-- ================== Fin FOOTER ================== -->
+		<script src="main.js"></script>
 	</body>
 </html>
